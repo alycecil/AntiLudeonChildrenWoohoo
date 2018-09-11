@@ -82,7 +82,8 @@ namespace DarkIntentions.torture
                 ouched *= 100f;
             }
 
-            if (pawn.guest.resistance < ouched)
+            if (pawn.guest.resistance <
+                ouched)
             {
                 pawn.guest.resistance = 0f;
             }

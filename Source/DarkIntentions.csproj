@@ -55,6 +55,7 @@
     <Compile Include="DarkIntentions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="torture\JobDriver_Torture.cs" />
+    <Compile Include="torture\WorkGiver_Warden_KindChat.cs" />
     <Compile Include="torture\WorkGiver_Warden_Torture.cs" />
   </ItemGroup>
   <ItemGroup />

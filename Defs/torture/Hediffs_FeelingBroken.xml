@@ -4,7 +4,7 @@
 	<HediffDef>
 		<defName>FeelingBroken</defName>
     <hediffClass>HediffWithComps</hediffClass>
-		<label>Stages to broken body</label>
+		<label>Tortured</label>
 		<defaultLabelColor>(0.5, 0.7, 0.45)</defaultLabelColor>
 		<makesSickThought>false</makesSickThought>
 		<initialSeverity>0.1</initialSeverity>
