@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <InteractionDef>
+    <defName>BuildTortureRapport</defName>
+    <label>Torture</label>
+    <symbol>Things/Mote/SpeechSymbols/Insult</symbol>
+    <initiatorXpGainSkill>Social</initiatorXpGainSkill>
+    <initiatorXpGainAmount>45</initiatorXpGainAmount>
+    <recipientThought>RapportBuilt</recipientThought>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] [abuseType] [RECIPIENT_nameDef].</li>
+        <li>r_logentry->[INITIATOR_nameDef] [abuseType] the [something] on [RECIPIENT_nameDef].</li>
+		<li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about how they will be [abuseType].</li>
+        <li>r_logentry->[INITIATOR_nameDef] described being [abuseType] to [RECIPIENT_nameDef].</li>
+		
+
+        <li>abuseType->poked</li>
+        <li>abuseType->cut</li>
+        <li>abuseType->punched</li>
+        <li>abuseType->abused</li>
+        <li>abuseType->slapped</li>
+		<li>abuseType->clamped</li>
+		<li>abuseType->twisted</li>
+		<li>abuseType->assaulted</li>
+		
+		
+		<li>something->face</li>
+		<li>something->neck</li>
+		<li>something->cheek</li>
+		<li>something->nipples</li>
+		<li>something->arm pits</li>
+		<li>something->fingernails</li>
+		<li>something->anus</li>
+		<li>something->genitals</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+</Defs>
