@@ -77,19 +77,19 @@ namespace DarkIntentions.torture
             }
 
             Talkee.health.hediffSet.GetFirstHediffOfDef(DarkIntentions.feelingBroken).Severity += ouched;
-            if(pawn.guest.resistance > 1f)
+            if(Talkee.guest.resistance > 1f)
             {
                 ouched *= 100f;
             }
 
-            if (pawn.guest.resistance <
+            if (Talkee.guest.resistance <=
                 ouched)
             {
-                pawn.guest.resistance = 0f;
+                Talkee.guest.resistance = 0f;
             }
             else
             {
-                pawn.guest.resistance -= ouched;
+                Talkee.guest.resistance -= ouched;
             }
         }
 

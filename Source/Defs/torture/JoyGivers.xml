@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<!-- Joy givers are activities that satisfy the joy need -->
+
+	<JoyGiverDef>
+		<defName>AbuseAndTortureJoy</defName>
+		<giverClass>JoyGiver_SocialRelax</giverClass>
+		<baseChance>1</baseChance>
+		<jobDef>PrisonerTorture</jobDef>
+		<desireSit>false</desireSit>
+		<joyKind>AbuseAndTorture</joyKind>
+		<requiredCapacities>
+			<li>Manipulation</li>
+			<li>Talking</li>
+		</requiredCapacities>
+		<canDoWhileInBed>true</canDoWhileInBed>
+	</JoyGiverDef>
+
+</Defs>

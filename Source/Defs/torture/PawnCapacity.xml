@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+<PawnCapacityDef>
+    <defName>Vulnerability</defName>
+    <label>Vulnerability</label>
+    <listOrder>610</listOrder>
+    <lethalFlesh>false</lethalFlesh>
+    <showOnMechanoids>false</showOnMechanoids>
+	<showOnAnimals>false</showOnAnimals>
+  </PawnCapacityDef>
+ </Defs>

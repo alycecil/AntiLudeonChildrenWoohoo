@@ -58,7 +58,17 @@
     <Compile Include="torture\WorkGiver_Warden_KindChat.cs" />
     <Compile Include="torture\WorkGiver_Warden_Torture.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Defs\torture\Hediffs_FeelingBroken.xml" />
+    <Content Include="Defs\torture\interactions.xml" />
+    <Content Include="Defs\torture\Jobs.xml" />
+    <Content Include="Defs\torture\JoyGivers.xml" />
+    <Content Include="Defs\torture\JoyKind.xml" />
+    <Content Include="Defs\torture\PawnCapacity.xml" />
+    <Content Include="Defs\torture\Thoughts.xml" />
+    <Content Include="Defs\torture\WorkGivers.xml" />
+    <Content Include="Patches\Patches.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>

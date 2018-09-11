@@ -5,6 +5,8 @@ namespace DarkIntentions
 {
     public class DarkIntentions
     {
+        public static PawnCapacityDef Vulnerability = DefDatabase<PawnCapacityDef>.GetNamed("Vulnerability");
+
         public readonly static JobDef AbuseJob = DefDatabase<JobDef>.GetNamed("PrisonerTorture");
 
         public readonly static ThoughtDef GotAbused = DefDatabase<ThoughtDef>.GetNamed("GotAbused");
@@ -12,16 +14,15 @@ namespace DarkIntentions
         public readonly static ThoughtDef HateMyAbuser = DefDatabase<ThoughtDef>.GetNamed("HateMyAbuser");
         public readonly static ThoughtDef KindaLikeMyAbuser = DefDatabase<ThoughtDef>.GetNamed("KindaLikeMyAbuser");
         public readonly static ThoughtDef AllowedMeToGetAbused = DefDatabase<ThoughtDef>.GetNamed("AllowedMeToGetAbused");
-        public readonly static ThoughtDef StoleSomeAbuse = DefDatabase<ThoughtDef>.GetNamed("StoleSomeAbuse");
-
-
+        public readonly static ThoughtDef DidSomeAbuse = DefDatabase<ThoughtDef>.GetNamed("DidSomeAbuse");
+        public readonly static ThoughtDef BloodlustDidSomeAbuse = DefDatabase<ThoughtDef>.GetNamed("BloodlustDidSomeAbuse");
         public readonly static HediffDef feelingBroken = HediffDef.Named("FeelingBroken");
         /**
         public readonly static ThoughtDef WatchedSomeAbuse = DefDatabase<ThoughtDef>.GetNamed("WatchedSomeAbuse");
         public readonly static ThoughtDef WatchedSomeAbuseKind = DefDatabase<ThoughtDef>.GetNamed("WatchedSomeAbuseKind");
         **/
 
-        public readonly static ThoughtDef BloodlustStoleSomeAbuse = DefDatabase<ThoughtDef>.GetNamed("BloodlustStoleSomeAbuse");
+        
 
         public readonly static InteractionDef BuildTortureRapport = DefDatabase<InteractionDef>.GetNamed("BuildTortureRapport");
 
@@ -30,11 +31,11 @@ namespace DarkIntentions
         {
             if (is_bloodlust(torturer) || is_psychopath(torturer))
             {
-                addMemory(torturer, BloodlustStoleSomeAbuse);
+                addMemory(torturer, BloodlustDidSomeAbuse);
             }
             else
             {
-                addMemory(torturer, StoleSomeAbuse);
+                addMemory(torturer, DidSomeAbuse);
             }
 
             if (is_masochist(victim))

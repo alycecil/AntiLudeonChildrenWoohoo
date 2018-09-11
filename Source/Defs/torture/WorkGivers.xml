@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<WorkGiverDef>
+		<defName>AbusePrisoner</defName>
+		<label>Abuse Prisoner</label>
+		<giverClass>DarkIntentions.torture.WorkGiver_Warden_Torture</giverClass>
+		<workType>Warden</workType>
+		<verb>abuse</verb>
+		<gerund>abusing</gerund>
+		<priorityInType>10</priorityInType>
+		<requiredCapacities>
+			<li>Manipulation</li>
+		</requiredCapacities>
+		<directOrderable>true</directOrderable>
+	</WorkGiverDef>
+</Defs>
