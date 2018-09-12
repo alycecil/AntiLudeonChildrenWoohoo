@@ -43,7 +43,12 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <None Include="..\About\**" />
-    <None Include="..\Defs\**" />
+    <None Include="..\Defs\woohoo\Jobs.xml" />
+    <None Include="..\Defs\woohoo\JoyGivers.xml">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="..\Defs\woohoo\JoyKind.xml" />
+    <None Include="..\Defs\woohoo\WorkGivers.xml" />
     <None Include="..\Languages\**" />
     <None Include="..\Patches\**" />
     <Reference Include="UnityEngine">
@@ -52,22 +57,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DarkIntentions.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="JobDriver_Woohoo.cs" />
+    <Compile Include="JobDriver_Woohoo_Baby.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="torture\JobDriver_Torture.cs" />
-    <Compile Include="torture\WorkGiver_Warden_KindChat.cs" />
-    <Compile Include="torture\WorkGiver_Warden_Torture.cs" />
+    <Compile Include="WorkGiver_Woohoo.cs" />
+    <Compile Include="WorkGiver_Woohoo_Baby.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Defs\torture\Hediffs_FeelingBroken.xml" />
-    <Content Include="Defs\torture\interactions.xml" />
-    <Content Include="Defs\torture\Jobs.xml" />
-    <Content Include="Defs\torture\JoyGivers.xml" />
-    <Content Include="Defs\torture\JoyKind.xml" />
-    <Content Include="Defs\torture\PawnCapacity.xml" />
-    <Content Include="Defs\torture\Thoughts.xml" />
-    <Content Include="Defs\torture\WorkGivers.xml" />
-    <Content Include="Patches\Patches.xml" />
+    <Content Include="Hediff.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<WorkGiverDef>
+		<defName>Woohoo</defName>
+		<label>Woohoo</label>
+		<giverClass>DarkIntentions.woohoo.WorkGiver_Woohoo</giverClass>
+		<workType>BasicWorker</workType>
+		<verb>woohoo</verb>
+		<gerund>woohooing</gerund>
+		<priorityInType>0</priorityInType>
+		<requiredCapacities>
+			<li>Manipulation</li>
+		</requiredCapacities>
+		<directOrderable>true</directOrderable>
+	</WorkGiverDef>
+
+  <WorkGiverDef>
+    <defName>Woohoo_Baby</defName>
+    <label>Woohoo for Baby</label>
+    <giverClass>DarkIntentions.woohoo.WorkGiver_Woohoo_Baby</giverClass>
+    <workType>BasicWorker</workType>
+    <verb>woohoo for baby</verb>
+    <gerund>woohooing for a baby</gerund>
+    <priorityInType>0</priorityInType>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+    <directOrderable>true</directOrderable>
+  </WorkGiverDef>
+</Defs>
