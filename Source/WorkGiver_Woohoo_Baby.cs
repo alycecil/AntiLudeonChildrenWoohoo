@@ -21,6 +21,9 @@ namespace DarkIntentionsWoohoo
             return base.HasJobOnThing(pawn, t, forced) 
                 && Constants.is_fertile(pawn)
                 && Constants.is_fertile(t as Pawn)
+                && (
+                Constants.is_FemaleForBabies(pawn) || Constants.is_FemaleForBabies(t as Pawn)
+                )
                 ;
         }
     }

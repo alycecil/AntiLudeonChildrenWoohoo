@@ -30,8 +30,8 @@ namespace DarkIntentionsWoohoo
             if (pawn2 != null && !pawn2.Downed 
                 && pawn2.Faction == pawn.Faction
                 && pawn != pawn2 
-                //&& Constants.is_human(pawn)
-                ///&& Constants.is_human(pawn2)
+                && Constants.is_human(pawn)
+                && Constants.is_human(pawn2)
                 && forced)
             {
                 LocalTargetInfo target = pawn2;

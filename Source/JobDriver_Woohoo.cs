@@ -29,29 +29,38 @@ namespace DarkIntentionsWoohoo
         }
 
 
-        public void Mated(Pawn donor, Pawn hasWomb)
-        {
-           
-            PawnUtility.Mated(donor, hasWomb);
-
-        }
+        
 
 
         public IEnumerable<Toil> MakeMyLoveToils()
         {
 
             if (isMakeBaby()) {
+                yield return DoMakeBaby();
+                
+                    
+            }
+            yield break;
+        }
+
+        private Toil DoMakeBaby()
+        {
+            return new Toil
+            {
+                initAction = delegate
+                {
+
                     Pawn mate = (Pawn)TargetA;
 
 
                     //check fertility then ensemenate wombs
                     if (!Constants.is_fertile(pawn))
                     {
-                        Log.Message("Woohoo for baby not fertile, but youre not fertile", false);
+                        Log.Message("Woohoo for baby, but youre not fertile", false);
                     }
                     else if (!Constants.is_fertile(mate))
                     {
-                        Log.Message("Woohoo for baby not fertile mate", false);
+                        Log.Message("Woohoo for baby, but not fertile mate", false);
                     }
                     else
                     {
@@ -61,7 +70,7 @@ namespace DarkIntentionsWoohoo
                         {
                             Log.Message("Getting innitialer pregnant", false);
                             //(donor , has womb)
-                            Mated(mate, this.pawn);
+                            Mate.Mated(mate, this.pawn);
                         }
                         else
                         {
@@ -72,15 +81,18 @@ namespace DarkIntentionsWoohoo
                         {
                             Log.Message("Getting talkee pregnant", false);
                             //(donor , has womb)
-                            Mated(this.pawn, mate);
+                            Mate.Mated(this.pawn, mate);
                         }
                         else
                         {
                             Log.Message("talkee lacks womb", false);
                         }
                     }
-            }
-            yield break;
+                    },
+                socialMode = RandomSocialMode.Off,
+                defaultCompleteMode = ToilCompleteMode.Delay,
+                defaultDuration = 350
+            };
         }
 
         public virtual bool isMakeBaby()

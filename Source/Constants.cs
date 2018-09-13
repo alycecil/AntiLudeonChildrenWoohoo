@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using System;
+using RimWorld;
 using Verse;
 
 namespace DarkIntentionsWoohoo
@@ -24,7 +25,11 @@ namespace DarkIntentionsWoohoo
         public static float getFetility(Pawn pawn)
         {
             float val;
-            if (hasBionicWomb(pawn))
+            if (alreadyPregnant(pawn))
+            {
+                return 0f;
+            }
+            else if (hasBionicWomb(pawn))
             {
                 return 1f;
             }
@@ -38,6 +43,11 @@ namespace DarkIntentionsWoohoo
                 return val;
             }
             return pawn.ageTracker.CurLifeStage.reproductive ? 1f:0f;
+        }
+
+        private static bool alreadyPregnant(Pawn pawn)
+        {
+            return pawn.health.hediffSet.HasHediff(HediffDefOf.Pregnant);
         }
 
         public static bool is_FemaleForBabies(Pawn pawn)
