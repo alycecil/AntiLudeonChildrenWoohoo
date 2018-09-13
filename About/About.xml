@@ -1,24 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
-	<name>WooHoo - Dev Build</name>
+	<name>[DarkIntentions] Woohooer</name>
 	<author>AliceTries</author>
 	<targetVersion>0.19.2009</targetVersion>
 	<description>
-	Adds Sims (tm) like commands for woohooing with Pawns, including try for baby. 
-	
-	
-	How this works:
-	Adds a new ThoughDef (does not effect JobDef_Loving) and JobGiver (for ui click, requires basic (like flick))
-	Pregnancy is already a HeDiff defined for humanlikes; we human likes have a gestation period and the likes as do animals, in humanlikes case the default is 45. 
-	This is enabled "Woohoo with {Other}" (1% chanch) and "Try for Baby {Other}" which has a 50% chance, which can be reduced by Fertility if defined as a capacity. 
-	
-	Birds and Bees Support by Fluffy
-	If Fertility is a defined capacity then it is the average of the two partners then multiplies it times the base chance.
-	
-	
-	
-	TODO Mod Settings
-	
-(This is the dev version of DarkIntentions. The release version of About.xml is available for editing at About/About-Release.xml. Edits made on this file or on the temporary About/About.xml won't show up on the release version. Use VisualStudio to build a "Release" version of this mod when ready to upload your mod!)</description>
+    Release A1
+
+    Adds Sims (tm) like commands for woohooing with Pawns, including try for baby.
+
+
+    How this works:
+    Adds a new ThoughDef (does not effect JobDef_Loving) and JobGiver (for ui click, requires basic (like flick))
+    Pregnancy is already a HeDiff defined for humanlikes; we human likes have a gestation period and the likes as do animals, in humanlikes case the default is 45.
+    This is enabled "Woohoo with {Other}" (1% chance (Disabled for A1)) and "Try for Baby {Other}" which has a 50% chance, which can be reduced by Fertility if defined as a capacity.
+
+    Birds and Bees Support by Fluffy
+    If Fertility or Reproduction is a defined capacity then it is the average of the two partners then multiplies it times the base chance. To have a baby, each person must be fertile and their must be at least one person with a womb.
+
+    TODO Dice Rolls, Currently always accept and only pregnant when try for baby.
+
+    TODO Mod Settings
+
+    (This is the dev version of DarkIntentions. The release version of About.xml is available for editing at About/About-Release.xml. Edits made on this file or on the temporary About/About.xml won't show up on the release version. Use VisualStudio to build a "Release" version of this mod when ready to upload your mod!)</description>
 	<url>https://steamcommunity.com/id/AliceTries/myworkshopfiles/?appid=294100</url>
 </ModMetaData>

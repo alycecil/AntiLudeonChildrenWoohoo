@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <RecipeDef ParentName="SurgeryFlesh">
+    <defName>InstallBionicWomb</defName>
+    <label>install artificial womb</label>
+    <description>Install a womb.</description>
+    <workerClass>Recipe_InstallImplant</workerClass>
+    <jobString>Installing artificial womb.</jobString>
+    <workAmount>3700</workAmount>
+    <deathOnFailedSurgeryChance>0.001</deathOnFailedSurgeryChance>
+    <skillRequirements>
+      <Medicine>8</Medicine>
+    </skillRequirements>
+    <ingredients>
+      <li>
+        <filter>
+          <categories>
+            <li>Medicine</li>
+          </categories>
+        </filter>
+        <count>3</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <categories>
+        <li>Medicine</li>
+      </categories>
+    </fixedIngredientFilter>
+    <appliedOnFixedBodyParts>
+      <li>Stomach</li>
+    </appliedOnFixedBodyParts>
+    <addsHediff>BionicWomb</addsHediff>
+  </RecipeDef>
+</Defs>

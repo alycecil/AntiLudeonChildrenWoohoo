@@ -1,7 +1,7 @@
 ﻿
 using Verse;
 
-namespace DarkIntentions.woohoo
+namespace DarkIntentionsWoohoo
 {
     class WorkGiver_Woohoo_Baby : WorkGiver_Woohoo
     {

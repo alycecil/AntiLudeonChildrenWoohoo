@@ -6,92 +6,88 @@ using System.Text;
 using Verse;
 using Verse.AI;
 
-namespace DarkIntentions.woohoo
+namespace DarkIntentionsWoohoo
 {
     class JobDriver_Woohoo : JobDriver_Lovin
     {
         protected override IEnumerable<Toil> MakeNewToils()
         {
-            Pawn mate = (Pawn)TargetA;
-            bool ask = wantsMe(pawn, mate) && wantsMe(mate, pawn);
+            Log.Message("Woohoo for baby : Started", false);
 
-            IEnumerable<Toil> r = askForLove(ask);
+            IEnumerable<Toil> r = base.MakeNewToils();
 
-            if (ask)
+            if (r != null && r.Any())
             {
-                r.Union(base.MakeNewToils());
+                r = r.Union(MakeMyLoveToils());
 
-                if (r != null && r.Any())
-                {
-                    //we can add stuff to do now that weve made it to bed
-                    FilthMaker.MakeFilth(pawn.Position, pawn.Map, ThingDefOf.Filth_Slime, 1);
-                }
-                else
-                {
-                    Log.Message("Woohoo skipped", false);
-                }
             }
             else
             {
-                Log.Message("Woohoo declined", false);
+                Log.Message("Woohoo Baby Skipped", false);
             }
-
             return r;
         }
 
-        private IEnumerable<Toil> askForLove(bool ask)
+
+        public void Mated(Pawn donor, Pawn hasWomb)
         {
-            this.FailOnDespawnedOrNull(TargetIndex.A);
-            this.FailOnMentalState(TargetIndex.A);
-            this.FailOnDespawnedOrNull(TargetIndex.B);
+           
+            PawnUtility.Mated(donor, hasWomb);
 
-            Pawn mate = (Pawn)TargetA;
-            
-            yield return askForLoveToil(ask);
-
-            yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.ClosestTouch)
-                .FailOnThingMissingDesignation(TargetIndex.A, DesignationDefOf.Open)
-                .FailOnDespawnedOrNull(TargetIndex.A);
-            yield return Toils_Interpersonal.WaitToBeAbleToInteract(this.pawn);
-            yield return Toils_Interpersonal.GotoInteractablePosition(TargetIndex.A);
-
-            yield break;
         }
 
-        private Toil askForLoveToil(bool success)
+
+        public IEnumerable<Toil> MakeMyLoveToils()
         {
-            Pawn mate = (Pawn)TargetA;
 
-            
-            Toil prepare = Toils_General.WaitWith(TargetIndex.A, 500, false, false);
+            if (isMakeBaby()) {
+                    Pawn mate = (Pawn)TargetA;
 
-            prepare.tickAction = delegate ()
-            {
-                if (this.pawn.IsHashIntervalTick(100))
-                {
-                    MoteMaker.ThrowMetaIcon(this.pawn.Position, this.pawn.Map, ThingDefOf.Mote_Heart);
-                }
-                
-                if (mate.IsHashIntervalTick(150))
-                {
-                    if (success)
+
+                    //check fertility then ensemenate wombs
+                    if (!Constants.is_fertile(pawn))
                     {
-                        MoteMaker.ThrowMetaIcon(this.pawn.Position, this.pawn.Map, ThingDefOf.Mote_Heart);
+                        Log.Message("Woohoo for baby not fertile, but youre not fertile", false);
+                    }
+                    else if (!Constants.is_fertile(mate))
+                    {
+                        Log.Message("Woohoo for baby not fertile mate", false);
                     }
                     else
                     {
-                        MoteMaker.ThrowMetaIcon(mate.Position, this.pawn.Map, ThingDefOf.Mote_MicroSparks);
-                    }
-                }
-            };
+                        //for each female make pregnant
+                        //TODO artifical womb for men
+                        if (Constants.is_FemaleForBabies(pawn))
+                        {
+                            Log.Message("Getting innitialer pregnant", false);
+                            //(donor , has womb)
+                            Mated(mate, this.pawn);
+                        }
+                        else
+                        {
+                            Log.Message("Initiator lacks womb", false);
+                        }
 
-            return prepare;
+                        if (Constants.is_FemaleForBabies(mate))
+                        {
+                            Log.Message("Getting talkee pregnant", false);
+                            //(donor , has womb)
+                            Mated(this.pawn, mate);
+                        }
+                        else
+                        {
+                            Log.Message("talkee lacks womb", false);
+                        }
+                    }
+            }
+            yield break;
         }
 
-        private bool wantsMe(Pawn pawn, Pawn mate)
+        public virtual bool isMakeBaby()
         {
-            //TODO ask
-            return true;
+            Log.Message("Just love", false);
+            //TODO roll dice
+            return false;
         }
     }
 }

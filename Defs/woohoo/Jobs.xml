@@ -2,7 +2,7 @@
 <Defs>
   <JobDef>
     <defName>WooHoo</defName>
-    <driverClass>DarkIntentions.woohoo.JobDriver_Woohoo</driverClass>
+    <driverClass>DarkIntentionsWoohoo.JobDriver_Woohoo</driverClass>
     <reportString>Attempting Woohoo with TargetA.</reportString>
 	  <joyDuration>4000</joyDuration>
 	  <joyKind>Woohoo</joyKind>
@@ -11,7 +11,7 @@
   </JobDef>
   <JobDef>
     <defName>WooHoo_Baby</defName>
-    <driverClass>DarkIntentions.woohoo.JobDriver_Woohoo_Baby</driverClass>
+    <driverClass>DarkIntentionsWoohoo.JobDriver_Woohoo_Baby</driverClass>
     <reportString>Attempting Woohoo for a Baby with TargetA.</reportString>
     <joyDuration>4000</joyDuration>
     <joyKind>Woohoo</joyKind>

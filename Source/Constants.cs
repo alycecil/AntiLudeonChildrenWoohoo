@@ -1,7 +1,7 @@
 ﻿using RimWorld;
 using Verse;
 
-namespace DarkIntentions.woohoo
+namespace DarkIntentionsWoohoo
 {
     class Constants
     {
@@ -11,7 +11,7 @@ namespace DarkIntentions.woohoo
         public readonly static JobDef JobWooHoo = DefDatabase<JobDef>.GetNamed("WooHoo");
         public readonly static JobDef JobWooHoo_Baby = DefDatabase<JobDef>.GetNamed("WooHoo_Baby");
 
-        //TODO public readonly static HediffDef BionicWomb = HediffDef.Named("BionicWomb");
+        public readonly static HediffDef BionicWomb = HediffDef.Named("BionicWomb");
 
         public static readonly PawnCapacityDef Fertility = DefDatabase<PawnCapacityDef>.GetNamedSilentFail("Fertility");
         public static readonly PawnCapacityDef Reproduction = DefDatabase<PawnCapacityDef>.GetNamedSilentFail("Reproduction");

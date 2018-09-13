@@ -2,7 +2,7 @@
 using Verse;
 using Verse.AI;
 
-namespace DarkIntentions.woohoo
+namespace DarkIntentionsWoohoo
 {
     class WorkGiver_Woohoo : WorkGiver_TakeToBed
     {
@@ -27,7 +27,12 @@ namespace DarkIntentions.woohoo
         public override bool HasJobOnThing(Pawn pawn, Thing t, bool forced = false)
         {
             Pawn pawn2 = t as Pawn;
-            if (pawn2 != null && !pawn2.Downed && pawn2.Faction == pawn.Faction && pawn != pawn2 && forced)
+            if (pawn2 != null && !pawn2.Downed 
+                && pawn2.Faction == pawn.Faction
+                && pawn != pawn2 
+                //&& Constants.is_human(pawn)
+                ///&& Constants.is_human(pawn2)
+                && forced)
             {
                 LocalTargetInfo target = pawn2;
                 if (pawn.CanReserve(target, 1, -1, null, forced) && !GenAI.EnemyIsNear(pawn2, 40f))
