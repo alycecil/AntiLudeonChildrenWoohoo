@@ -21,8 +21,15 @@
 
     TODO Mod Settings
     
+    Additionally the Woohoo yeilding Babies is integrated with Children and Families mod if you prefer that child generator over random babies from the base game generator.
+    
     Release Notes:
-    A2 : Check if already pregnant in this rather than in letting the game codes mate do it after we try to make a baby. this allows icon to not show up if not pregnant.
+    A2 : 
+    Major: 
+    Integrate with Children and Families, may be loaded above or below; I prefer above to ensure any nonsense in the other mod always overrules
+    Minor:
+    Check if already pregnant in this rather than in letting the game codes mate do it after we try to make a baby. 
+    this allows ui button to not show up if not pregnant.
 
     (This is the dev version of DarkIntentions. The release version of About.xml is available for editing at About/About-Release.xml. Edits made on this file or on the temporary About/About.xml won't show up on the release version. Use VisualStudio to build a "Release" version of this mod when ready to upload your mod!)</description>
 	<url>https://steamcommunity.com/id/AliceTries/myworkshopfiles/?appid=294100</url>

@@ -34,11 +34,8 @@ namespace DarkIntentionsWoohoo
 
         public IEnumerable<Toil> MakeMyLoveToils()
         {
-
             if (isMakeBaby()) {
                 yield return DoMakeBaby();
-                
-                    
             }
             yield break;
         }
