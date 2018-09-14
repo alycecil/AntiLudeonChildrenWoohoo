@@ -4,7 +4,7 @@
 	<author>AliceTries</author>
 	<targetVersion>0.19.2009</targetVersion>
 	<description>
-    Release A3
+    Release A4
 
     Adds Sims (tm) like commands for woohooing with Pawns, including try for baby.
 
@@ -32,6 +32,12 @@
     Additionally the Woohoo yeilding Babies is integrated with Children and Families mod if you prefer that child generator over random babies from the base game generator.
     
     Release Notes:
+    A4:
+    Major:
+    Settings!
+    Minor:
+    Bed Theft wont happen if bed has occupents because something alone the lines of "yeah that was awkward for everyone and we agreed not to do that anymore."
+    
     A3:
     Major:
     Theft of beds (including prisoner beds) for woohooing in that bed. I should add a moodlet on the owners if in line of sight

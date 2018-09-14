@@ -10,6 +10,8 @@ namespace DarkIntentionsWoohoo
 {
     class JobDriver_Woohoo : JobDriver_Lovin
     {
+
+
         protected override IEnumerable<Toil> MakeNewToils()
         {
             
@@ -93,6 +95,31 @@ namespace DarkIntentionsWoohoo
         {
             //Log.Message("Just love", false);
             return false;
+        }
+
+        public override bool TryMakePreToilReservations(bool errorOnFailed)
+        {
+            Pawn mate;
+            Building_Bed bed;
+
+            if (TargetA != null && TargetA.Thing != null  && (mate = TargetA.Thing as Pawn) != null
+                && TargetB != null && TargetB.Thing != null && (bed = TargetB.Thing as Building_Bed) != null
+                && pawn != null
+                && Constants.is_human(pawn)
+                && Constants.is_human(mate)
+                && ! bed.IsBurning()
+                )
+            {
+                return base.TryMakePreToilReservations(errorOnFailed);
+            }
+            
+            if(errorOnFailed)
+                Log.Error("Stopped an Invalid Woohoo : "+ this.GetReport());
+            else 
+                Log.Message("Stopped an Invalid Woohoo");
+            return false;
+
+            
         }
     }
 }

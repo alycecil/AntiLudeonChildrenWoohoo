@@ -76,7 +76,7 @@ namespace DarkIntentionsWoohoo
                 }
 
                 //lets steal a bed!
-                foreach (Building_Bed stolenBed in bigBeds)
+                foreach (Building_Bed stolenBed in bigBeds.Where(bed => bed.CurOccupants == null || !bed.CurOccupants.Any()))
                 {
                     //-- Log.Message("Stealing a bed...", false);
                     if (stolenBed != null)
@@ -89,9 +89,6 @@ namespace DarkIntentionsWoohoo
                         Log.Error("How the hell is a stolenBed null?", false);
                     }
                 }
-
-
-
             }
 
 
