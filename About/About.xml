@@ -36,6 +36,8 @@
     Major:
     Theft of beds (including prisoner beds) for woohooing in that bed. I should add a moodlet on the owners if in line of sight
     Minor:
+    No Med Beds
+    Allow Male Pregnancy with installed womb (Cost 3 Medicine, Skill level 8)
     Allow prisoners to be impregnated, current default is that they are not a prisoner on spawn but a "free" pawn of the mothers faction. Will need to create a Harmony Patch in A4
     
     

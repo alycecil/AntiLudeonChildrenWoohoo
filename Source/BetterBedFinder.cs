@@ -36,7 +36,7 @@ namespace DarkIntentionsWoohoo
                 }
 
                 IEnumerable<Building_Bed> bigBeds = allBeds
-                    .Where(x => x != null && x.SleepingSlotsCount > 1)
+                    .Where(x => x != null && x.SleepingSlotsCount > 1 && ! x.Medical)
                     ;
 
                 if (! bigBeds.Any())

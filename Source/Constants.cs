@@ -12,7 +12,6 @@ namespace DarkIntentionsWoohoo
         public readonly static JobDef JobWooHoo = DefDatabase<JobDef>.GetNamed("WooHoo");
         public readonly static JobDef JobWooHoo_Baby = DefDatabase<JobDef>.GetNamed("WooHoo_Baby");
         
-
         public readonly static HediffDef BionicWomb = HediffDef.Named("BionicWomb");
 
         public static readonly PawnCapacityDef Fertility = DefDatabase<PawnCapacityDef>.GetNamedSilentFail("Fertility");
@@ -58,8 +57,7 @@ namespace DarkIntentionsWoohoo
 
         public static bool hasBionicWomb(Pawn pawn)
         {
-            //return pawn.health.hediffSet.HasHediff(BionicWomb);
-            return false;
+            return pawn.health.hediffSet.HasHediff(BionicWomb);
         }
 
 
