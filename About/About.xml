@@ -9,35 +9,44 @@
     Adds Sims (tm) like commands for woohooing with Pawns, including try for baby.
 
 
-    How this works:
-    Adds a new ThoughDef (does not effect JobDef_Loving) and JobGiver (for ui click, requires basic (like flick))
-    Pregnancy is already a HeDiff defined for humanlikes; we human likes have a gestation period and the likes as do animals, in humanlikes case the default is 45.
-    This is enabled "Woohoo with {Other}" (1% chance (Disabled)) and "Try for Baby {Other}" which has a 50% (Currently always) chance, which can be reduced by Fertility if defined as a capacity.
+    This creates context options of "Woohoo with {Other}" and "Try for Baby {Other}" with Colonists and Prisoners
 
-    Birds and Bees Support by Fluffy
-    If Fertility or Reproduction is a defined capacity then it is the average of the two partners then multiplies it times the base chance. To have a baby, each person must be fertile and their must be at least one person with a womb.
+    Please "don't" create a cannibal farm.
 
+
+    Integrations:
+    Birds and Bees :
+    Uses the Fertility Capabilities if there
+
+    Children School and Families :
+    If this mod is enabled will use that child generator over this mods random babies from the base game generator.
+
+    Generic:
+    Will Check for Capabilities named Fertility and Reproduction, which can prevent pregancy.
+
+    Warning:
+    Psychology mod will mess with this in a way that spams your logs.
+    This is because Psychology tries to Start this job without using the work driver just seeing that this joy is a valid type and trying to do in in a gathering space. Yeah psychology is trying to get your pawns to woohoo a table or campfire in a public place.
 
 
     TODO Dice Rolls, Currently always accept and only pregnant when try for baby.
 
     TODO Mod Settings
-    
+
     TODO Pregnant Prisoners should spawn baby that is also a prisoner. Needs harmony postfix patch; will need to look as Children and Families Mod to see what I need to do there as well. Likely a second patch.
-    
-    TODO Custom Moodlets
-    
-    TODO Make the surgery to install Artifical Womb available not just through dev menu.
-    
-    Additionally the Woohoo yeilding Babies is integrated with Children and Families mod if you prefer that child generator over random babies from the base game generator.
-    
+
+
+
     Release Notes:
     A4:
     Major:
-    Settings!
+    Animation and Motes where appropriate.
+    Woohooing tables and campfires with Psychology mod is at an end, causes BaseGame log message as we have to catch in pretoils as our workdriver is skipped. This is a bug with psychology. Sorry, all i can do is make it not horrible.
     Minor:
     Bed Theft wont happen if bed has occupents because something alone the lines of "yeah that was awkward for everyone and we agreed not to do that anymore."
-    
+    WooHoo Called on Partner as well so they get the right joy.
+    Moodlets!
+
     A3:
     Major:
     Theft of beds (including prisoner beds) for woohooing in that bed. I should add a moodlet on the owners if in line of sight
@@ -45,14 +54,16 @@
     No Med Beds
     Allow Male Pregnancy with installed womb (Cost 3 Medicine, Skill level 8)
     Allow prisoners to be impregnated, current default is that they are not a prisoner on spawn but a "free" pawn of the mothers faction. Will need to create a Harmony Patch in A4
-    
-    
-    A2 : 
-    Major: 
+
+
+    A2 :
+    Major:
     Integrate with Children and Families, may be loaded above or below; I prefer above to ensure any nonsense in the other mod always overrules
     Minor:
-    Check if already pregnant in this rather than in letting the game codes mate do it after we try to make a baby. 
+    Check if already pregnant in this rather than in letting the game codes mate do it after we try to make a baby.
     this allows ui button to not show up if not pregnant.
+
+    Source:
 
     (This is the dev version of DarkIntentions. The release version of About.xml is available for editing at About/About-Release.xml. Edits made on this file or on the temporary About/About.xml won't show up on the release version. Use VisualStudio to build a "Release" version of this mod when ready to upload your mod!)</description>
 	<url>https://steamcommunity.com/id/AliceTries/myworkshopfiles/?appid=294100</url>

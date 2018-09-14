@@ -20,7 +20,7 @@ namespace DarkIntentionsWoohoo
                     {
                         //Log.Message("Asking for love");
                         Job newJob = new Job(Constants.JobWooHoo, pawn, bed);
-                        mate.jobs.StartJob(newJob, JobCondition.InterruptForced, null, false, true, null, null, false);
+                        mate.jobs.StartJob(newJob, JobCondition.None, null, false, true, null, null, false);
                     }
 
                 },

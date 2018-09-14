@@ -15,19 +15,30 @@ namespace DarkIntentionsWoohoo
         protected override IEnumerable<Toil> MakeNewToils()
         {
             
-            Pawn mate = TargetA.Thing as Pawn;
-            Building_Bed bed = TargetB.Thing as Building_Bed;
+            //Pawn mate = TargetA.Thing as Pawn;
+            //Building_Bed bed = TargetB.Thing as Building_Bed;
 
+            Pawn mate;
+            Building_Bed bed;
 
-            HookupBedmanager hookupBedmanager = new HookupBedmanager(bed);
-
-
-
-            if (mate == null || bed == null)
+            if (TargetA != null && TargetA.Thing != null && (mate = TargetA.Thing as Pawn) != null
+                && TargetB != null && TargetB.Thing != null && (bed = TargetB.Thing as Building_Bed) != null
+                && pawn != null
+                && Constants.is_human(pawn)
+                && Constants.is_human(mate)
+                && !bed.IsBurning()
+                )
             {
-                //Log.Error("Missing A Mate or a Bed", false);
+                //everything is in order then
+            }
+            else
+            {
+                Log.Error("["+pawn.Name+"] can't woohoo right.");
+                this.EndJobWith(JobCondition.Errored);
                 return null;
             }
+
+            HookupBedmanager hookupBedmanager = new HookupBedmanager(bed);
 
             bool partnerSaidYes;
             IEnumerable<Toil> r;
@@ -112,12 +123,13 @@ namespace DarkIntentionsWoohoo
             {
                 return base.TryMakePreToilReservations(errorOnFailed);
             }
-            
-            if(errorOnFailed)
-                Log.Error("Stopped an Invalid Woohoo : "+ this.GetReport());
-            else 
-                Log.Message("Stopped an Invalid Woohoo");
-            return false;
+            else
+            {
+                Log.Message("[" + pawn.Name + "] can't woohoo right. Timing out their lovin for 500 ticks. They tried to some weird stuff:"+this.GetReport());
+                this.pawn.mindState.canLovinTick = Find.TickManager.TicksGame + 500;
+
+                return false;
+            }
 
             
         }

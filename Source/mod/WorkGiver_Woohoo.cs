@@ -53,6 +53,11 @@ namespace DarkIntentionsWoohoo
 
             Pawn pawn2 = t as Pawn;
 
+            if (!Constants.is_human(pawn)
+                || !Constants.is_human(pawn2)) return null;
+
+            Log.Message("Woohoo Started Correctly");
+
             if (IsMate(pawn, pawn2))
             {
 

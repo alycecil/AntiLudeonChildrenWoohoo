@@ -92,9 +92,16 @@
     <Compile Include="mod\WorkGiver_Woohoo_Baby.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="xml\Hediff.xml" />
+    <Content Include="..\Defs\woohoo\Hediffs.xml">
+      <Link>xml\Hediffs.xml</Link>
+    </Content>
+    <Content Include="..\Defs\woohoo\Recipes_Surgery_Installations.xml">
+      <Link>xml\Recipes_Surgery_Installations.xml</Link>
+    </Content>
+    <Content Include="..\Defs\woohoo\Thoughts.xml">
+      <Link>xml\Thoughts.xml</Link>
+    </Content>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>
