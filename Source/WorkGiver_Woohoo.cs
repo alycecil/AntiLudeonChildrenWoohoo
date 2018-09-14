@@ -6,6 +6,7 @@ namespace DarkIntentionsWoohoo
 {
     class WorkGiver_Woohoo : WorkGiver_TakeToBed
     {
+        private Building_Bed bed;
 
         public override ThingRequest PotentialWorkThingRequest
         {
@@ -26,19 +27,21 @@ namespace DarkIntentionsWoohoo
         // Token: 0x0600073A RID: 1850 RVA: 0x00041350 File Offset: 0x0003F750
         public override bool HasJobOnThing(Pawn pawn, Thing t, bool forced = false)
         {
+            if (t == null || pawn == null) return false;
             Pawn pawn2 = t as Pawn;
-            if (pawn2 != null && !pawn2.Downed 
-                && pawn2.Faction == pawn.Faction
+            if (pawn2 != null 
+                && !pawn2.Downed 
+                && ( pawn2.Faction == pawn.Faction || (pawn2.guest!=null && pawn2.guest.IsPrisoner) )
                 && pawn != pawn2 
                 && Constants.is_human(pawn)
                 && Constants.is_human(pawn2)
                 && forced)
             {
                 LocalTargetInfo target = pawn2;
-                if (pawn.CanReserve(target, 1, -1, null, forced) && !GenAI.EnemyIsNear(pawn2, 40f))
+                if (pawn.CanReserve(target, 1, -1, null, forced))
                 {
-                    Thing thing = base.FindBed(pawn, pawn2);
-                    return thing != null && pawn2.CanReserve(thing, 1, -1, null, false);
+                    bed = BetterBedFinder.DoBetterBedFinder(pawn, pawn2);
+                    return bed != null;
                 }
             }
             return false;
@@ -46,19 +49,20 @@ namespace DarkIntentionsWoohoo
 
         public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false)
         {
+            if (t == null || pawn == null) return null;
 
             Pawn pawn2 = t as Pawn;
-            Building_Bed t2 = base.FindBed(pawn, pawn2);
-            if(IsMate(pawn, pawn2))
+
+            if (IsMate(pawn, pawn2))
             {
 
-                return new Job(Constants.JobWooHoo_Baby, pawn2, t2)
+                return new Job(Constants.JobWooHoo_Baby, pawn2, bed)
                 {
                     count = 1
                 };
             }
             else {
-                return new Job(Constants.JobWooHoo, pawn2, t2)
+                return new Job(Constants.JobWooHoo, pawn2, bed)
                 {
                     count = 1
                 };

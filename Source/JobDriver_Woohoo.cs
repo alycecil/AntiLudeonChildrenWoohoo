@@ -12,90 +12,67 @@ namespace DarkIntentionsWoohoo
     {
         protected override IEnumerable<Toil> MakeNewToils()
         {
-            Log.Message("Woohoo for baby : Started", false);
+            
+            Pawn mate = TargetA.Thing as Pawn;
+            Building_Bed bed = TargetB.Thing as Building_Bed;
 
-            IEnumerable<Toil> r = base.MakeNewToils();
 
-            if (r != null && r.Any())
+            HookupBedmanager hookupBedmanager = new HookupBedmanager(bed);
+
+
+
+            if (mate == null || bed == null)
             {
-                r = r.Union(MakeMyLoveToils());
+                //Log.Error("Missing A Mate or a Bed", false);
+                return null;
+            }
+            //Log.Message("Woohoo for baby : Started", false);
+            bool partnerSaidYes = AskPartner(pawn, mate);
 
-            }
-            else
+            IEnumerable<Toil> r = ToilerHelper.ToilsAskForWoohoo(pawn, mate, bed, partnerSaidYes, hookupBedmanager);
+            
+            if (partnerSaidYes)
             {
-                Log.Message("Woohoo Baby Skipped", false);
+                if (JailHouseWoohoo.IsThisJailLovin(pawn, mate, bed))
+                {
+                    r.Union(JailHouseWoohoo.jailLovin(pawn, mate, bed));
+                } else
+                {
+                    r = r.Union(base.MakeNewToils());
+                }
+                r = r.Union(MakeMyLoveToils(pawn, mate)).Union(hookupBedmanager.GiveBackToil());
+
+                
             }
+
+
             return r;
         }
 
-
         
 
+        private bool AskPartner(Pawn pawn, Pawn mate)
+        {
+            return pawn != null && mate != null;
+        }
 
-        public IEnumerable<Toil> MakeMyLoveToils()
+        public IEnumerable<Toil> MakeMyLoveToils(Pawn pawn, Pawn mate)
         {
             if (isMakeBaby()) {
-                yield return DoMakeBaby();
+                yield return BabyMaker.DoMakeBaby(pawn, mate);
             }
             yield break;
         }
-
-        private Toil DoMakeBaby()
+        
+        public override bool CanBeginNowWhileLyingDown()
         {
-            return new Toil
-            {
-                initAction = delegate
-                {
-
-                    Pawn mate = (Pawn)TargetA;
-
-
-                    //check fertility then ensemenate wombs
-                    if (!Constants.is_fertile(pawn))
-                    {
-                        Log.Message("Woohoo for baby, but youre not fertile", false);
-                    }
-                    else if (!Constants.is_fertile(mate))
-                    {
-                        Log.Message("Woohoo for baby, but not fertile mate", false);
-                    }
-                    else
-                    {
-                        //for each female make pregnant
-                        //TODO artifical womb for men
-                        if (Constants.is_FemaleForBabies(pawn))
-                        {
-                            Log.Message("Getting innitialer pregnant", false);
-                            //(donor , has womb)
-                            Mate.Mated(mate, this.pawn);
-                        }
-                        else
-                        {
-                            Log.Message("Initiator lacks womb", false);
-                        }
-
-                        if (Constants.is_FemaleForBabies(mate))
-                        {
-                            Log.Message("Getting talkee pregnant", false);
-                            //(donor , has womb)
-                            Mate.Mated(this.pawn, mate);
-                        }
-                        else
-                        {
-                            Log.Message("talkee lacks womb", false);
-                        }
-                    }
-                    },
-                socialMode = RandomSocialMode.Off,
-                defaultCompleteMode = ToilCompleteMode.Delay,
-                defaultDuration = 350
-            };
+            return (JobInBedUtility.InBedOrRestSpotNow(this.pawn, TargetB) 
+            &&  JobInBedUtility.InBedOrRestSpotNow(TargetA.Thing as Pawn, TargetB));
         }
-
+        
         public virtual bool isMakeBaby()
         {
-            Log.Message("Just love", false);
-            //TODO roll dice
+            //Log.Message("Just love", false);
             return false;
         }
     }

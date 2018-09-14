@@ -64,12 +64,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BabyMaker.cs" />
+    <Compile Include="BetterBedFinder.cs" />
     <Compile Include="ChildrenCrossMod.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="HookupBedmanager.cs" />
+    <Compile Include="JailHouseWoohoo.cs" />
     <Compile Include="JobDriver_Woohoo.cs" />
     <Compile Include="JobDriver_Woohoo_Baby.cs" />
     <Compile Include="Mate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ToilerHelper.cs" />
     <Compile Include="WorkGiver_Woohoo.cs" />
     <Compile Include="WorkGiver_Woohoo_Baby.cs" />
   </ItemGroup>

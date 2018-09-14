@@ -4,7 +4,7 @@
 	<author>AliceTries</author>
 	<targetVersion>0.19.2009</targetVersion>
 	<description>
-    Release A2
+    Release A3
 
     Adds Sims (tm) like commands for woohooing with Pawns, including try for baby.
 
@@ -12,18 +12,33 @@
     How this works:
     Adds a new ThoughDef (does not effect JobDef_Loving) and JobGiver (for ui click, requires basic (like flick))
     Pregnancy is already a HeDiff defined for humanlikes; we human likes have a gestation period and the likes as do animals, in humanlikes case the default is 45.
-    This is enabled "Woohoo with {Other}" (1% chance (Disabled for A1)) and "Try for Baby {Other}" which has a 50% chance, which can be reduced by Fertility if defined as a capacity.
+    This is enabled "Woohoo with {Other}" (1% chance (Disabled)) and "Try for Baby {Other}" which has a 50% (Currently always) chance, which can be reduced by Fertility if defined as a capacity.
 
     Birds and Bees Support by Fluffy
     If Fertility or Reproduction is a defined capacity then it is the average of the two partners then multiplies it times the base chance. To have a baby, each person must be fertile and their must be at least one person with a womb.
+
+
 
     TODO Dice Rolls, Currently always accept and only pregnant when try for baby.
 
     TODO Mod Settings
     
+    TODO Pregnant Prisoners should spawn baby that is also a prisoner. Needs harmony postfix patch; will need to look as Children and Families Mod to see what I need to do there as well. Likely a second patch.
+    
+    TODO Custom Moodlets
+    
+    TODO Make the surgery to install Artifical Womb available not just through dev menu.
+    
     Additionally the Woohoo yeilding Babies is integrated with Children and Families mod if you prefer that child generator over random babies from the base game generator.
     
     Release Notes:
+    A3:
+    Major:
+    Theft of beds (including prisoner beds) for woohooing in that bed. I should add a moodlet on the owners if in line of sight
+    Minor:
+    Allow prisoners to be impregnated, current default is that they are not a prisoner on spawn but a "free" pawn of the mothers faction. Will need to create a Harmony Patch in A4
+    
+    
     A2 : 
     Major: 
     Integrate with Children and Families, may be loaded above or below; I prefer above to ensure any nonsense in the other mod always overrules
