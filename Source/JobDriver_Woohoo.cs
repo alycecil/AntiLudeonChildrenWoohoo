@@ -26,30 +26,48 @@ namespace DarkIntentionsWoohoo
                 //Log.Error("Missing A Mate or a Bed", false);
                 return null;
             }
-            //Log.Message("Woohoo for baby : Started", false);
-            bool partnerSaidYes = AskPartner(pawn, mate);
 
-            IEnumerable<Toil> r = ToilerHelper.ToilsAskForWoohoo(pawn, mate, bed, partnerSaidYes, hookupBedmanager);
-            
+            bool partnerSaidYes;
+            IEnumerable<Toil> r;
+            if (mate.CurJob.def == JobDefOf.Lovin || mate.CurJob.def == Constants.JobWooHoo || mate.CurJob.def == Constants.JobWooHoo_Baby)
+            {
+                partnerSaidYes = true;
+                r = nothing();
+            }
+            else {
+                //Log.Message("Woohoo for baby : Started", false);
+                partnerSaidYes = AskPartner(pawn, mate);
+                r = ToilerHelper.ToilsAskForWoohoo(pawn, mate, bed, partnerSaidYes, hookupBedmanager);
+
+                if (partnerSaidYes)
+                {
+                    r = r.Union(WoohooManager.makePartnerWoohoo(pawn, mate, bed));
+                }
+            }
+
+
             if (partnerSaidYes)
             {
-                if (JailHouseWoohoo.IsThisJailLovin(pawn, mate, bed))
-                {
-                    r.Union(JailHouseWoohoo.jailLovin(pawn, mate, bed));
-                } else
+                r = r
+                   .Union(WoohooManager.animateLovin(pawn, mate, bed))
+                   .Union(MakeMyLoveToils(pawn, mate))
+                   .Union(hookupBedmanager.GiveBackToil());
+
+
+                if(!WoohooManager.IsThisJailLovin(pawn, mate, bed))
                 {
                     r = r.Union(base.MakeNewToils());
                 }
-                r = r.Union(MakeMyLoveToils(pawn, mate)).Union(hookupBedmanager.GiveBackToil());
-
-                
             }
 
 
             return r;
         }
 
-        
+        private IEnumerable<Toil> nothing()
+        {
+            yield break;
+        }
 
         private bool AskPartner(Pawn pawn, Pawn mate)
         {
@@ -58,6 +76,7 @@ namespace DarkIntentionsWoohoo
 
         public IEnumerable<Toil> MakeMyLoveToils(Pawn pawn, Pawn mate)
         {
+            yield return MemoryManager.addMoodletsToil(pawn, mate);
             if (isMakeBaby()) {
                 yield return BabyMaker.DoMakeBaby(pawn, mate);
             }

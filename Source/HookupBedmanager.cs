@@ -36,7 +36,7 @@ namespace DarkIntentionsWoohoo
                 {
                     initAction = delegate ()
                     {
-                        Log.Message("Boy get out my house, I ant making you pancakes an' you an't movin' in.");
+                        //Log.Message("Boy get out my house, I ant making you pancakes an' you an't movin' in.");
                         GiveBack();
                     },
                     defaultCompleteMode = ToilCompleteMode.Instant
@@ -115,7 +115,7 @@ namespace DarkIntentionsWoohoo
             }
             else
             {
-                Log.Message("No spots?! ugh");
+                //Log.Message("No spots?! ugh");
                 return false;
             }
 

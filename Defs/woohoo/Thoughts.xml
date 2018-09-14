@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+
+	<ThoughtDef>
+		<defName>Pregnant</defName>
+		<workerClass>ThoughtWorker_Hediff</workerClass>
+		<hediff>Pregnant</hediff>
+    <stackLimit>1</stackLimit>
+		<stages>
+			<li>
+				<label>Strange</label>
+				<description>I feel strange.</description>
+				<baseMoodEffect>0</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+
+	<ThoughtDef>
+		<defName>PrisonerWoohoo</defName>
+		<thoughtClass>Thought_Memory</thoughtClass>
+		<durationDays>4.0</durationDays>
+		<stackLimit>100</stackLimit>
+		<stackedEffectMultiplier>0.4</stackedEffectMultiplier>
+		<stages>
+			<li>
+				<label>guard was a pervert</label>
+				<description>Guard and I did something I won't look back on kindly.</description>
+				<baseMoodEffect>-18</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef>
+		<defName>MasochistPrisonerWoohoo</defName>
+		<thoughtClass>Thought_Memory</thoughtClass>
+		<durationDays>5.0</durationDays>
+		<stackLimit>5</stackLimit>
+		<stackedEffectMultiplier>0.7</stackedEffectMultiplier>
+		<stages>
+			<li>
+				<label>enjoyed prison woohoo</label>
+        <description>enjoyed prison woohoo</description>
+				<baseMoodEffect>4</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef>
+		<defName>PrisonerWoohooMemory</defName>
+		<thoughtClass>Thought_MemorySocial</thoughtClass>
+		<durationDays>22.0</durationDays>
+		<stackLimit>5</stackLimit>
+		<stackedEffectMultiplier>0.4</stackedEffectMultiplier>
+		<stages>
+			<li>
+				<label>woohoo with a guard</label>
+				<description>The Guard {0} is such a pervert.</description>
+				<baseOpinionOffset>-130</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef>
+		<defName>MasochistPrisonerWoohooMemory</defName>
+		<thoughtClass>Thought_MemorySocial</thoughtClass>
+		<durationDays>5.0</durationDays>
+		<stackLimit>5</stackLimit>
+		<stackedEffectMultiplier>0.7</stackedEffectMultiplier>
+		<stages>
+			<li>
+				<label>Woohoo with a colonist</label>
+				<description>I Woohoo with the Colonist {0}, I liked it.</description>
+				<baseOpinionOffset>20</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+  	<ThoughtDef>
+		<defName>WoohooKink</defName>
+		<thoughtClass>Thought_Memory</thoughtClass>
+		<durationDays>1.0</durationDays>
+		<stackLimit>3</stackLimit>
+		<stackedEffectMultiplier>0.4</stackedEffectMultiplier>
+		<stages>
+			<li>
+				<label>kinky woohoo</label>
+				<description>Yes!</description>
+				<baseMoodEffect>10</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+  
+  <ThoughtDef>
+		<defName>WoohooKinkMemory</defName>
+		<thoughtClass>Thought_MemorySocial</thoughtClass>
+		<durationDays>5.0</durationDays>
+		<stackLimit>5</stackLimit>
+		<stackedEffectMultiplier>0.7</stackedEffectMultiplier>
+		<stages>
+			<li>
+				<label>kinky woohoo</label>
+				<description>{0}and I got kinky.</description>
+				<baseOpinionOffset>30</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+  
+	<ThoughtDef>
+		<defName>WoohooNeutral</defName>
+		<thoughtClass>Thought_Memory</thoughtClass>
+		<durationDays>1.0</durationDays>
+		<stackLimit>3</stackLimit>
+		<stackedEffectMultiplier>0.4</stackedEffectMultiplier>
+		<stages>
+			<li>
+				<label>mediocre woohoo</label>
+				<description>meh, maybe nex time.</description>
+				<baseMoodEffect>0</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef>
+		<defName>WoohooColonist</defName>
+		<thoughtClass>Thought_Memory</thoughtClass>
+		<durationDays>1.0</durationDays>
+		<stackLimit>3</stackLimit>
+		<stackedEffectMultiplier>0.4</stackedEffectMultiplier>
+		<stages>
+			<li>
+				<label>woohoo</label>
+				<description>That was good.</description>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef>
+		<defName>WoohooColonistRegret</defName>
+		<thoughtClass>Thought_Memory</thoughtClass>
+		<durationDays>1.5</durationDays>
+		<stackLimit>3</stackLimit>
+		<stackedEffectMultiplier>0.4</stackedEffectMultiplier>
+		<stages>
+			<li>
+				<label>regretful woohoo</label>
+				<description>I might as well have forced myself on some prisoner, I'm a pervert.</description>
+				<baseMoodEffect>-10</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+</Defs>

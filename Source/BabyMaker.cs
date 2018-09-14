@@ -57,7 +57,7 @@ namespace DarkIntentionsWoohoo
                 },
                 socialMode = RandomSocialMode.Off,
                 defaultCompleteMode = ToilCompleteMode.Delay,
-                defaultDuration = 350
+                defaultDuration = 10
             };
         }
     }
