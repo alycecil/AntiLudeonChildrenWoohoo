@@ -14,7 +14,7 @@ namespace DarkIntentionsWoohoo
             yield return (t = new Toil
             {    initAction = delegate
                 {
-                    Log.Message("Make Lover Go To Bed");
+                    /* Log.Message("Make Lover Go To Bed"); */
                     ToilerHelper.GotoThing(mate, bed); 
                 },
                 socialMode = RandomSocialMode.Off,
@@ -23,15 +23,15 @@ namespace DarkIntentionsWoohoo
             });
             t.AddPreInitAction(delegate
             {
-                Log.Message("Debug: Kill mates job");
-                if(mate.CurJob != null ) mate.jobs.StopAll(true);
-                    
-                if (PawnHelper.IsNotWoohooing(mate))
-                {
-                    Log.Message("Asking for love");
-                    Job newJob = new Job(Constants.JobWooHooRecieve);
-                    mate.jobs.StartJob(newJob, JobCondition.InterruptForced, null, false, true, null, null);
-                }
+//                /* Log.Message("Debug: Kill mates job"); */
+//                if(PawnHelper.IsNotWoohooing(mate) ) mate.jobs.StopAll(true);
+//                    
+//                if (PawnHelper.IsNotWoohooing(mate))
+//                {
+//                    /* Log.Message("Asking for love"); */
+//                    Job newJob = new Job(Constants.JobWooHooRecieve);
+//                    mate.jobs.StartJob(newJob, JobCondition.InterruptForced, null, false, true, null, null);
+//                }
                     
             });
         }
@@ -50,11 +50,11 @@ namespace DarkIntentionsWoohoo
             {
                 if (pawn.IsHashIntervalTick(100))
                 {
-                    Log.Message("Making Noises");
+                    /* Log.Message("Making Noises"); */
                     MoteMaker.ThrowMetaIcon(pawn.Position, pawn.Map, ThingDefOf.Mote_Heart);
                 }
             });
-            layDown.AddFinishAction(delegate { Log.Message("Done Woohooing"); });
+            layDown.AddFinishAction(delegate { /* Log.Message("Done Woohooing"); */ });
 
             layDown.defaultCompleteMode = ToilCompleteMode.Delay;
             layDown.defaultDuration = len;
@@ -75,9 +75,9 @@ namespace DarkIntentionsWoohoo
                 {
                     initAction = delegate()
                     {
-                        Log.Message("Claiming Bed spots");
+                        /* Log.Message("Claiming Bed spots"); */
                         hookupBedmanager.claim(pawn, mate);
-                        Log.Message("Claimed Bed spots");
+                        /* Log.Message("Claimed Bed spots"); */
                     },
                     defaultCompleteMode = ToilCompleteMode.Instant
                 };
@@ -92,7 +92,7 @@ namespace DarkIntentionsWoohoo
                     {
                         initAction = delegate()
                         {
-                            Log.Message("Cursing at for asking");
+                            /* Log.Message("Cursing at for asking"); */
 
                             Job newJob = new Job(JobDefOf.Insult, pawn, bed);
                             mate.jobs.StartJob(newJob, JobCondition.InterruptForced, null, false, true, null, null,

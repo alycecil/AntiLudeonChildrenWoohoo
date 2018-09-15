@@ -81,7 +81,7 @@ namespace DarkIntentionsWoohoo
                 foreach (Building_Bed stolenBed in bigBeds.Where(bed =>
                     bed.CurOccupants == null || !bed.CurOccupants.Any()))
                 {
-                    //-- Log.Message("Stealing a bed...", false);
+                    //-- /* Log.Message("Stealing a bed...", false); */
                     if (stolenBed != null)
                     {
                         //Log.Message("Stealing Bed!");

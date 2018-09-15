@@ -27,9 +27,9 @@ namespace DarkIntentionsWoohoo
                 && pawn != pawn2
                 && PawnHelper.is_human(pawn)
                 && PawnHelper.is_human(pawn2)
+                && forced
                 && PawnHelper.IsNotWoohooing(pawn)
-                && PawnHelper.IsNotWoohooing(pawn2)
-                && forced)
+                && PawnHelper.IsNotWoohooing(pawn2))
             {
                 LocalTargetInfo target = pawn2;
                 if (!pawn.CanReserve(target, 1, -1, null, forced)) return false;

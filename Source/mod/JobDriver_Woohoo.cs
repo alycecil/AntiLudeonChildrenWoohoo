@@ -39,13 +39,13 @@ namespace DarkIntentionsWoohoo
             IEnumerable<Toil> r;
             if (PawnHelper.IsNotWoohooing(mate))
             {
-                Log.Message("Woohoo for baby : Started");
+                /* Log.Message("Woohoo for baby : Started"); */
                 partnerSaidYes = AskPartner(pawn, mate);
                 r = WoohooManager.ToilsAskForWoohoo(pawn, mate, bed, partnerSaidYes, hookupBedmanager);
             }
             else
             {
-                Log.Message("Partner already in woohoo mode");
+                /* Log.Message("Partner already in woohoo mode"); */
                 partnerSaidYes = true;
                 r = nothing();
             }
@@ -56,24 +56,26 @@ namespace DarkIntentionsWoohoo
                 r = r.Union(WoohooManager.makePartnerWoohoo(pawn, mate, bed))
                     .Union(WoohooManager.animateLovin(pawn, mate, bed))
                     .Union(MakeMyLoveToils(pawn, mate))
-                    .Union(hookupBedmanager.GiveBackToil())
-                    .Union(new[] {ToilerHelper.StopsHard(mate)});
+                    .Union(WoohooManager.animateLovin(pawn, mate, bed));
+                    
 
 
                 if (!JailHelper.IsThisJailLovin(pawn, mate, bed))
                 {
-                    Log.Message("Call Base Toils");
+                    /* Log.Message("Call Base Toils"); */
                     r = r.Union(base.MakeNewToils());
                 }
                 else
                 {
-                    Log.Message("Jail House Loving Alert");
+                    /* Log.Message("Jail House Loving Alert"); */
                     r = r.Union(WoohooManager.animateLovin(pawn, mate, bed));
                 }
+
+                r = r.Union(hookupBedmanager.GiveBackToil());
             }
             else
             {
-                Log.Message("Rejected");
+                /* Log.Message("Rejected"); */
             }
 
 
@@ -92,11 +94,11 @@ namespace DarkIntentionsWoohoo
 
         public IEnumerable<Toil> MakeMyLoveToils(Pawn pawn, Pawn mate)
         {
-            Log.Message("Appending Moods");
+            /* Log.Message("Appending Moods"); */
             yield return MemoryManager.addMoodletsToil(pawn, mate);
             if (isMakeBaby())
             {
-                Log.Message("Apppending Baby");
+                /* Log.Message("Apppending Baby"); */
                 yield return BabyMaker.DoMakeBaby(pawn, mate);
             }
 
@@ -131,9 +133,9 @@ namespace DarkIntentionsWoohoo
             }
             else
             {
-                Log.Message("[" + pawn.Name +
+                /* Log.Message("[" + pawn.Name +
                             "] can't woohoo right. Timing out their lovin for 500 ticks. They tried to some weird stuff:" +
-                            this.GetReport());
+                            this.GetReport()); */
                 this.pawn.mindState.canLovinTick = Find.TickManager.TicksGame + 500;
 
                 return false;

@@ -52,7 +52,7 @@ namespace DarkIntentionsWoohoo
                     var result = method.Invoke(null, new object[] {donor, womb, true});
 
                     if (result != null)
-                        Log.Message("Loved From Children Mod : " + result, false);
+                        /* Log.Message("Loved From Children Mod : " + result, false); */
                     didIt = true;
                     break;
                 }
@@ -64,7 +64,7 @@ namespace DarkIntentionsWoohoo
             }
             catch (Exception e)
             {
-                Log.Message("Children Failed, using default Mate:" + e.Message, false);
+                /* Log.Message("Children Failed, using default Mate:" + e.Message, false); */
                 //well that failed
                 Mate.DefaultMate(donor, womb);
             }

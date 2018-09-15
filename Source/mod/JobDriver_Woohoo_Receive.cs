@@ -8,14 +8,14 @@ namespace DarkIntentionsWoohoo
     {
         public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
-            Log.Message("Getting Asked to WooHoo!");
+            /* Log.Message("Getting Asked to WooHoo!"); */
             return true;
         }
 
         protected override IEnumerable<Toil> MakeNewToils()
         {
-            Log.Message("Lets go make babies!");
-            var toil = new Toil {initAction = delegate { Log.Message("Woohooing"); }};
+            /* Log.Message("Lets go make babies!"); */
+            var toil = new Toil {initAction = delegate { /* Log.Message("Woohooing"); */ }};
             toil.AddEndCondition( () => JobCondition.Ongoing);
             yield return toil;
             

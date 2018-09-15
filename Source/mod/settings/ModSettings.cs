@@ -18,7 +18,7 @@ namespace DarkIntentionsWoohoo.mod.settings
             var harmony = HarmonyInstance.Create("DarkIntentionsWoohoo.mod.settings.harmony");
             harmony.PatchAll(Assembly.GetExecutingAssembly());
 
-            Log.Message("[Woohoo] Loaded");
+            /* Log.Message("[Woohoo] Loaded"); */
         }
 
 

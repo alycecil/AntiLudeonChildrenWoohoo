@@ -12,42 +12,42 @@ namespace DarkIntentionsWoohoo
             {
                 initAction = delegate
                 {
-                    Log.Message("Baby Making");
+                    /* Log.Message("Baby Making"); */
                     Pawn mate = (Pawn) TargetA;
 
 
                     //check fertility then ensemenate wombs
                     if (!FertilityChecker.is_fertile(pawn))
                     {
-                        Log.Message("Woohoo for baby, but youre not fertile", false);
+                        /* Log.Message("Woohoo for baby, but youre not fertile", false); */
                     }
                     else if (!FertilityChecker.is_fertile(mate))
                     {
-                        Log.Message("Woohoo for baby, but not fertile mate", false);
+                        /* Log.Message("Woohoo for baby, but not fertile mate", false); */
                     }
                     else
                     {
                         //for each womb make pregnant
                         if (FertilityChecker.is_FemaleForBabies(pawn))
                         {
-                            Log.Message("Getting innitialer pregnant", false);
+                            /* Log.Message("Getting innitialer pregnant", false); */
                             //(donor , has womb)
                             Mate.Mated(mate, pawn);
                         }
                         else
                         {
-                            Log.Message("Initiator lacks womb", false);
+                            /* Log.Message("Initiator lacks womb", false); */
                         }
 
                         if (FertilityChecker.is_FemaleForBabies(mate))
                         {
-                            Log.Message("Getting talkee pregnant", false);
+                            /* Log.Message("Getting talkee pregnant", false); */
                             //(donor , has womb)
                             Mate.Mated(pawn, mate);
                         }
                         else
                         {
-                            Log.Message("talkee lacks womb", false);
+                            /* Log.Message("talkee lacks womb", false); */
                         }
                     }
                 },

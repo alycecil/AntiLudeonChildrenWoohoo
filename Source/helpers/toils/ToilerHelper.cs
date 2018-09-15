@@ -16,7 +16,7 @@ namespace DarkIntentionsWoohoo
             Toil toil = new Toil();
             toil.initAction = delegate()
             {
-                Log.Message("[" + pawn.Name + "] go to [" + talkee + "]");
+                /* Log.Message("[" + pawn.Name + "] go to [" + talkee + "]"); */
                 pawn.pather.StartPath(talkee, PathEndMode.Touch);
 
 //                if (talkee is Pawn)
@@ -28,11 +28,11 @@ namespace DarkIntentionsWoohoo
 //                    catch (Exception e)
 //                    {
 //                        ///snarf it.
-//                        Log.Message("Couldn't make the target hold still with pather, nbd." + e.Message, false);
+//                        /* Log.Message("Couldn't make the target hold still with pather, nbd." + e.Message, false); */
 //                    }
 //                }
             };
-            toil.AddFinishAction(delegate { Log.Message("Got to Talkee."); });
+            toil.AddFinishAction(delegate { /* Log.Message("Got to Talkee."); */ });
             toil.socialMode = RandomSocialMode.Off;
             toil.defaultCompleteMode = ToilCompleteMode.PatherArrival;
             return toil;
@@ -44,8 +44,8 @@ namespace DarkIntentionsWoohoo
             if (pawn == null) return null;
 
             Toil toil = new Toil();
-            toil.initAction = delegate() { pawn.pather?.StopDead(); };
-            toil.AddFinishAction(delegate { Log.Message("Done."); });
+            toil.initAction = delegate() { pawn.jobs.StopAll(true); };
+            toil.AddFinishAction(delegate { /* Log.Message("Done."); */ });
             toil.AddFailCondition(pawn.DestroyedOrNull);
             toil.socialMode = RandomSocialMode.Off;
             toil.defaultCompleteMode = ToilCompleteMode.Instant;
