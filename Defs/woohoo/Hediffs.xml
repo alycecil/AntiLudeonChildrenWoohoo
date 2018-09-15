@@ -7,5 +7,10 @@
     <label>Artifical Womb</label>
     <labelNoun>an artificial womb</labelNoun>
   </HediffDef>
-
+  <HediffDef ParentName="ImplantHediffBase">
+    <defName>GivingBirth</defName>
+    <label>Giving Birth</label>
+    <labelNoun>OMG! My water!</labelNoun>
+    <hediffClass>DarkIntentionsWoohoo.HeDiffPrisonerGivingBirth</hediffClass>
+  </HediffDef>
 </Defs>

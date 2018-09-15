@@ -1,37 +1,40 @@
-﻿using RimWorld;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using RimWorld;
 using Verse;
 using Verse.AI;
 
 namespace DarkIntentionsWoohoo
 {
-    class WoohooManager
+    static class WoohooManager
     {
         public static IEnumerable<Toil> makePartnerWoohoo(Pawn pawn, Pawn mate, Building_Bed bed)
         {
-            yield return new Toil
+            Toil t;  
+            yield return ( t = new Toil
             {
-                initAction = delegate ()
-                {
-                    if (mate.CurJob == null || (mate.CurJob.def != JobDefOf.Lovin && mate.CurJob.def != Constants.JobWooHoo && mate.CurJob.def != Constants.JobWooHoo_Baby))
-                    {
-                        //Log.Message("Asking for love");
-                        Job newJob = new Job(Constants.JobWooHoo, pawn, bed);
-                        mate.jobs.StartJob(newJob, JobCondition.None, null, false, true, null, null, false);
-                    }
-
-                },
                 socialMode = RandomSocialMode.Off,
                 defaultCompleteMode = ToilCompleteMode.Delay,
                 defaultDuration = 2
-            };
-
-            yield break;
+            });
+            t.AddFinishAction(delegate
+            {
+                if (IsNotWoohooing(mate))
+                {
+                    Log.Message("Kick off woohoo");
+                    Job newJob = new Job(Constants.JobWooHooRecieve, bed);
+                    mate.jobs.StartJob(newJob, JobCondition.InterruptForced, null, false, true, null, null, false);
+                }
+                else
+                {
+                    Log.Message("Already woohooing");
+                }
+            }); 
         }
-        public static IEnumerable<Toil> animateLovin(Pawn pawn, Pawn mate, Building_Bed bed)
+
+        
+
+        public static IEnumerable<Toil> animateLovin(Pawn pawn, Pawn mate, Building_Bed bed, int len = 250)
         {
             yield return Toils_Bed.GotoBed(TargetIndex.B);
 
@@ -41,17 +44,20 @@ namespace DarkIntentionsWoohoo
             {
                 if (pawn.IsHashIntervalTick(100))
                 {
-                    //Log.Message("Making Noises");
+                    Log.Message("Making Noises");
                     MoteMaker.ThrowMetaIcon(pawn.Position, pawn.Map, ThingDefOf.Mote_Heart);
 
                 }
             });
+            laydown.AddFinishAction(delegate
+            {
+                Log.Message("Done Woohooing");
+            });
 
             laydown.defaultCompleteMode = ToilCompleteMode.Delay;
-            laydown.defaultDuration = 250;
+            laydown.defaultDuration = len;
 
             yield return laydown;
-            yield break;
         }
 
         public static bool IsThisJailLovin(Pawn pawn, Pawn mate, Building_Bed bed)
@@ -64,5 +70,20 @@ namespace DarkIntentionsWoohoo
 
 
         }
+        
+        public static bool IsNotWoohooing(Pawn mate)
+        {
+            bool b = mate.CurJob == null || (
+                       mate.CurJob.def != JobDefOf.Lovin 
+                       && mate.CurJob.def != Constants.JobWooHoo 
+                       && mate.CurJob.def != Constants.JobWooHoo_Baby
+                       && mate.CurJob.def != Constants.JobWooHooRecieve
+                       );
+
+            Log.Message("["+mate.Name+"] : Woohooing?"+!b);
+            return b;
+        }
+
+        
     }
 }

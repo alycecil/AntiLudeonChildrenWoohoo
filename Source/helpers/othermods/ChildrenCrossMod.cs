@@ -1,9 +1,6 @@
-﻿using Harmony;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
-using System.Reflection;
-using System.Text;
+using Children;
 using Verse;
 
 namespace DarkIntentionsWoohoo
@@ -33,7 +30,7 @@ namespace DarkIntentionsWoohoo
             {
                 Type MorePawnUtils = null;
               
-                var assembly = typeof(Children.BackstoryDef).Assembly;
+                var assembly = typeof(BackstoryDef).Assembly;
 
                
 

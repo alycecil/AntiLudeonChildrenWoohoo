@@ -24,39 +24,34 @@ namespace DarkIntentionsWoohoo
             }
         }
 
-        // Token: 0x0600073A RID: 1850 RVA: 0x00041350 File Offset: 0x0003F750
         public override bool HasJobOnThing(Pawn pawn, Thing t, bool forced = false)
         {
             if (t == null || pawn == null) return false;
-            Pawn pawn2 = t as Pawn;
-            if (pawn2 != null 
+            if (t is Pawn pawn2 
                 && !pawn2.Downed 
                 && ( pawn2.Faction == pawn.Faction || (pawn2.guest!=null && pawn2.guest.IsPrisoner) )
                 && pawn != pawn2 
-                && Constants.is_human(pawn)
-                && Constants.is_human(pawn2)
+                && PawnHelper.is_human(pawn)
+                && PawnHelper.is_human(pawn2)
+                && WoohooManager.IsNotWoohooing(pawn)
+                && WoohooManager.IsNotWoohooing(pawn2)
                 && forced)
             {
                 LocalTargetInfo target = pawn2;
-                if (pawn.CanReserve(target, 1, -1, null, forced))
-                {
-                    bed = BetterBedFinder.DoBetterBedFinder(pawn, pawn2);
-                    return bed != null;
-                }
+                if (!pawn.CanReserve(target, 1, -1, null, forced)) return false;
+                bed = BetterBedFinder.DoBetterBedFinder(pawn, pawn2);
+                return bed != null;
             }
             return false;
         }
-
+        
         public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false)
         {
             if (t == null || pawn == null) return null;
 
             Pawn pawn2 = t as Pawn;
 
-            if (!Constants.is_human(pawn)
-                || !Constants.is_human(pawn2)) return null;
-
-            Log.Message("Woohoo Started Correctly");
+            if (!PawnHelper.is_human(pawn) || !PawnHelper.is_human(pawn2)) return null;
 
             if (IsMate(pawn, pawn2))
             {
@@ -83,7 +78,7 @@ namespace DarkIntentionsWoohoo
 
         public virtual bool IsMate(Pawn pawn, Pawn pawn2)
         {
-            float fert = Constants.getFetility(pawn) + Constants.getFetility(pawn2) / 2.0f;
+            float fert = FertilityChecker.getFetility(pawn) + FertilityChecker.getFetility(pawn2) / 2.0f;
             fert *= MateChance();
             //TODO dice roll
             return false;

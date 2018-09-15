@@ -1,8 +1,6 @@
-﻿using RimWorld;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using RimWorld;
 using Verse;
 using Verse.AI;
 
@@ -24,8 +22,8 @@ namespace DarkIntentionsWoohoo
             if (TargetA != null && TargetA.Thing != null && (mate = TargetA.Thing as Pawn) != null
                 && TargetB != null && TargetB.Thing != null && (bed = TargetB.Thing as Building_Bed) != null
                 && pawn != null
-                && Constants.is_human(pawn)
-                && Constants.is_human(mate)
+                && PawnHelper.is_human(pawn)
+                && PawnHelper.is_human(mate)
                 && !bed.IsBurning()
                 )
             {
@@ -42,26 +40,22 @@ namespace DarkIntentionsWoohoo
 
             bool partnerSaidYes;
             IEnumerable<Toil> r;
-            if (mate.CurJob.def == JobDefOf.Lovin || mate.CurJob.def == Constants.JobWooHoo || mate.CurJob.def == Constants.JobWooHoo_Baby)
+            if (WoohooManager.IsNotWoohooing(mate))
             {
-                partnerSaidYes = true;
-                r = nothing();
-            }
-            else {
-                //Log.Message("Woohoo for baby : Started", false);
+                Log.Message("Woohoo for baby : Started");
                 partnerSaidYes = AskPartner(pawn, mate);
                 r = ToilerHelper.ToilsAskForWoohoo(pawn, mate, bed, partnerSaidYes, hookupBedmanager);
-
-                if (partnerSaidYes)
-                {
-                    r = r.Union(WoohooManager.makePartnerWoohoo(pawn, mate, bed));
-                }
+            }
+            else {
+                Log.Message("Partner already in woohoo mode");
+                partnerSaidYes = true;
+                r = nothing();
             }
 
 
             if (partnerSaidYes)
             {
-                r = r
+                r = r.Union(WoohooManager.makePartnerWoohoo(pawn, mate, bed))
                    .Union(WoohooManager.animateLovin(pawn, mate, bed))
                    .Union(MakeMyLoveToils(pawn, mate))
                    .Union(hookupBedmanager.GiveBackToil());
@@ -69,8 +63,18 @@ namespace DarkIntentionsWoohoo
 
                 if(!WoohooManager.IsThisJailLovin(pawn, mate, bed))
                 {
+                    Log.Message("Call Base Toils");
                     r = r.Union(base.MakeNewToils());
                 }
+                else
+                {
+                    Log.Message("Jail House Loving Alert");
+                    r = r.Union(WoohooManager.animateLovin(pawn, mate, bed));
+                }
+            }
+            else
+            {
+                Log.Message("Rejected");
             }
 
 
@@ -89,8 +93,10 @@ namespace DarkIntentionsWoohoo
 
         public IEnumerable<Toil> MakeMyLoveToils(Pawn pawn, Pawn mate)
         {
+            Log.Message("Appending Moods");
             yield return MemoryManager.addMoodletsToil(pawn, mate);
             if (isMakeBaby()) {
+                Log.Message("Apppending Baby");
                 yield return BabyMaker.DoMakeBaby(pawn, mate);
             }
             yield break;
@@ -98,8 +104,7 @@ namespace DarkIntentionsWoohoo
         
         public override bool CanBeginNowWhileLyingDown()
         {
-            return (JobInBedUtility.InBedOrRestSpotNow(this.pawn, TargetB) 
-            &&  JobInBedUtility.InBedOrRestSpotNow(TargetA.Thing as Pawn, TargetB));
+            return true;
         }
         
         public virtual bool isMakeBaby()
@@ -116,8 +121,8 @@ namespace DarkIntentionsWoohoo
             if (TargetA != null && TargetA.Thing != null  && (mate = TargetA.Thing as Pawn) != null
                 && TargetB != null && TargetB.Thing != null && (bed = TargetB.Thing as Building_Bed) != null
                 && pawn != null
-                && Constants.is_human(pawn)
-                && Constants.is_human(mate)
+                && PawnHelper.is_human(pawn)
+                && PawnHelper.is_human(mate)
                 && ! bed.IsBurning()
                 )
             {

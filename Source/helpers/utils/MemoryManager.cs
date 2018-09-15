@@ -1,8 +1,4 @@
 ﻿using RimWorld;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Verse;
 using Verse.AI;
 
@@ -34,6 +30,7 @@ namespace DarkIntentionsWoohoo
 
         public static void addMoodlets(Pawn pawn, Pawn mate)
         {
+            Log.Message("Adding Moodlets");
             if(mate.guest != null && mate.guest.IsPrisoner)
             {
                 addPrisonMoodlets(pawn, mate);
@@ -68,16 +65,16 @@ namespace DarkIntentionsWoohoo
 
         private static bool isKinky(Pawn pawn)
         {
-            return Constants.is_bloodlust(pawn) || Constants.is_psychopath(pawn) || Constants.is_masochist(pawn);
+            return PawnHelper.is_bloodlust(pawn) || PawnHelper.is_psychopath(pawn) || PawnHelper.is_masochist(pawn);
         }
 
         private static void addPrisonMoodlets(Pawn torturer, Pawn victim)
         {
-            if (Constants.is_bloodlust(torturer) || Constants.is_psychopath(torturer))
+            if (PawnHelper.is_bloodlust(torturer) || PawnHelper.is_psychopath(torturer))
             {
                 addMemory(torturer, WoohooColonist);
             }
-            else if (Constants.is_kind(torturer))
+            else if (PawnHelper.is_kind(torturer))
             {
                 addMemory(torturer, WoohooColonistRegret);
             }else
@@ -86,7 +83,7 @@ namespace DarkIntentionsWoohoo
             }
 
 
-            if (Constants.is_masochist(victim))
+            if (PawnHelper.is_masochist(victim))
             {
                 addMemory(victim, MasochistPrisonerWoohoo);
                 addMemoryOfOther(victim, MasochistPrisonerWoohooMemory, torturer);
@@ -94,7 +91,7 @@ namespace DarkIntentionsWoohoo
             else
             {
                 addMemory(victim, PrisonerWoohoo);
-                if (Constants.is_psychopath(victim) || Constants.is_bloodlust(victim))
+                if (PawnHelper.is_psychopath(victim) || PawnHelper.is_bloodlust(victim))
                 {
                     addMemoryOfOther(victim, WoohooNeutral, torturer);
                 }

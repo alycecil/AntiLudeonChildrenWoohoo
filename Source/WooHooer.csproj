@@ -75,16 +75,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="helpers\babies\BabyMaker.cs" />
+    <Compile Include="helpers\babies\FertilityChecker.cs" />
     <Compile Include="helpers\beds\BetterBedFinder.cs" />
     <Compile Include="helpers\othermods\ChildrenCrossMod.cs" />
+    <Compile Include="helpers\toils\BabyMaker.cs" />
     <Compile Include="helpers\utils\Constants.cs" />
     <Compile Include="helpers\beds\HookupBedmanager.cs" />
     <Compile Include="helpers\toils\WoohooManager.cs" />
+    <Compile Include="helpers\utils\PawnHelper.cs" />
+    <Compile Include="mod\harmony\Hediff_Pregnant_DoBirthSpawn_Patch.cs" />
+    <Compile Include="mod\HeDiffPrisonerGivingBirth.cs" />
     <Compile Include="mod\JobDriver_Woohoo.cs" />
     <Compile Include="mod\JobDriver_Woohoo_Baby.cs" />
     <Compile Include="helpers\babies\Mate.cs" />
     <Compile Include="helpers\utils\MemoryManager.cs" />
+    <Compile Include="mod\JobDriver_Woohoo_Receive.cs" />
     <Compile Include="mod\settings\ModSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="helpers\toils\ToilerHelper.cs" />

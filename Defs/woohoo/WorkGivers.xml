@@ -13,6 +13,7 @@
 			<li>Manipulation</li>
 		</requiredCapacities>
 		<directOrderable>true</directOrderable>
+        <tagToGive>UnspecifiedLordDuty</tagToGive>
 	</WorkGiverDef>
 
   <WorkGiverDef>
@@ -27,5 +28,6 @@
       <li>Manipulation</li>
     </requiredCapacities>
     <directOrderable>true</directOrderable>
+    <tagToGive>UnspecifiedLordDuty</tagToGive>
   </WorkGiverDef>
 </Defs>
