@@ -1,33 +1,34 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <Defs>
 
-	<WorkGiverDef>
-		<defName>Woohoo</defName>
-		<label>Woohoo</label>
-		<giverClass>DarkIntentionsWoohoo.WorkGiver_Woohoo</giverClass>
-		<workType>BasicWorker</workType>
-		<verb>woohoo</verb>
-		<gerund>woohooing</gerund>
-		<priorityInType>0</priorityInType>
-		<requiredCapacities>
-			<li>Manipulation</li>
-		</requiredCapacities>
-		<directOrderable>true</directOrderable>
+    <WorkGiverDef>
+        <defName>Woohoo</defName>
+        <label>Woohoo</label>
+        <giverClass>DarkIntentionsWoohoo.WorkGiver_Woohoo</giverClass>
+        <workType>BasicWorker</workType>
+        <verb>woohoo</verb>
+        <gerund>woohooing</gerund>
+        <priorityInType>0</priorityInType>
+        <requiredCapacities>
+            <li>Manipulation</li>
+        </requiredCapacities>
+        <directOrderable>true</directOrderable>
         <tagToGive>UnspecifiedLordDuty</tagToGive>
-	</WorkGiverDef>
+    </WorkGiverDef>
 
-  <WorkGiverDef>
-    <defName>Woohoo_Baby</defName>
-    <label>Woohoo for Baby</label>
-    <giverClass>DarkIntentionsWoohoo.WorkGiver_Woohoo_Baby</giverClass>
-    <workType>BasicWorker</workType>
-    <verb>woohoo for baby</verb>
-    <gerund>woohooing for a baby</gerund>
-    <priorityInType>0</priorityInType>
-    <requiredCapacities>
-      <li>Manipulation</li>
-    </requiredCapacities>
-    <directOrderable>true</directOrderable>
-    <tagToGive>UnspecifiedLordDuty</tagToGive>
-  </WorkGiverDef>
+    <WorkGiverDef>
+        <defName>Woohoo_Baby</defName>
+        <label>Woohoo for Baby</label>
+        <giverClass>DarkIntentionsWoohoo.WorkGiver_Woohoo_Baby</giverClass>
+        <workType>BasicWorker</workType>
+        <verb>woohoo for baby</verb>
+        <gerund>woohooing for a baby</gerund>
+        <priorityInType>0</priorityInType>
+        <requiredCapacities>
+            <li>Manipulation</li>
+        </requiredCapacities>
+        <directOrderable>true</directOrderable>
+        <tagToGive>UnspecifiedLordDuty</tagToGive>
+    </WorkGiverDef>
 </Defs>

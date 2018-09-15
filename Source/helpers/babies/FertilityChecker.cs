@@ -1,5 +1,4 @@
-﻿using DarkIntentionsWoohoo;
-using RimWorld;
+﻿using RimWorld;
 using Verse;
 
 namespace DarkIntentionsWoohoo
@@ -25,7 +24,6 @@ namespace DarkIntentionsWoohoo
             else if (Constants.Fertility != null && (val = pawn.health.capacities.GetLevel(Constants.Fertility)) >= 0)
             {
                 return val;
-
             }
             else if (Constants.Reproduction != null &&
                      (val = pawn.health.capacities.GetLevel(Constants.Reproduction)) >= 0)

@@ -12,9 +12,8 @@ namespace DarkIntentionsWoohoo
             {
                 initAction = delegate
                 {
-
                     Log.Message("Baby Making");
-                    Pawn mate = (Pawn)TargetA;
+                    Pawn mate = (Pawn) TargetA;
 
 
                     //check fertility then ensemenate wombs

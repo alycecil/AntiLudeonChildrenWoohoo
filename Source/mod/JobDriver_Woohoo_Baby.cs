@@ -6,7 +6,6 @@ namespace DarkIntentionsWoohoo
     {
         public override bool isMakeBaby()
         {
-
             Log.Message("Wants a baby!", false);
             return true;
         }

@@ -30,11 +30,9 @@ namespace DarkIntentionsWoohoo.harmony
                         {
                             father, // recruiter
                             mother //recruitee
-
                         });
                         father.records.Increment(RecordDefOf.PrisonersRecruited);
                         mother.needs.mood.thoughts.memories.TryGainMemory(ThoughtDefOf.RecruitedMe, father);
-
                     }
                     else if (motherInJail)
                     {
@@ -50,7 +48,6 @@ namespace DarkIntentionsWoohoo.harmony
                 }
 
                 return true;
-
             }
 
 
@@ -72,8 +69,6 @@ namespace DarkIntentionsWoohoo.harmony
                     mother.health.RemoveHediff(heDiff);
                 }
             }
-
         }
     }
-
 }

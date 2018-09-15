@@ -10,27 +10,21 @@ namespace DarkIntentionsWoohoo
 
         public override ThingRequest PotentialWorkThingRequest
         {
-            get
-            {
-                return ThingRequest.ForGroup(ThingRequestGroup.Pawn);
-            }
+            get { return ThingRequest.ForGroup(ThingRequestGroup.Pawn); }
         }
-        
+
         public override PathEndMode PathEndMode
         {
-            get
-            {
-                return PathEndMode.ClosestTouch; 
-            }
+            get { return PathEndMode.ClosestTouch; }
         }
 
         public override bool HasJobOnThing(Pawn pawn, Thing t, bool forced = false)
         {
             if (t == null || pawn == null) return false;
-            if (t is Pawn pawn2 
-                && !pawn2.Downed 
-                && ( pawn2.Faction == pawn.Faction || (pawn2.guest!=null && pawn2.guest.IsPrisoner) )
-                && pawn != pawn2 
+            if (t is Pawn pawn2
+                && !pawn2.Downed
+                && (pawn2.Faction == pawn.Faction || (pawn2.guest != null && pawn2.guest.IsPrisoner))
+                && pawn != pawn2
                 && PawnHelper.is_human(pawn)
                 && PawnHelper.is_human(pawn2)
                 && WoohooManager.IsNotWoohooing(pawn)
@@ -42,9 +36,10 @@ namespace DarkIntentionsWoohoo
                 bed = BetterBedFinder.DoBetterBedFinder(pawn, pawn2);
                 return bed != null;
             }
+
             return false;
         }
-        
+
         public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false)
         {
             if (t == null || pawn == null) return null;
@@ -55,20 +50,18 @@ namespace DarkIntentionsWoohoo
 
             if (IsMate(pawn, pawn2))
             {
-
                 return new Job(Constants.JobWooHoo_Baby, pawn2, bed)
                 {
                     count = 1
                 };
             }
-            else {
+            else
+            {
                 return new Job(Constants.JobWooHoo, pawn2, bed)
                 {
                     count = 1
                 };
             }
-
-            
         }
 
         public virtual float MateChance()

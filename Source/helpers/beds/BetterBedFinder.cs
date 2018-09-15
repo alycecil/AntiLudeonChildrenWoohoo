@@ -36,14 +36,15 @@ namespace DarkIntentionsWoohoo
                 }
 
                 IEnumerable<Building_Bed> bigBeds = allBeds
-                    .Where(x => x != null && x.SleepingSlotsCount > 1 && ! x.Medical)
+                        .Where(x => x != null && x.SleepingSlotsCount > 1 && !x.Medical)
                     ;
 
-                if (! bigBeds.Any())
+                if (!bigBeds.Any())
                 {
                     //--Log.Message("No big beds anywhere, great.", false);
                     return null;
                 }
+
                 var priority = bigBeds.Where(x => x.AssignedPawns.Contains(pawn) || x.AssignedPawns.Contains(mate));
                 if (priority.Any())
                 {
@@ -59,7 +60,8 @@ namespace DarkIntentionsWoohoo
                             Log.Error("How the hell is the owned bed null?", false);
                         }
                     }
-                }else
+                }
+                else
                 {
                     //--Log.Message("Maybe the colony has some empty ones...", false);
                 }
@@ -76,7 +78,8 @@ namespace DarkIntentionsWoohoo
                 }
 
                 //lets steal a bed!
-                foreach (Building_Bed stolenBed in bigBeds.Where(bed => bed.CurOccupants == null || !bed.CurOccupants.Any()))
+                foreach (Building_Bed stolenBed in bigBeds.Where(bed =>
+                    bed.CurOccupants == null || !bed.CurOccupants.Any()))
                 {
                     //-- Log.Message("Stealing a bed...", false);
                     if (stolenBed != null)
@@ -90,7 +93,6 @@ namespace DarkIntentionsWoohoo
                     }
                 }
             }
-
 
 
             //--Log.Message("Nope, no beds", false);
@@ -110,6 +112,7 @@ namespace DarkIntentionsWoohoo
                     return building_Bed;
                 }
             }
+
             return null;
         }
     }

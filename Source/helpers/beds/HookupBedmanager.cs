@@ -19,7 +19,7 @@ namespace DarkIntentionsWoohoo
                 IEnumerable<Pawn> owners = currentOwners();
                 if (owners != null)
                 {
-                    this.owners = owners.Where(x => true);//lazy clone;
+                    this.owners = owners.Where(x => true); //lazy clone;
                 }
             }
 
@@ -32,7 +32,7 @@ namespace DarkIntentionsWoohoo
 
                 yield return new Toil
                 {
-                    initAction = delegate ()
+                    initAction = delegate()
                     {
                         //Log.Message("Boy get out my house, I ant making you pancakes an' you an't movin' in.");
                         GiveBack();
@@ -40,7 +40,6 @@ namespace DarkIntentionsWoohoo
                     defaultCompleteMode = ToilCompleteMode.Instant
                 };
             yield break;
-            
         }
 
         public bool claim(Pawn bedPawn1, Pawn bedPawn2)
@@ -53,52 +52,53 @@ namespace DarkIntentionsWoohoo
                     releaseBed(bed, pawn);
                 }
             }
-            if((currentOwners() != null && currentOwners().Any()))
+
+            if ((currentOwners() != null && currentOwners().Any()))
             {
                 foreach (Pawn pawn in currentOwners())
                 {
                     releaseBed(bed, pawn);
                 }
             }
+
             return claimBed(bed, bedPawn1) &&
-            claimBed(bed, bedPawn2);
+                   claimBed(bed, bedPawn2);
         }
 
         public void GiveBack()
         {
             if (bed == null) return;
             //Log.Message("Giving back bed");
-            foreach(Pawn pawn in currentOwners())
+            foreach (Pawn pawn in currentOwners())
             {
-                if(owners == null || !owners.Contains(pawn))
+                if (owners == null || !owners.Contains(pawn))
                 {
                     releaseBed(bed, pawn);
                 }
             }
-            
 
-            
-            if(owners != null)
+
+            if (owners != null)
             {
-                foreach(Pawn pawn in owners.Where(pawn => currentOwners() != null && !currentOwners().Contains(pawn)))
+                foreach (Pawn pawn in owners.Where(pawn => currentOwners() != null && !currentOwners().Contains(pawn)))
                 {
                     claimBed(bed, pawn);
                 }
             }
-
         }
 
         public IEnumerable<Pawn> currentOwners()
         {
             //TODO make this less hacky
-            if(bed.AssignedPawns!=null && bed.AssignedPawns.Any())
+            if (bed.AssignedPawns != null && bed.AssignedPawns.Any())
             {
                 return bed.AssignedPawns.ToList().AsEnumerable();
             }
-            else if(bed.owners!=null)
+            else if (bed.owners != null)
             {
                 return bed.owners.ToList().AsEnumerable();
             }
+
             return null;
         }
 
@@ -116,7 +116,6 @@ namespace DarkIntentionsWoohoo
                 //Log.Message("No spots?! ugh");
                 return false;
             }
-
         }
 
         public static void releaseBed(Building_Bed bed, Pawn pawn)

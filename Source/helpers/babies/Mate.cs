@@ -16,9 +16,6 @@ namespace DarkIntentionsWoohoo
             {
                 DefaultMate(donor, hasWomb);
             }
-
-            
-
         }
 
         public static void DefaultMate(Pawn donor, Pawn womb)

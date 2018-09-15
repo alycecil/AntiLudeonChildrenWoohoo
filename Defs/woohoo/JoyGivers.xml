@@ -1,32 +1,33 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <Defs>
 
-	<!-- Joy givers are activities that satisfy the joy need -->
+    <!-- Joy givers are activities that satisfy the joy need -->
 
-	<JoyGiverDef>
-		<defName>WoohooJoy</defName>
-		<giverClass>JoyGiver_SocialRelax</giverClass>
-		<baseChance>1</baseChance>
-		<jobDef>WooHoo</jobDef>
-		<desireSit>false</desireSit>
-		<joyKind>Woohoo</joyKind>
-		<requiredCapacities>
-			<li>Manipulation</li>
-		</requiredCapacities>
-		<canDoWhileInBed>true</canDoWhileInBed>
-	</JoyGiverDef>
+    <JoyGiverDef>
+        <defName>WoohooJoy</defName>
+        <giverClass>JoyGiver_SocialRelax</giverClass>
+        <baseChance>1</baseChance>
+        <jobDef>WooHoo</jobDef>
+        <desireSit>false</desireSit>
+        <joyKind>Woohoo</joyKind>
+        <requiredCapacities>
+            <li>Manipulation</li>
+        </requiredCapacities>
+        <canDoWhileInBed>true</canDoWhileInBed>
+    </JoyGiverDef>
 
-  <JoyGiverDef>
-    <defName>WoohooJoyBaby</defName>
-    <giverClass>JoyGiver_SocialRelax</giverClass>
-    <baseChance>1</baseChance>
-    <jobDef>WooHoo_Baby</jobDef>
-    <desireSit>false</desireSit>
-    <joyKind>Woohoo</joyKind>
-    <requiredCapacities>
-      <li>Manipulation</li>
-    </requiredCapacities>
-    <canDoWhileInBed>true</canDoWhileInBed>
-  </JoyGiverDef>
+    <JoyGiverDef>
+        <defName>WoohooJoyBaby</defName>
+        <giverClass>JoyGiver_SocialRelax</giverClass>
+        <baseChance>1</baseChance>
+        <jobDef>WooHoo_Baby</jobDef>
+        <desireSit>false</desireSit>
+        <joyKind>Woohoo</joyKind>
+        <requiredCapacities>
+            <li>Manipulation</li>
+        </requiredCapacities>
+        <canDoWhileInBed>true</canDoWhileInBed>
+    </JoyGiverDef>
 
 </Defs>

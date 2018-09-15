@@ -7,11 +7,21 @@ namespace DarkIntentionsWoohoo
     class MemoryManager
     {
         public readonly static ThoughtDef PrisonerWoohoo = DefDatabase<ThoughtDef>.GetNamed("PrisonerWoohoo");
-        public readonly static ThoughtDef MasochistPrisonerWoohoo = DefDatabase<ThoughtDef>.GetNamed("MasochistPrisonerWoohoo");
-        public readonly static ThoughtDef PrisonerWoohooMemory = DefDatabase<ThoughtDef>.GetNamed("PrisonerWoohooMemory");
-        public readonly static ThoughtDef MasochistPrisonerWoohooMemory = DefDatabase<ThoughtDef>.GetNamed("MasochistPrisonerWoohooMemory");
+
+        public readonly static ThoughtDef MasochistPrisonerWoohoo =
+            DefDatabase<ThoughtDef>.GetNamed("MasochistPrisonerWoohoo");
+
+        public readonly static ThoughtDef PrisonerWoohooMemory =
+            DefDatabase<ThoughtDef>.GetNamed("PrisonerWoohooMemory");
+
+        public readonly static ThoughtDef MasochistPrisonerWoohooMemory =
+            DefDatabase<ThoughtDef>.GetNamed("MasochistPrisonerWoohooMemory");
+
         public readonly static ThoughtDef WoohooColonist = DefDatabase<ThoughtDef>.GetNamed("WoohooColonist");
-        public readonly static ThoughtDef WoohooColonistRegret = DefDatabase<ThoughtDef>.GetNamed("WoohooColonistRegret");
+
+        public readonly static ThoughtDef WoohooColonistRegret =
+            DefDatabase<ThoughtDef>.GetNamed("WoohooColonistRegret");
+
         public readonly static ThoughtDef WoohooNeutral = DefDatabase<ThoughtDef>.GetNamed("WoohooNeutral");
         public readonly static ThoughtDef WoohooKink = DefDatabase<ThoughtDef>.GetNamed("WoohooKink");
         public readonly static ThoughtDef WoohooKinkMemory = DefDatabase<ThoughtDef>.GetNamed("WoohooKinkMemory");
@@ -20,10 +30,7 @@ namespace DarkIntentionsWoohoo
         {
             return new Toil
             {
-                initAction = delegate ()
-                {
-                    addMoodlets(pawn, mate);
-                },
+                initAction = delegate() { addMoodlets(pawn, mate); },
                 defaultCompleteMode = ToilCompleteMode.Instant
             };
         }
@@ -31,18 +38,18 @@ namespace DarkIntentionsWoohoo
         public static void addMoodlets(Pawn pawn, Pawn mate)
         {
             Log.Message("Adding Moodlets");
-            if(mate.guest != null && mate.guest.IsPrisoner)
+            if (mate.guest != null && mate.guest.IsPrisoner)
             {
                 addPrisonMoodlets(pawn, mate);
-            }else if (mate.guest != null && mate.guest.IsPrisoner)
-                {
-                    addPrisonMoodlets(pawn, mate);
+            }
+            else if (mate.guest != null && mate.guest.IsPrisoner)
+            {
+                addPrisonMoodlets(pawn, mate);
             }
             else
             {
                 addEqualsMoodlets(pawn, mate);
             }
-
         }
 
         private static void addEqualsMoodlets(Pawn pawn, Pawn mate)
@@ -77,7 +84,8 @@ namespace DarkIntentionsWoohoo
             else if (PawnHelper.is_kind(torturer))
             {
                 addMemory(torturer, WoohooColonistRegret);
-            }else
+            }
+            else
             {
                 addMemory(torturer, WoohooNeutral);
             }

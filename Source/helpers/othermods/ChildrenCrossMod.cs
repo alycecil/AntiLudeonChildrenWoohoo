@@ -7,14 +7,12 @@ namespace DarkIntentionsWoohoo
 {
     class ChildrenCrossMod
     {
-
-        
-
-        public readonly static HediffDef PregnancyDiscovered = DefDatabase<HediffDef>.GetNamedSilentFail("PregnancyDiscovered");
+        public readonly static HediffDef PregnancyDiscovered =
+            DefDatabase<HediffDef>.GetNamedSilentFail("PregnancyDiscovered");
 
 
-
-        public static bool isChildrenModOn() {
+        public static bool isChildrenModOn()
+        {
             return PregnancyDiscovered != null;
         }
 
@@ -29,12 +27,12 @@ namespace DarkIntentionsWoohoo
             try
             {
                 Type MorePawnUtils = null;
-              
+
                 var assembly = typeof(BackstoryDef).Assembly;
 
-               
 
-                foreach (Type mine in assembly.GetTypes().Where(x => x.FullName.Contains("MorePawnUtil"))){
+                foreach (Type mine in assembly.GetTypes().Where(x => x.FullName.Contains("MorePawnUtil")))
+                {
                     if (mine != null)
                     {
                         MorePawnUtils = mine;
@@ -42,16 +40,16 @@ namespace DarkIntentionsWoohoo
                     }
                 }
 
-                if(MorePawnUtils == null)
+                if (MorePawnUtils == null)
                 {
                     throw new Exception("Couldnt find Childern.MorePawnUtils in the assembly" +
-                        "<--- this is bad practice to control flow with an exception. Dont tell~");
+                                        "<--- this is bad practice to control flow with an exception. Dont tell~");
                 }
 
                 bool didIt = false;
-                foreach( var method in MorePawnUtils.GetMethods().Where(aMethod => aMethod.Name.Contains("Loved")))
+                foreach (var method in MorePawnUtils.GetMethods().Where(aMethod => aMethod.Name.Contains("Loved")))
                 {
-                    var result = method.Invoke(null, new object[] { donor, womb, true });
+                    var result = method.Invoke(null, new object[] {donor, womb, true});
 
                     if (result != null)
                         Log.Message("Loved From Children Mod : " + result, false);
@@ -63,12 +61,10 @@ namespace DarkIntentionsWoohoo
                 {
                     throw new Exception("Coundnt find the Loved method in Children");
                 }
-
-               
-                
-            }catch(Exception e)
+            }
+            catch (Exception e)
             {
-                Log.Message("Children Failed, using default Mate:"+e.Message, false);
+                Log.Message("Children Failed, using default Mate:" + e.Message, false);
                 //well that failed
                 Mate.DefaultMate(donor, womb);
             }
@@ -77,7 +73,6 @@ namespace DarkIntentionsWoohoo
                 donor.gender = donorActualGender;
                 womb.gender = actualWombGender;
             }
-
         }
     }
 }

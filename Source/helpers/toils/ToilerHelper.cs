@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using RimWorld;
 using Verse;
 using Verse.AI;
@@ -39,7 +38,7 @@ namespace DarkIntentionsWoohoo
                         initAction = delegate()
                         {
                             Log.Message("Cursing at for asking");
-                            
+
                             Job newJob = new Job(JobDefOf.Insult, pawn, bed);
                             mate.jobs.StartJob(newJob, JobCondition.InterruptForced, null, false, true, null, null,
                                 true);
@@ -61,9 +60,9 @@ namespace DarkIntentionsWoohoo
                 initAction = delegate()
                 {
                     if (pawn.IsHashIntervalTick(100)) return;
-                        //Log.Message("Sending Heart to ask");
+                    //Log.Message("Sending Heart to ask");
                     MoteMaker.ThrowMetaIcon(pawn.Position, pawn.Map, ThingDefOf.Mote_Heart);
-                     //skip on rare case as not critical just ui noise
+                    //skip on rare case as not critical just ui noise
                 },
                 tickAction = delegate()
                 {
@@ -90,7 +89,7 @@ namespace DarkIntentionsWoohoo
             Toil toil = new Toil();
             toil.initAction = delegate()
             {
-                Log.Message("["+pawn.Name+"] go to ["+talkee+"]");
+                Log.Message("[" + pawn.Name + "] go to [" + talkee + "]");
                 pawn.pather.StartPath(talkee, PathEndMode.Touch);
 
 //                if (talkee as Pawn != null )
