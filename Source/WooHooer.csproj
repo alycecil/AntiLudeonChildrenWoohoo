@@ -82,6 +82,7 @@
     <Compile Include="helpers\utils\Constants.cs" />
     <Compile Include="helpers\beds\HookupBedmanager.cs" />
     <Compile Include="helpers\toils\WoohooManager.cs" />
+    <Compile Include="helpers\utils\JailHelper.cs" />
     <Compile Include="helpers\utils\PawnHelper.cs" />
     <Compile Include="mod\harmony\Hediff_Pregnant_DoBirthSpawn_Patch.cs" />
     <Compile Include="mod\HeDiffPrisonerGivingBirth.cs" />

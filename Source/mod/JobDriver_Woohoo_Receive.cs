@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using RimWorld;
 using Verse;
 using Verse.AI;
 
@@ -9,23 +8,18 @@ namespace DarkIntentionsWoohoo
     {
         public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
-            Log.Message("Getting Asked to WooHoo!", false);
-            return IsGoodToGo();
-        }
-
-        private bool IsGoodToGo()
-        {
-            Log.Message("We good to go?", false);
-            return pawn != null && TargetA != null && (TargetA.Thing as Pawn) != null && TargetB != null &&
-                   (TargetB.Thing as Building_Bed) != null;
+            Log.Message("Getting Asked to WooHoo!");
+            return true;
         }
 
         protected override IEnumerable<Toil> MakeNewToils()
         {
-            if (!IsGoodToGo()) return null;
-            Log.Message("Lets go make babies!", false);
-
-            return WoohooManager.animateLovin(pawn, TargetA.Thing as Pawn, TargetB.Thing as Building_Bed, 2000);
+            Log.Message("Lets go make babies!");
+            var toil = new Toil {initAction = delegate { Log.Message("Woohooing"); }};
+            toil.AddEndCondition( () => JobCondition.Ongoing);
+            yield return toil;
+            
+            //add a moodlet for being asked 
         }
     }
 }

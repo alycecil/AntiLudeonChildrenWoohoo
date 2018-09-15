@@ -44,5 +44,18 @@ namespace DarkIntentionsWoohoo
             return (pawn != null && pawn.story != null && pawn.story.traits != null &&
                     pawn.story.traits.HasTrait(TraitDefOf.Kind));
         }
+
+        public static bool IsNotWoohooing(Pawn mate)
+        {
+            bool b = mate.CurJob == null || (
+                         mate.CurJob.def != JobDefOf.Lovin
+                         && mate.CurJob.def != Constants.JobWooHoo
+                         && mate.CurJob.def != Constants.JobWooHoo_Baby
+                         && mate.CurJob.def != Constants.JobWooHooRecieve
+                     );
+
+            //Trace:Log.Message("[" + mate.Name + "] : Woohooing?" + !b);
+            return b;
+        }
     }
 }

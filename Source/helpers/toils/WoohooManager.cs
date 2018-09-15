@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using RimWorld;
 using Verse;
 using Verse.AI;
@@ -11,34 +12,41 @@ namespace DarkIntentionsWoohoo
         {
             Toil t;
             yield return (t = new Toil
-            {
+            {    initAction = delegate
+                {
+                    Log.Message("Make Lover Go To Bed");
+                    ToilerHelper.GotoThing(mate, bed); 
+                },
                 socialMode = RandomSocialMode.Off,
                 defaultCompleteMode = ToilCompleteMode.Delay,
                 defaultDuration = 2
             });
-            t.AddFinishAction(delegate
+            t.AddPreInitAction(delegate
             {
-                if (IsNotWoohooing(mate))
+                Log.Message("Debug: Kill mates job");
+                if(mate.CurJob != null ) mate.jobs.StopAll(true);
+                    
+                if (PawnHelper.IsNotWoohooing(mate))
                 {
-                    Log.Message("Kick off woohoo");
-                    Job newJob = new Job(Constants.JobWooHooRecieve, bed);
-                    mate.jobs.StartJob(newJob, JobCondition.InterruptForced, null, false, true, null, null, false);
+                    Log.Message("Asking for love");
+                    Job newJob = new Job(Constants.JobWooHooRecieve);
+                    mate.jobs.StartJob(newJob, JobCondition.InterruptForced, null, false, true, null, null);
                 }
-                else
-                {
-                    Log.Message("Already woohooing");
-                }
+                    
             });
         }
 
 
         public static IEnumerable<Toil> animateLovin(Pawn pawn, Pawn mate, Building_Bed bed, int len = 250)
         {
+            if(bed == null) yield break;
+            
             yield return Toils_Bed.GotoBed(TargetIndex.B);
 
-            var laydown = Toils_LayDown.LayDown(TargetIndex.B, true, false, false, false);
+            var layDown = Toils_LayDown.LayDown(TargetIndex.B, true, false, false, false);
+            
 
-            laydown.AddPreTickAction(delegate()
+            layDown.AddPreTickAction(delegate()
             {
                 if (pawn.IsHashIntervalTick(100))
                 {
@@ -46,32 +54,89 @@ namespace DarkIntentionsWoohoo
                     MoteMaker.ThrowMetaIcon(pawn.Position, pawn.Map, ThingDefOf.Mote_Heart);
                 }
             });
-            laydown.AddFinishAction(delegate { Log.Message("Done Woohooing"); });
+            layDown.AddFinishAction(delegate { Log.Message("Done Woohooing"); });
 
-            laydown.defaultCompleteMode = ToilCompleteMode.Delay;
-            laydown.defaultDuration = len;
+            layDown.defaultCompleteMode = ToilCompleteMode.Delay;
+            layDown.defaultDuration = len;
 
-            yield return laydown;
+            yield return layDown;
         }
 
-        public static bool IsThisJailLovin(Pawn pawn, Pawn mate, Building_Bed bed)
+        public static IEnumerable<Toil> ToilsAskForWoohoo(Pawn pawn, Pawn mate, Building_Bed bed, bool askSuccess,
+            HookupBedmanager hookupBedmanager)
         {
-            return (pawn != null && pawn.guest != null && pawn.guest.IsPrisoner)
-                   || (mate != null && mate.guest != null && mate.guest.IsPrisoner)
-                   || (bed != null && bed.ForPrisoners);
+            yield return ToilerHelper.GotoThing(pawn, mate);
+
+            yield return AskForWoohoo(pawn, mate, bed, askSuccess);
+
+            if (askSuccess)
+            {
+                yield return new Toil
+                {
+                    initAction = delegate()
+                    {
+                        Log.Message("Claiming Bed spots");
+                        hookupBedmanager.claim(pawn, mate);
+                        Log.Message("Claimed Bed spots");
+                    },
+                    defaultCompleteMode = ToilCompleteMode.Instant
+                };
+
+                yield return ToilerHelper.GotoThing(pawn, bed);
+            }
+            else
+            {
+                if (PawnHelper.IsNotWoohooing(mate))
+                {
+                    yield return new Toil
+                    {
+                        initAction = delegate()
+                        {
+                            Log.Message("Cursing at for asking");
+
+                            Job newJob = new Job(JobDefOf.Insult, pawn, bed);
+                            mate.jobs.StartJob(newJob, JobCondition.InterruptForced, null, false, true, null, null,
+                                true);
+                        },
+                        socialMode = RandomSocialMode.Off,
+                        defaultCompleteMode = ToilCompleteMode.Instant
+                    };
+                }
+            }
+
+            yield break;
         }
 
-        public static bool IsNotWoohooing(Pawn mate)
+        public static Toil AskForWoohoo(Pawn pawn, Pawn mate, Building_Bed bed, bool askSuccess)
         {
-            bool b = mate.CurJob == null || (
-                         mate.CurJob.def != JobDefOf.Lovin
-                         && mate.CurJob.def != Constants.JobWooHoo
-                         && mate.CurJob.def != Constants.JobWooHoo_Baby
-                         && mate.CurJob.def != Constants.JobWooHooRecieve
-                     );
+            ThingDef reply = askSuccess ? ThingDefOf.Mote_Heart : ThingDefOf.Mote_SleepZ;
+            return new Toil
+            {
+                initAction = delegate()
+                {
+                    if (pawn.IsHashIntervalTick(100)) return;
+                    //Log.Message("Sending Heart to ask");
+                    MoteMaker.ThrowMetaIcon(pawn.Position, pawn.Map, ThingDefOf.Mote_Heart);
+                    //skip on rare case as not critical just ui noise
+                },
+                tickAction = delegate()
+                {
+                    if (!pawn.IsHashIntervalTick(100)) return;
+                    //Log.Message("Convincing is good idea");
+                    MoteMaker.ThrowMetaIcon(pawn.Position, pawn.Map, ThingDefOf.Mote_Heart);
 
-            Log.Message("[" + mate.Name + "] : Woohooing?" + !b);
-            return b;
+                    if (mate?.Position != null)
+                    {
+                        //Log.Message("Mate decides is good idea, or not");
+                        MoteMaker.ThrowMetaIcon(mate.Position, pawn.Map, reply);
+                    }
+
+                    //MoteMaker.ThrowMetaIcon(mate.Position, mate.Map, );
+                },
+                socialMode = RandomSocialMode.Off,
+                defaultCompleteMode = ToilCompleteMode.Delay,
+                defaultDuration = 250
+            };
         }
     }
 }

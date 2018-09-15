@@ -37,11 +37,11 @@ namespace DarkIntentionsWoohoo
 
             bool partnerSaidYes;
             IEnumerable<Toil> r;
-            if (WoohooManager.IsNotWoohooing(mate))
+            if (PawnHelper.IsNotWoohooing(mate))
             {
                 Log.Message("Woohoo for baby : Started");
                 partnerSaidYes = AskPartner(pawn, mate);
-                r = ToilerHelper.ToilsAskForWoohoo(pawn, mate, bed, partnerSaidYes, hookupBedmanager);
+                r = WoohooManager.ToilsAskForWoohoo(pawn, mate, bed, partnerSaidYes, hookupBedmanager);
             }
             else
             {
@@ -56,10 +56,11 @@ namespace DarkIntentionsWoohoo
                 r = r.Union(WoohooManager.makePartnerWoohoo(pawn, mate, bed))
                     .Union(WoohooManager.animateLovin(pawn, mate, bed))
                     .Union(MakeMyLoveToils(pawn, mate))
-                    .Union(hookupBedmanager.GiveBackToil());
+                    .Union(hookupBedmanager.GiveBackToil())
+                    .Union(new[] {ToilerHelper.StopsHard(mate)});
 
 
-                if (!WoohooManager.IsThisJailLovin(pawn, mate, bed))
+                if (!JailHelper.IsThisJailLovin(pawn, mate, bed))
                 {
                     Log.Message("Call Base Toils");
                     r = r.Union(base.MakeNewToils());
