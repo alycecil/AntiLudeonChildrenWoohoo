@@ -22,12 +22,13 @@ namespace DarkIntentionsWoohoo
         {
             if (t == null || pawn == null) return false;
             if (t is Pawn pawn2
+                && forced
+                
                 && !pawn2.Downed
-                && (pawn2.Faction == pawn.Faction || (pawn2.guest != null && pawn2.guest.IsPrisoner))
+                && (pawn2.Faction == pawn.Faction || (pawn2.guest != null && pawn2.guest.IsPrisoner) || pawn2.guest.HostFaction == pawn.Faction)
                 && pawn != pawn2
                 && PawnHelper.is_human(pawn)
                 && PawnHelper.is_human(pawn2)
-                && forced
                 && PawnHelper.IsNotWoohooing(pawn)
                 && PawnHelper.IsNotWoohooing(pawn2))
             {

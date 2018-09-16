@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using RimWorld;
 using Verse;
@@ -8,43 +9,53 @@ namespace DarkIntentionsWoohoo
 {
     static class WoohooManager
     {
-        public static IEnumerable<Toil> makePartnerWoohoo(Pawn pawn, Pawn mate, Building_Bed bed)
+        public static IEnumerable<Toil> MakePartnerWoohoo(Pawn pawn, Pawn mate, Building_Bed bed)
         {
-            Toil t;
-            yield return (t = new Toil
-            {    initAction = delegate
-                {
-                    /* Log.Message("Make Lover Go To Bed"); */
-                    ToilerHelper.GotoThing(mate, bed); 
-                },
-                socialMode = RandomSocialMode.Off,
-                defaultCompleteMode = ToilCompleteMode.Delay,
-                defaultDuration = 2
-            });
-            t.AddPreInitAction(delegate
+            void NewFunction()
             {
-//                /* Log.Message("Debug: Kill mates job"); */
-//                if(PawnHelper.IsNotWoohooing(mate) ) mate.jobs.StopAll(true);
-//                    
-//                if (PawnHelper.IsNotWoohooing(mate))
-//                {
-//                    /* Log.Message("Asking for love"); */
-//                    Job newJob = new Job(Constants.JobWooHooRecieve);
-//                    mate.jobs.StartJob(newJob, JobCondition.InterruptForced, null, false, true, null, null);
-//                }
-                    
-            });
+                if (PawnHelper.IsNotWoohooing(mate))
+                {
+                    Log.Message("Asking for love job");
+                    Job newJob = new Job(Constants.JobWooHooRecieve, pawn, bed)
+                    {
+                        playerForced = true //its important
+                    };
+                    mate.jobs.StartJob(newJob, JobCondition.InterruptForced);
+
+                    Log.Message("Make Lover Go To Bed");
+                    //mate.jobs.StartJob(, JobCondition.InterruptForced);
+                }
+                else
+                {
+                    Log.Message("Partner already doin it");
+                }
+            }
+
+            Toil t = new Toil()
+            {
+                socialMode = RandomSocialMode.Off,
+                tickAction = NewFunction,
+                initAction = NewFunction
+            };
+
+            t.AddEndCondition(() => PawnHelper.IsNotWoohooing(mate) ? JobCondition.Ongoing : JobCondition.Succeeded);
+            t.AddFinishAction(delegate { Log.Message("Got PArtner to Start WooHooing Alegedly."); });
+
+            yield return t;
         }
 
 
-        public static IEnumerable<Toil> animateLovin(Pawn pawn, Pawn mate, Building_Bed bed, int len = 250)
+        public static IEnumerable<Toil> AnimateLovin(Pawn pawn, Pawn mate, Building_Bed bed, Action finishAction = null,
+            int len = 250)
         {
-            if(bed == null) yield break;
-            
+            if (bed == null) yield break;
+
+            yield return ToilerHelper.GotoThing(pawn, bed);
+
             yield return Toils_Bed.GotoBed(TargetIndex.B);
 
             var layDown = Toils_LayDown.LayDown(TargetIndex.B, true, false, false, false);
-            
+
 
             layDown.AddPreTickAction(delegate()
             {
@@ -54,8 +65,8 @@ namespace DarkIntentionsWoohoo
                     MoteMaker.ThrowMetaIcon(pawn.Position, pawn.Map, ThingDefOf.Mote_Heart);
                 }
             });
-            layDown.AddFinishAction(delegate { /* Log.Message("Done Woohooing"); */ });
-
+            if (finishAction != null)
+                layDown.AddFinishAction(finishAction);
             layDown.defaultCompleteMode = ToilCompleteMode.Delay;
             layDown.defaultDuration = len;
 
@@ -81,36 +92,29 @@ namespace DarkIntentionsWoohoo
                     },
                     defaultCompleteMode = ToilCompleteMode.Instant
                 };
-
-                yield return ToilerHelper.GotoThing(pawn, bed);
             }
             else
             {
-                if (PawnHelper.IsNotWoohooing(mate))
+                yield return new Toil
                 {
-                    yield return new Toil
+                    initAction = delegate()
                     {
-                        initAction = delegate()
-                        {
-                            /* Log.Message("Cursing at for asking"); */
+                        /* Log.Message("Cursing at for asking"); */
 
-                            Job newJob = new Job(JobDefOf.Insult, pawn, bed);
-                            mate.jobs.StartJob(newJob, JobCondition.InterruptForced, null, false, true, null, null,
-                                true);
-                        },
-                        socialMode = RandomSocialMode.Off,
-                        defaultCompleteMode = ToilCompleteMode.Instant
-                    };
-                }
+                        Job newJob = new Job(JobDefOf.Insult, pawn, bed);
+                        mate.jobs.StartJob(newJob, JobCondition.InterruptForced, null, false, true, null, null,
+                            true);
+                    },
+                    socialMode = RandomSocialMode.Off,
+                    defaultCompleteMode = ToilCompleteMode.Instant
+                };
             }
-
-            yield break;
         }
 
         public static Toil AskForWoohoo(Pawn pawn, Pawn mate, Building_Bed bed, bool askSuccess)
         {
             ThingDef reply = askSuccess ? ThingDefOf.Mote_Heart : ThingDefOf.Mote_SleepZ;
-            return new Toil
+            var t = new Toil
             {
                 initAction = delegate()
                 {
@@ -130,13 +134,15 @@ namespace DarkIntentionsWoohoo
                         //Log.Message("Mate decides is good idea, or not");
                         MoteMaker.ThrowMetaIcon(mate.Position, pawn.Map, reply);
                     }
-
-                    //MoteMaker.ThrowMetaIcon(mate.Position, mate.Map, );
                 },
                 socialMode = RandomSocialMode.Off,
                 defaultCompleteMode = ToilCompleteMode.Delay,
                 defaultDuration = 250
             };
+
+            t.AddFinishAction(delegate { Log.Message("Done Asking"); });
+
+            return t;
         }
     }
 }

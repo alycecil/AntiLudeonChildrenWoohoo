@@ -54,7 +54,7 @@ namespace DarkIntentionsWoohoo
 
         private static void addEqualsMoodlets(Pawn pawn, Pawn mate)
         {
-            if (isKinky(pawn) && isKinky(mate))
+            if (isKinky(pawn) && isKinky(mate) || PawnHelper.isStranger(pawn, mate))
             {
                 addMemory(mate, WoohooKink);
                 addMemoryOfOther(mate, WoohooKinkMemory, pawn);

@@ -47,15 +47,25 @@ namespace DarkIntentionsWoohoo
 
         public static bool IsNotWoohooing(Pawn mate)
         {
-            bool b = mate.CurJob == null || (
+            if (mate.CurJob == null) return true;
+            
+            
+            bool b = (
                          mate.CurJob.def != JobDefOf.Lovin
                          && mate.CurJob.def != Constants.JobWooHoo
                          && mate.CurJob.def != Constants.JobWooHoo_Baby
                          && mate.CurJob.def != Constants.JobWooHooRecieve
                      );
 
-            //Trace:Log.Message("[" + mate.Name + "] : Woohooing?" + !b);
+            //Trace:
+            if(!b)
+            Log.Message("[" + mate.Name + "] : Woohooing Job:" +mate.CurJob.def);
             return b;
+        }
+
+        public static bool isStranger(Pawn pawn, Pawn mate)
+        {
+            return (pawn.guest==null && mate.guest !=null);
         }
     }
 }

@@ -7,34 +7,36 @@ namespace DarkIntentionsWoohoo
 {
     public static class ToilerHelper
     {
-        public static Toil GotoThing(Pawn pawn, Thing talkee)
+        public static Toil GotoThing(Pawn pawn, Thing talkee, ToilCompleteMode mode = ToilCompleteMode.PatherArrival)
         {
             if (pawn == null || talkee == null)
             {
-                Log.Error("Not Going Anywhere..."); return null;}
+                Log.Error("Not Going Anywhere..."); return null;
+            }
 
             Toil toil = new Toil();
             toil.initAction = delegate()
             {
-                /* Log.Message("[" + pawn.Name + "] go to [" + talkee + "]"); */
-                pawn.pather.StartPath(talkee, PathEndMode.Touch);
+                Log.Message("[" + pawn.Name + "] go to [" + talkee + "]");
+                
+                pawn.pather.StartPath(talkee, PathEndMode.OnCell);
 
-//                if (talkee is Pawn)
-//                {
-//                    try
-//                    {
-//                        (talkee as Pawn).pather?.StopDead();
-//                    }
-//                    catch (Exception e)
-//                    {
-//                        ///snarf it.
-//                        /* Log.Message("Couldn't make the target hold still with pather, nbd." + e.Message, false); */
-//                    }
-//                }
+                if (talkee is Pawn)
+                {
+                    try
+                    {
+                        (talkee as Pawn).pather?.StopDead();
+                    }
+                    catch (Exception e)
+                    {
+                        ///snarf it.
+                        Log.Message("Couldn't make the target hold still with pather, nbd." + e.Message, false);
+                    }
+                }
             };
-            toil.AddFinishAction(delegate { /* Log.Message("Got to Talkee."); */ });
+            toil.AddFinishAction(delegate { Log.Message("Got to ["+talkee+"]."); });
             toil.socialMode = RandomSocialMode.Off;
-            toil.defaultCompleteMode = ToilCompleteMode.PatherArrival;
+            toil.defaultCompleteMode = mode;
             return toil;
         }
 
@@ -45,7 +47,7 @@ namespace DarkIntentionsWoohoo
 
             Toil toil = new Toil();
             toil.initAction = delegate() { pawn.jobs.StopAll(true); };
-            toil.AddFinishAction(delegate { /* Log.Message("Done."); */ });
+            toil.AddFinishAction(delegate { Log.Message("Done."); });
             toil.AddFailCondition(pawn.DestroyedOrNull);
             toil.socialMode = RandomSocialMode.Off;
             toil.defaultCompleteMode = ToilCompleteMode.Instant;
