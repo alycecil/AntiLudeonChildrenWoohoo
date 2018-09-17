@@ -11,6 +11,7 @@ namespace DarkIntentionsWoohoo
     {
         public static IEnumerable<Toil> MakePartnerWoohoo(Pawn pawn, Pawn mate, Building_Bed bed)
         {
+            int tick = 400;
             void NewFunction()
             {
                 if (PawnHelper.IsNotWoohooing(mate))
@@ -38,7 +39,7 @@ namespace DarkIntentionsWoohoo
                 initAction = NewFunction
             };
 
-            t.AddEndCondition(() => PawnHelper.IsNotWoohooing(mate) ? JobCondition.Ongoing : JobCondition.Succeeded);
+            t.AddEndCondition(() => PawnHelper.IsNotWoohooing(mate) && (tick --) > 0 ? JobCondition.Ongoing : JobCondition.Succeeded);
             t.AddFinishAction(delegate { Log.Message("Got PArtner to Start WooHooing Alegedly."); });
 
             yield return t;
