@@ -17,7 +17,7 @@ namespace DarkIntentionsWoohoo
             Toil toil = new Toil();
             toil.initAction = delegate()
             {
-                Log.Message("[" + pawn.Name + "] go to [" + talkee + "]");
+             /* Log.Message("[" + pawn.Name + "] go to [" + talkee + "]"); */
                 
                 pawn.pather.StartPath(talkee, PathEndMode.OnCell);
 
@@ -30,7 +30,7 @@ namespace DarkIntentionsWoohoo
                     catch (Exception e)
                     {
                         ///snarf it.
-                        Log.Message("Couldn't make the target hold still with pather, nbd." + e.Message, false);
+                     /* Log.Message("Couldn't make the target hold still with pather, nbd." + e.Message, false); */
                     }
                 }
             };

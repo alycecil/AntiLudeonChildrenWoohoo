@@ -1,4 +1,5 @@
-﻿using Verse;
+﻿using RimWorld;
+using Verse;
 
 namespace DarkIntentionsWoohoo
 {
@@ -17,5 +18,7 @@ namespace DarkIntentionsWoohoo
 
         public static readonly PawnCapacityDef Reproduction =
             DefDatabase<PawnCapacityDef>.GetNamedSilentFail("Reproduction");
+
+        public static readonly JoyKindDef Joy_Woohoo = DefDatabase<JoyKindDef>.GetNamed("Woohoo");
     }
 }

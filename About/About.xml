@@ -5,7 +5,7 @@
     <author>AliceTries</author>
     <targetVersion>0.19.2009</targetVersion>
     <description>
-        Release B19, 1.0:
+        RRelease B19 - Version 1.1 Of WooHooer!
 
         Adds Sims (tm) like commands for woohooing with Pawns, including try for baby.
 
@@ -34,6 +34,14 @@
         Add Settings, note that the base game forces a second dice role on your pawns age group's fertility. Fertility Starts at 14 in base game.
 
         Release Notes:
+        1.1: Thanks for finding bugs!
+        Changed length of laying in bed for recipient from 4000 to 400 as it lets te recipient look like theyre stuck for forever.
+        Fixed Using of Prisoner Beds. Removed Usage of the base game laydown and instead just have the pawns lay down directly which is awesome as I can now add woohoo spots or something.
+        Fixed endless toil loop for woohoo when trying to get partner to woohoo and they have a non simply interuptable job like wander.
+        
+        
+        1: No longer call Lovin at end, this is to allow the pawns to not go to bed afterwards and to not move in.
+
         A5:
         Pregnant Prisoners should spawn baby that is also a prisoner. If the other parent is Kind that pawn will be granted amnesty. Children are always given amnesty.
 

@@ -36,7 +36,7 @@ namespace DarkIntentionsWoohoo
                 }
 
                 IEnumerable<Building_Bed> bigBeds = allBeds
-                        .Where(x => x != null && x.SleepingSlotsCount > 1 && !x.Medical)
+                        .Where(x => x != null && x.SleepingSlotsCount > 1 && !x.Medical).ToList()
                     ;
 
                 if (!bigBeds.Any())
@@ -46,10 +46,11 @@ namespace DarkIntentionsWoohoo
                 }
 
                 var priority = bigBeds.Where(x => x.AssignedPawns.Contains(pawn) || x.AssignedPawns.Contains(mate));
-                if (priority.Any())
+                var buildingBeds = priority.ToList();
+                if (buildingBeds.Any())
                 {
                     //--Log.Message("Looks like We own beds, lets check those.", false);
-                    foreach (Building_Bed bed in priority)
+                    foreach (Building_Bed bed in buildingBeds)
                     {
                         if (bed != null)
                         {
@@ -82,15 +83,8 @@ namespace DarkIntentionsWoohoo
                     bed.CurOccupants == null || !bed.CurOccupants.Any()))
                 {
                     //-- /* Log.Message("Stealing a bed...", false); */
-                    if (stolenBed != null)
-                    {
-                        //Log.Message("Stealing Bed!");
-                        return stolenBed;
-                    }
-                    else
-                    {
-                        Log.Error("How the hell is a stolenBed null?", false);
-                    }
+                    //Log.Message("Stealing Bed!");
+                    return stolenBed;
                 }
             }
 

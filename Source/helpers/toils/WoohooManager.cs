@@ -16,19 +16,19 @@ namespace DarkIntentionsWoohoo
             {
                 if (PawnHelper.IsNotWoohooing(mate))
                 {
-                    Log.Message("Asking for love job");
+                 /* Log.Message("Asking for love job"); */
                     Job newJob = new Job(Constants.JobWooHooRecieve, pawn, bed)
                     {
                         playerForced = true //its important
                     };
                     mate.jobs.StartJob(newJob, JobCondition.InterruptForced);
 
-                    Log.Message("Make Lover Go To Bed");
+                 /* Log.Message("Make Lover Go To Bed"); */
                     //mate.jobs.StartJob(, JobCondition.InterruptForced);
                 }
                 else
                 {
-                    Log.Message("Partner already doin it");
+                 /* Log.Message("Partner already doin it"); */
                 }
             }
 
@@ -51,12 +51,35 @@ namespace DarkIntentionsWoohoo
         {
             if (bed == null) yield break;
 
-            yield return ToilerHelper.GotoThing(pawn, bed);
+            Toil t;
+            yield return (t = ToilerHelper.GotoThing(pawn, bed));
+                t.AddFinishAction(delegate { Log.Message("Got To Bed for woohooing"); });
 
-            yield return Toils_Bed.GotoBed(TargetIndex.B);
+            var layDown = new Toil()
+            {
+                initAction = delegate
+                {
+                    pawn.pather.StopDead();
+                    pawn.jobs.posture = PawnPosture.LayingInBed;
+                    
+                },
+                tickAction = delegate
+                {
+                    pawn.GainComfortFromCellIfPossible();
+                    
+                },
+            };
+            layDown.AddFinishAction(delegate { 
+                
+                
+                pawn.needs.joy.GainJoy(Rand.Value *.05f, Constants.Joy_Woohoo);
+                mate.needs.joy.GainJoy(Rand.Value *.05f, Constants.Joy_Woohoo);
+                
+             /* Log.Message("[woohoo] animating done, woohoo joy between 0 and 5% added"); */
+            });
+            // Toils_LayDown.LayDown(TargetIndex.B, true, false, false, false);
 
-            var layDown = Toils_LayDown.LayDown(TargetIndex.B, true, false, false, false);
-
+            
 
             layDown.AddPreTickAction(delegate()
             {
@@ -68,6 +91,8 @@ namespace DarkIntentionsWoohoo
             });
             if (finishAction != null)
                 layDown.AddFinishAction(finishAction);
+            
+            
             layDown.defaultCompleteMode = ToilCompleteMode.Delay;
             layDown.defaultDuration = len;
 

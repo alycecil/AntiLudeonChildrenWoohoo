@@ -34,11 +34,15 @@ namespace DarkIntentionsWoohoo
                 {
                     initAction = delegate()
                     {
-                        //Log.Message("Boy get out my house, I ant making you pancakes an' you an't movin' in.");
+                     /* Log.Message("[WooHoo] Hookup over 'Boy get out my house, I ant making you pancakes an' you an't movin' in.'"); */
                         GiveBack();
                     },
                     defaultCompleteMode = ToilCompleteMode.Instant
                 };
+            else
+            {
+              /* Log.Message("[WooHoo] We were woohooing with out a bed like savages. SAVAGES!"); */
+            }
             yield break;
         }
 

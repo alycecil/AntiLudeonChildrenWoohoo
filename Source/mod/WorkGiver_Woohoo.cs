@@ -25,7 +25,7 @@ namespace DarkIntentionsWoohoo
                 && forced
                 
                 && !pawn2.Downed
-                && (pawn2.Faction == pawn.Faction || (pawn2.guest != null && pawn2.guest.IsPrisoner) || pawn2.guest.HostFaction == pawn.Faction)
+                && (pawn2.Faction == pawn.Faction || pawn2.guest != null)
                 && pawn != pawn2
                 && PawnHelper.is_human(pawn)
                 && PawnHelper.is_human(pawn2)

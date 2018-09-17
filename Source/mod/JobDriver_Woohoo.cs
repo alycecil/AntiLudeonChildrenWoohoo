@@ -51,7 +51,7 @@ namespace DarkIntentionsWoohoo
             }
             else
             {
-                ////Log.Message("Partner already woohooin");
+             /* Log.Message("Partner already woohooin, dont need to ask."); */
                 partnerSaidYes = true;
                 r = nothing();
             }
@@ -64,8 +64,11 @@ namespace DarkIntentionsWoohoo
                     .Union(WoohooManager.MakePartnerWoohoo(pawn, mate, bed))
                     .Union(WoohooManager.AnimateLovin(pawn, mate, bed))
                     .Union(MakeMyLoveToils(pawn, mate))
-                    .Union(WoohooManager.AnimateLovin(pawn, mate, bed,
-                        delegate { Log.Message("We're done animating on main job."); }));
+                    .Union(
+                        WoohooManager.AnimateLovin(pawn, mate, bed,
+                            delegate { Log.Message("We're done animating on main job."); }
+                        , 500)
+                    );
                     
             }
 

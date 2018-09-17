@@ -37,7 +37,7 @@ namespace DarkIntentionsWoohoo
 
         public static void addMoodlets(Pawn pawn, Pawn mate)
         {
-            /* Log.Message("Adding Moodlets"); */
+          /* Log.Message("Adding Moodlets"); */ 
             if (mate.guest != null && mate.guest.IsPrisoner)
             {
                 addPrisonMoodlets(pawn, mate);

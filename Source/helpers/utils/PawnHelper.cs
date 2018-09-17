@@ -59,7 +59,7 @@ namespace DarkIntentionsWoohoo
 
             //Trace:
             if(!b)
-            Log.Message("[" + mate.Name + "] : Woohooing Job:" +mate.CurJob.def);
+         /* Log.Message("[" + mate.Name + "] : Woohooing Job:" +mate.CurJob.def); */
             return b;
         }
 
