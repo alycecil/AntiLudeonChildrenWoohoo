@@ -25,7 +25,7 @@ namespace DarkIntentionsWoohoo
                 {
                     try
                     {
-                        (talkee as Pawn).pather?.StopDead();
+                        (talkee as Pawn).pather?.StartPath(talkee, PathEndMode.OnCell);
                     }
                     catch (Exception e)
                     {
@@ -37,20 +37,6 @@ namespace DarkIntentionsWoohoo
             toil.AddFinishAction(delegate { Log.Message("Got to ["+talkee+"]."); });
             toil.socialMode = RandomSocialMode.Off;
             toil.defaultCompleteMode = mode;
-            return toil;
-        }
-
-
-        public static Toil StopsHard(Pawn pawn)
-        {
-            if (pawn == null) return null;
-
-            Toil toil = new Toil();
-            toil.initAction = delegate() { pawn.jobs.StopAll(true); };
-            toil.AddFinishAction(delegate { Log.Message("Done."); });
-            toil.AddFailCondition(pawn.DestroyedOrNull);
-            toil.socialMode = RandomSocialMode.Off;
-            toil.defaultCompleteMode = ToilCompleteMode.Instant;
             return toil;
         }
     }
