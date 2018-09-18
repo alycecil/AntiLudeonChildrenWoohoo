@@ -9,20 +9,22 @@ namespace DarkIntentionsWoohoo
     {
         public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
-         /* Log.Message("Getting Asked to WooHoo!"); */
+            Log.Message("Getting Asked to WooHoo!"); 
             return pawn != null;
         }
 
         protected override IEnumerable<Toil> MakeNewToils()
         {
-         /* Log.Message("Lets go make babies!"); */
+          Log.Message("I got asked to do woohoo!!!!"); 
             var list = new List<Toil>();
 
             list.Add( Toils_Goto.Goto(TargetIndex.A, PathEndMode.ClosestTouch));
             list.Add( Toils_Goto.Goto(TargetIndex.B, PathEndMode.ClosestTouch));
             list.AddRange( WoohooManager.AnimateLovin(pawn, TargetA.Thing as Pawn, TargetB.Thing as Building_Bed) );
-            
-            list.Add( new Toil {initAction = delegate { Log.Message("Woohooing"); }, defaultDuration = 400, defaultCompleteMode = ToilCompleteMode.Delay});
+
+            Toil t;
+            list.Add( t = new Toil {initAction = delegate { Log.Message("Getting Woohooing, will be done in 400 ticks"); }, defaultDuration = 400, defaultCompleteMode = ToilCompleteMode.Delay});
+            t.AddFinishAction(delegate { Log.Message("Done Woohing Get"); });
             
             
             //add a moodlet for being asked

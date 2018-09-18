@@ -11,7 +11,7 @@ namespace DarkIntentionsWoohoo
         {
             if (pawn == null || talkee == null)
             {
-                Log.Error("Not Going Anywhere..."); return null;
+                Log.Error("Not Going Anywhere...", true); return null;
             }
 
             Toil toil = new Toil();

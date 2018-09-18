@@ -29,7 +29,7 @@ namespace DarkIntentionsWoohoo
             }
             else
             {
-                Log.Error("[" + pawn.Name + "] can't woohoo right.");
+                Log.Error("[" + pawn.Name + "] can't woohoo right.", true);
                 EndJobWith(JobCondition.Errored);
                 return null;
             }
@@ -74,7 +74,7 @@ namespace DarkIntentionsWoohoo
 
             r = r.Union(hookupBedmanager.GiveBackToil());
 
-            ///Log.Message("[WooHoo]Toils: ["+r.Count()+"]");
+            Log.Message("[WooHoo]Toils: ["+r.Count()+"]");
             return r;
         }
 
@@ -85,11 +85,18 @@ namespace DarkIntentionsWoohoo
 
         private bool AskPartner(Pawn pawn, Pawn mate)
         {
-            return pawn != null && mate != null && (!JailHelper.IsThisJailLovin(pawn, mate, null) && !PawnHelper.isStranger(pawn, mate) || Rand.Bool);
+            return pawn != null && mate != null && (JailHelper.IsThisJailLovin(pawn, mate, null) || !PawnHelper.isStranger(pawn, mate) || Rand.Bool);
         }
 
         public IEnumerable<Toil> MakeMyLoveToils(Pawn pawn, Pawn mate)
         {
+            
+            if (!PawnHelper.is_psychopath(pawn) && PawnHelper.isStranger(pawn, mate) && !JailHelper.IsThisJailLovin(pawn, mate))
+            {
+                Log.Message("Lets try and recruit with woohoo as this guest might like you that much");
+                Toils_Interpersonal.TryRecruit(TargetIndex.A);
+            }
+            
             /* Log.Message("Appending Moods"); */
             yield return MemoryManager.addMoodletsToil(pawn, mate);
             if (isMakeBaby())
@@ -98,10 +105,6 @@ namespace DarkIntentionsWoohoo
                 yield return BabyMaker.DoMakeBaby(pawn, mate);
             }
 
-            if (!PawnHelper.is_psychopath(pawn) && PawnHelper.isStranger(pawn, mate) && !JailHelper.IsThisJailLovin(pawn, mate))
-            {
-                Toils_Interpersonal.TryRecruit(TargetIndex.A);
-            }
         }
 
         public override bool CanBeginNowWhileLyingDown()
@@ -132,9 +135,9 @@ namespace DarkIntentionsWoohoo
                 return base.TryMakePreToilReservations(errorOnFailed);
             }
 
-            /* Log.Message("[" + pawn.Name +
+             Log.Message("[" + pawn.Name +
                             "] can't woohoo right. Timing out their lovin for 500 ticks. They tried to some weird stuff:" +
-                            this.GetReport()); */
+                            this.GetReport(), true); 
             pawn.mindState.canLovinTick = Find.TickManager.TicksGame + 500;
 
             return false;

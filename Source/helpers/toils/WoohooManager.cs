@@ -114,7 +114,7 @@ namespace DarkIntentionsWoohoo
                     {
                         /* Log.Message("Claiming Bed spots"); */
                         hookupBedmanager.claim(pawn, mate);
-                        /* Log.Message("Claimed Bed spots"); */
+                         Log.Message("Claimed Bed spots"); 
                     },
                     defaultCompleteMode = ToilCompleteMode.Instant
                 };
@@ -125,7 +125,7 @@ namespace DarkIntentionsWoohoo
                 {
                     initAction = delegate()
                     {
-                        /* Log.Message("Cursing at for asking"); */
+                         Log.Message("Cursing at for asking"); 
 
                         Job newJob = new Job(JobDefOf.Insult, pawn, bed);
                         mate.jobs.StartJob(newJob, JobCondition.InterruptForced, null, false, true, null, null,
@@ -157,7 +157,7 @@ namespace DarkIntentionsWoohoo
 
                     if (mate?.Position != null)
                     {
-                        //Log.Message("Mate decides is good idea, or not");
+                        Log.Message("Mate decides is good idea, or not");
                         MoteMaker.ThrowMetaIcon(mate.Position, pawn.Map, reply);
                     }
                 },

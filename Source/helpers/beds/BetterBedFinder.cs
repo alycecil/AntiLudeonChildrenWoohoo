@@ -58,7 +58,7 @@ namespace DarkIntentionsWoohoo
                         }
                         else
                         {
-                            Log.Error("How the hell is the owned bed null?", false);
+                            Log.Error("How the hell is the owned bed null?", true);
                         }
                     }
                 }
