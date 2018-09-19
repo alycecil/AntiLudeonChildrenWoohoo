@@ -103,6 +103,9 @@
     <Content Include="..\Defs\woohoo\Recipes_Surgery_Installations.xml">
       <Link>xml\Recipes_Surgery_Installations.xml</Link>
     </Content>
+    <Content Include="..\Defs\woohoo\RecordDef.xml">
+      <Link>xml\RecordDef.xml</Link>
+    </Content>
     <Content Include="..\Defs\woohoo\Thoughts.xml">
       <Link>xml\Thoughts.xml</Link>
     </Content>

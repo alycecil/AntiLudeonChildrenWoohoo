@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+    <RecordDef>
+        <defName>CountAskedForWoohoo</defName>
+        <label>Times asked for WooHoo</label>
+        <description>The number of times I asked someone to woohoo.</description>
+        <type>Int</type>
+    </RecordDef>
+
+    <RecordDef>
+        <defName>CountGotAskedToWooHoo</defName>
+        <label>Got Asked to WooHoo</label>
+        <description>How many times someone asked for a woohoo with me.</description>
+        <type>Int</type>
+    </RecordDef>
+    
+    <RecordDef>
+        <defName>CountGotAskedToWooHooSaidNo</defName>
+        <label>WooHoo's Declined</label>
+        <description>How many times I was asked to woohoo and said no.</description>
+        <type>Int</type>
+    </RecordDef>
+
+    <RecordDef>
+        <defName>HorrificMemories</defName>
+        <label>Prison Mishaps and horrific memories</label>
+        <description>Count of bad things that happened to me.</description>
+        <type>Int</type>
+    </RecordDef>
+
+    <RecordDef>
+        <defName>TimesWooHooedGotPregnant</defName>
+        <label>WooHoos Pregnant From</label>
+        <description>Count of WooHoos where I got pregnant</description>
+        <type>Int</type>
+    </RecordDef>
+
+</Defs>

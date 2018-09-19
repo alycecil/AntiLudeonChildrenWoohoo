@@ -45,6 +45,9 @@ namespace DarkIntentionsWoohoo
             IEnumerable<Toil> r;
             if (PawnHelper.IsNotWoohooing(mate))
             {
+                pawn.records.Increment(Constants.CountAskedForWoohoo);
+                mate.records.Increment(Constants.CountGotAskedToWooHoo);
+                
                 partnerSaidYes = AskPartner(pawn, mate);
                 
                 r = WoohooManager.ToilsAskForWoohoo(pawn, mate, bed, partnerSaidYes, hookupBedmanager);
@@ -70,6 +73,10 @@ namespace DarkIntentionsWoohoo
                         , 500)
                     );
                     
+            }
+            else
+            {
+                mate.records.Increment(Constants.CountGotAskedToWooHooSaidNo);
             }
 
             r = r.Union(hookupBedmanager.GiveBackToil());

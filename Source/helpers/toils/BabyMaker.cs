@@ -33,6 +33,7 @@ namespace DarkIntentionsWoohoo
                         /* Log.Message("Getting innitialer pregnant", false); */ 
                             //(donor , has womb)
                             Mate.Mated(mate, pawn);
+                            pawn.records.Increment(Constants.TimesWooHooedGotPregnant);
                         }
                         else
                         {
@@ -44,6 +45,7 @@ namespace DarkIntentionsWoohoo
                         /* Log.Message("Getting talkee pregnant", false); */ 
                             //(donor , has womb)
                             Mate.Mated(pawn, mate);
+                            mate.records.Increment(Constants.TimesWooHooedGotPregnant);
                         }
                         else
                         {

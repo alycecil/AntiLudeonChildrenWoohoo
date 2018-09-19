@@ -86,6 +86,7 @@ namespace DarkIntentionsWoohoo
 
         private static void addPrisonMoodlets(Pawn torturer, Pawn victim)
         {
+            victim.records.Increment(Constants.HorrificMemories);
             if (PawnHelper.is_bloodlust(torturer) || PawnHelper.is_psychopath(torturer))
             {
                 addMemory(torturer, WoohooColonist);
