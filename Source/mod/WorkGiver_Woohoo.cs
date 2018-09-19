@@ -22,11 +22,10 @@ namespace DarkIntentionsWoohoo
         {
             if (t == null || pawn == null) return false;
             if (t is Pawn pawn2
-                && forced
-                
-                && !pawn2.Downed
-                && (pawn2.Faction == pawn.Faction || pawn2.guest != null)
                 && pawn != pawn2
+                && (forced || canAutoLove(pawn, pawn2))
+                && !pawn2.Downed
+                && (pawn2.Faction == pawn.Faction || pawn2.guest != null && !pawn2.Drafted)
                 && PawnHelper.is_human(pawn)
                 && PawnHelper.is_human(pawn2)
                 && PawnHelper.IsNotWoohooing(pawn)
@@ -39,6 +38,30 @@ namespace DarkIntentionsWoohoo
             }
 
             return false;
+        }
+
+        private bool canAutoLove(Pawn pawn, Pawn pawn2)
+        {
+            var tick = Find.TickManager.TicksGame;
+            return pawn.mindState.canLovinTick < tick
+                   && pawn2.mindState.canLovinTick < tick
+                   //idle
+                   && JobUtilityIdle.isIdle(pawn2)
+
+                   //still enjoys woohoo
+                   && pawn2?.needs?.joy?.tolerances != null
+                   && pawn?.needs?.joy?.tolerances != null
+                   && pawn2?.needs?.mood?.CurLevel != null
+                   && pawn?.needs?.mood?.CurLevel != null
+
+                   && !pawn2.needs.joy.tolerances.BoredOf(Constants.Joy_Woohoo)
+                   && !pawn.needs.joy.tolerances.BoredOf(Constants.Joy_Woohoo)
+                   && ((pawn2.needs.joy.CurLevel < .6f  || pawn2.needs.mood.CurLevel < .6f)
+                       && (pawn.needs.joy.CurLevel < .6f || pawn.needs.mood.CurLevel < .6f)
+                   )
+
+                   //and a 1d2
+                   && Rand.Value < 0.1f;
         }
 
         public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false)
@@ -75,7 +98,7 @@ namespace DarkIntentionsWoohoo
             float fert = FertilityChecker.getFetility(pawn) + FertilityChecker.getFetility(pawn2) / 2.0f;
             fert *= MateChance();
             //TODO dice roll
-            return false;
+            return Rand.Value < fert;
         }
     }
 }

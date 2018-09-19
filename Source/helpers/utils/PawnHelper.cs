@@ -12,7 +12,7 @@ namespace DarkIntentionsWoohoo
 
         public static bool is_human(Pawn pawn)
         {
-            return pawn.RaceProps.Humanlike; //||pawn.kindDef.race == ThingDefOf.Human
+            return pawn.RaceProps.Humanlike && pawn.kindDef.race == ThingDefOf.Human;
         }
 
         public static bool is_masochist(Pawn pawn)

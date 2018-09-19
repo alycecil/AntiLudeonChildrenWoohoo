@@ -19,18 +19,18 @@ namespace DarkIntentionsWoohoo
                     //check fertility then ensemenate wombs
                     if (!FertilityChecker.is_fertile(pawn))
                     {
-                         Log.Message("Woohoo for baby, but youre not fertile", false); 
+                    /* Log.Message("Woohoo for baby, but youre not fertile", false); */ 
                     }
                     else if (!FertilityChecker.is_fertile(mate))
                     {
-                         Log.Message("Woohoo for baby, but not fertile mate", false); 
+                    /* Log.Message("Woohoo for baby, but not fertile mate", false); */ 
                     }
                     else
                     {
                         //for each womb make pregnant
                         if (FertilityChecker.is_FemaleForBabies(pawn))
                         {
-                             Log.Message("Getting innitialer pregnant", false); 
+                        /* Log.Message("Getting innitialer pregnant", false); */ 
                             //(donor , has womb)
                             Mate.Mated(mate, pawn);
                         }
@@ -41,7 +41,7 @@ namespace DarkIntentionsWoohoo
 
                         if (FertilityChecker.is_FemaleForBabies(mate))
                         {
-                             Log.Message("Getting talkee pregnant", false); 
+                        /* Log.Message("Getting talkee pregnant", false); */ 
                             //(donor , has womb)
                             Mate.Mated(pawn, mate);
                         }

@@ -7,34 +7,36 @@ namespace DarkIntentionsWoohoo
 {
     public static class ToilerHelper
     {
-        public static Toil GotoThing(Pawn pawn, Thing talkee, ToilCompleteMode mode = ToilCompleteMode.PatherArrival)
+        public static Toil GotoThing(Pawn pawn, Thing thing, ToilCompleteMode mode = ToilCompleteMode.PatherArrival)
         {
-            if (pawn == null || talkee == null)
+            if (pawn == null || thing == null)
             {
                 Log.Error("Not Going Anywhere...", true); return null;
             }
 
-            Toil toil = new Toil();
-            toil.initAction = delegate()
+            Toil toil = new Toil
             {
-             /* Log.Message("[" + pawn.Name + "] go to [" + talkee + "]"); */
-                
-                pawn.pather.StartPath(talkee, PathEndMode.OnCell);
-
-                if (talkee is Pawn)
+                initAction = delegate()
                 {
-                    try
+                    /* Log.Message("[" + pawn.Name + "] go to [" + thing + "]"); */
+
+                    pawn?.pather?.StartPath(thing, PathEndMode.OnCell);
+
+                    if (thing is Pawn)
                     {
-                        (talkee as Pawn).pather?.StartPath(talkee, PathEndMode.OnCell);
-                    }
-                    catch (Exception e)
-                    {
-                        ///snarf it.
-                     /* Log.Message("Couldn't make the target hold still with pather, nbd." + e.Message, false); */
+                        try
+                        {
+                            (thing as Pawn)?.pather?.StartPath(thing, PathEndMode.OnCell);
+                        }
+                        catch (Exception e)
+                        {
+                            ///snarf it.
+                            /* Log.Message("Couldn't make the target hold still with pather, nbd." + e.Message, false); */
+                        }
                     }
                 }
             };
-            toil.AddFinishAction(delegate { Log.Message("Got to ["+talkee+"]."); });
+            toil.AddFinishAction(delegate { Log.Message("Got to ["+thing+"]."); });
             toil.socialMode = RandomSocialMode.Off;
             toil.defaultCompleteMode = mode;
             return toil;

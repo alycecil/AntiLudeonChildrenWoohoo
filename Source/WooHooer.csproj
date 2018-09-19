@@ -57,10 +57,6 @@
     <None Include="..\Defs\woohoo\Jobs.xml">
       <Link>xml\Jobs.xml</Link>
     </None>
-    <None Include="..\Defs\woohoo\JoyGivers.xml">
-      <SubType>Designer</SubType>
-      <Link>xml\JoyGivers.xml</Link>
-    </None>
     <None Include="..\Defs\woohoo\JoyKind.xml">
       <Link>xml\JoyKind.xml</Link>
     </None>
@@ -83,6 +79,7 @@
     <Compile Include="helpers\beds\HookupBedmanager.cs" />
     <Compile Include="helpers\toils\WoohooManager.cs" />
     <Compile Include="helpers\utils\JailHelper.cs" />
+    <Compile Include="helpers\utils\JobUtilityIdle.cs" />
     <Compile Include="helpers\utils\PawnHelper.cs" />
     <Compile Include="mod\harmony\Hediff_Pregnant_DoBirthSpawn_Patch.cs" />
     <Compile Include="mod\harmony\PawnGenerator_GeneratePawn_Patch.cs" />

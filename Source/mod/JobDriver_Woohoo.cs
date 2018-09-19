@@ -7,7 +7,7 @@ using Verse.AI;
 
 namespace DarkIntentionsWoohoo
 {
-    class JobDriver_Woohoo : JobDriver_Lovin
+    class JobDriver_Woohoo : JobDriver
     {
         protected override IEnumerable<Toil> MakeNewToils()
         {
@@ -38,7 +38,7 @@ namespace DarkIntentionsWoohoo
             {
                 throw new Exception("You cant WooHoo Alone and Together with yourself");
             }
-
+            
             HookupBedmanager hookupBedmanager = new HookupBedmanager(bed);
 
             bool partnerSaidYes;
@@ -74,7 +74,9 @@ namespace DarkIntentionsWoohoo
 
             r = r.Union(hookupBedmanager.GiveBackToil());
 
-            Log.Message("[WooHoo]Toils: ["+r.Count()+"]");
+       /* Log.Message("[WooHoo]Toils: ["+r.Count()+"]"); */
+            pawn.mindState.canLovinTick = Find.TickManager.TicksGame + Rand.Range(5000, 25000);
+            
             return r;
         }
 
@@ -93,7 +95,7 @@ namespace DarkIntentionsWoohoo
             
             if (!PawnHelper.is_psychopath(pawn) && PawnHelper.isStranger(pawn, mate) && !JailHelper.IsThisJailLovin(pawn, mate))
             {
-                Log.Message("Lets try and recruit with woohoo as this guest might like you that much");
+           /* Log.Message("Lets try and recruit with woohoo as this guest might like you that much"); */
                 Toils_Interpersonal.TryRecruit(TargetIndex.A);
             }
             
@@ -132,12 +134,12 @@ namespace DarkIntentionsWoohoo
                 && !bed.IsBurning()
             )
             {
-                return base.TryMakePreToilReservations(errorOnFailed);
+                return true; //base.TryMakePreToilReservations(errorOnFailed);
             }
 
-             Log.Message("[" + pawn.Name +
+         Log.Message("[" + pawn.Name +
                             "] can't woohoo right. Timing out their lovin for 500 ticks. They tried to some weird stuff:" +
-                            this.GetReport(), true); 
+                            this.GetReport(), true);  
             pawn.mindState.canLovinTick = Find.TickManager.TicksGame + 500;
 
             return false;

@@ -2,6 +2,7 @@
 using System.Linq;
 using RimWorld;
 using Verse;
+using Verse.AI;
 
 namespace DarkIntentionsWoohoo
 {
@@ -74,6 +75,7 @@ namespace DarkIntentionsWoohoo
                 // if not well woohoo 
                 foreach (Building_Bed openbed in bigBeds.Where(x => x.AssignedPawns == null || !x.AssignedPawns.Any()))
                 {
+                    if(canReserve(pawn, openbed) && canReserve(mate, openbed))
                     //--Log.Message("Found us a place to woohoo", false);
                     return openbed;
                 }
@@ -84,6 +86,7 @@ namespace DarkIntentionsWoohoo
                 {
                     //-- /* Log.Message("Stealing a bed...", false); */
                     //Log.Message("Stealing Bed!");
+                    if(canReserve(pawn, stolenBed) && canReserve(mate, stolenBed))
                     return stolenBed;
                 }
             }
@@ -92,6 +95,20 @@ namespace DarkIntentionsWoohoo
             //--Log.Message("Nope, no beds", false);
 
             return null;
+        }
+
+        private static bool canReserve(Pawn traveler, Building_Bed building_Bed)
+        {
+            LocalTargetInfo target = building_Bed;
+            PathEndMode peMode = PathEndMode.OnCell;
+            Danger maxDanger = Danger.Some;
+            int sleepingSlotsCount = building_Bed.SleepingSlotsCount;
+            if (!traveler.CanReserveAndReach(target, peMode, maxDanger, sleepingSlotsCount, -1, null, false))
+            {
+                return false;
+            }
+
+            return true;
         }
 
         private static Building_Bed PawnBedBigEnough(Pawn pawn)

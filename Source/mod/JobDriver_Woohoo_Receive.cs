@@ -9,13 +9,13 @@ namespace DarkIntentionsWoohoo
     {
         public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
-            Log.Message("Getting Asked to WooHoo!"); 
+       /* Log.Message("Getting Asked to WooHoo!"); */ 
             return pawn != null;
         }
 
         protected override IEnumerable<Toil> MakeNewToils()
         {
-          Log.Message("I got asked to do woohoo!!!!"); 
+     /* Log.Message("I got asked to do woohoo!!!!"); */ 
             var list = new List<Toil>();
 
             list.Add( Toils_Goto.Goto(TargetIndex.A, PathEndMode.ClosestTouch));
@@ -25,8 +25,8 @@ namespace DarkIntentionsWoohoo
             Toil t;
             list.Add( t = new Toil {initAction = delegate { Log.Message("Getting Woohooing, will be done in 400 ticks"); }, defaultDuration = 400, defaultCompleteMode = ToilCompleteMode.Delay});
             t.AddFinishAction(delegate { Log.Message("Done Woohing Get"); });
-            
-            
+
+            pawn.mindState.canLovinTick = Find.TickManager.TicksGame + + Rand.Range(1500, 25000);
             //add a moodlet for being asked
             return list;
         }
