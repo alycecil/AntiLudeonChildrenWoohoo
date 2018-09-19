@@ -75,7 +75,7 @@ namespace DarkIntentionsWoohoo
             r = r.Union(hookupBedmanager.GiveBackToil());
 
        /* Log.Message("[WooHoo]Toils: ["+r.Count()+"]"); */
-            pawn.mindState.canLovinTick = Find.TickManager.TicksGame + Rand.Range(5000, 25000);
+            PawnHelper.DelayNextWooHoo(pawn);
             
             return r;
         }
