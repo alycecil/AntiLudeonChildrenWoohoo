@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using DarkIntentionsWoohoo.mod.settings;
 using RimWorld;
 using Verse;
@@ -66,6 +67,7 @@ namespace DarkIntentionsWoohoo
                    //and a 1d10
                    && Rand.Value < 0.1f
                    && (RelationsUtility.PawnsKnowEachOther(pawn, pawn2) )
+                   && WoohooSettingHelper.latest.familyWeight * LovePartnerRelationUtility.IncestOpinionOffsetFor(pawn2, pawn) * Rand.Value < 0.5f
 
                   // && (Math.Abs(LovePartnerRelationUtility.IncestOpinionOffsetFor(pawn2, pawn)) < 0.01f || Rand.Value > WoohooSettingHelper.latest.familyWeight)
 

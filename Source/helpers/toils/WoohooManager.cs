@@ -73,8 +73,8 @@ namespace DarkIntentionsWoohoo
             layDown.AddFinishAction(delegate { 
                 
                 
-                pawn?.needs?.joy?.GainJoy(Rand.Value *.05f, Constants.Joy_Woohoo);
-                mate?.needs?.joy?.GainJoy(Rand.Value *.05f, Constants.Joy_Woohoo);
+                pawn?.needs?.joy?.GainJoy(Rand.Value *.15f, Constants.Joy_Woohoo);
+                mate?.needs?.joy?.GainJoy(Rand.Value *.15f, Constants.Joy_Woohoo);
 
                 /* Log.Message("[woohoo] animating done, woohoo joy between 0 and 5% added"); */
             });
