@@ -9,7 +9,7 @@
         <workType>BasicWorker</workType>
         <verb>woohoo</verb>
         <gerund>woohooing</gerund>
-        <priorityInType>0</priorityInType>
+        <priorityInType>999</priorityInType>
         <requiredCapacities>
             <li>Manipulation</li>
         </requiredCapacities>
@@ -24,7 +24,7 @@
         <workType>BasicWorker</workType>
         <verb>woohoo for baby</verb>
         <gerund>woohooing for a baby</gerund>
-        <priorityInType>0</priorityInType>
+        <priorityInType>999</priorityInType>
         <requiredCapacities>
             <li>Manipulation</li>
         </requiredCapacities>

@@ -4,6 +4,7 @@
     <JoyKindDef>
         <defName>Woohoo</defName>
         <label>All things Woohoo</label>
+        <needsThing>false</needsThing>
     </JoyKindDef>
 
 </Defs>

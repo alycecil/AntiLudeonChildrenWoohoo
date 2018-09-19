@@ -4,7 +4,7 @@ using Verse.AI;
 
 namespace DarkIntentionsWoohoo
 {
-    class WorkGiver_Woohoo : WorkGiver_TakeToBed
+    class WorkGiver_Woohoo : WorkGiver_Scanner
     {
         private Building_Bed bed;
 

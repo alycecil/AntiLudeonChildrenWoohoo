@@ -5,27 +5,15 @@
         <defName>WooHoo</defName>
         <driverClass>DarkIntentionsWoohoo.JobDriver_Woohoo</driverClass>
         <reportString>Attempting Woohoo with TargetA at TargetB.</reportString>
-        <joyDuration>4000</joyDuration>
-        <joyKind>Woohoo</joyKind>
-        <joySkill>Social</joySkill>
-        <joyXpPerTick>0.004</joyXpPerTick>
     </JobDef>
     <JobDef>
         <defName>WooHoo_Baby</defName>
         <driverClass>DarkIntentionsWoohoo.JobDriver_Woohoo_Baby</driverClass>
         <reportString>Attempting Woohoo for a Baby with TargetA at TargetB.</reportString>
-        <joyDuration>4000</joyDuration>
-        <joyKind>Woohoo</joyKind>
-        <joySkill>Social</joySkill>
-        <joyXpPerTick>0.004</joyXpPerTick>
     </JobDef>
     <JobDef>
         <defName>WooHoo_Get</defName>
         <driverClass>DarkIntentionsWoohoo.JobDriver_Woohoo_Receive</driverClass>
         <reportString>Convinced to WooHoo with TargetA at TargetB.</reportString>
-        <joyDuration>5000</joyDuration>
-        <joyKind>Woohoo</joyKind>
-        <joySkill>Social</joySkill>
-        <joyXpPerTick>0.008</joyXpPerTick>
     </JobDef>
 </Defs>

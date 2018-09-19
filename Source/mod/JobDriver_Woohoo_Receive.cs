@@ -5,7 +5,7 @@ using Verse.AI;
 
 namespace DarkIntentionsWoohoo
 {
-    class JobDriver_Woohoo_Receive : JobDriver_Lovin
+    class JobDriver_Woohoo_Receive : JobDriver
     {
         public override bool TryMakePreToilReservations(bool errorOnFailed)
         {

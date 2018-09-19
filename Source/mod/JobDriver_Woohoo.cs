@@ -132,6 +132,7 @@ namespace DarkIntentionsWoohoo
                 && PawnHelper.is_human(pawn)
                 && PawnHelper.is_human(mate)
                 && !bed.IsBurning()
+                && pawn.mindState.canLovinTick < Find.TickManager.TicksGame 
             )
             {
                 return true; //base.TryMakePreToilReservations(errorOnFailed);
