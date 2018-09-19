@@ -1,4 +1,5 @@
-﻿using DarkIntentionsWoohoo.mod.settings;
+﻿using System;
+using DarkIntentionsWoohoo.mod.settings;
 using RimWorld;
 using Verse;
 using Verse.AI;
@@ -44,7 +45,8 @@ namespace DarkIntentionsWoohoo
         private bool canAutoLove(Pawn pawn, Pawn pawn2)
         {
             var tick = Find.TickManager.TicksGame;
-            return pawn.mindState.canLovinTick < tick
+            return WoohooSettingHelper.latest.allowAIWoohoo
+                   && pawn.mindState.canLovinTick < tick
                    && pawn2.mindState.canLovinTick < tick
                    //idle
                    && JobUtilityIdle.isIdle(pawn2)
@@ -61,8 +63,13 @@ namespace DarkIntentionsWoohoo
                        && (pawn.needs.joy.CurLevel < .6f || pawn.needs.mood.CurLevel < .6f)
                    )
 
-                   //and a 1d2
-                   && Rand.Value < 0.1f;
+                   //and a 1d10
+                   && Rand.Value < 0.1f
+                   && (RelationsUtility.PawnsKnowEachOther(pawn, pawn2) )
+
+                  // && (Math.Abs(LovePartnerRelationUtility.IncestOpinionOffsetFor(pawn2, pawn)) < 0.01f || Rand.Value > WoohooSettingHelper.latest.familyWeight)
+
+                ;
         }
 
         public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false)

@@ -10,8 +10,8 @@
         <stackLimit>1</stackLimit>
         <stages>
             <li>
-                <label>Strange</label>
-                <description>I feel strange.</description>
+                <label>missed period</label>
+                <description>I haven't had my period, I'm hopeful!</description>
                 <baseMoodEffect>0</baseMoodEffect>
             </li>
         </stages>

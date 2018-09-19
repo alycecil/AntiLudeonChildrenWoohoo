@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using DarkIntentionsWoohoo.mod.settings;
+using RimWorld;
 using Verse;
 using Verse.AI;
 
@@ -64,9 +65,17 @@ namespace DarkIntentionsWoohoo
             else
             {
                 addMemory(mate, WoohooColonist);
-                addMemoryOfOther(mate, ThoughtDefOf.GotSomeLovin, pawn);
+                if (Rand.Value < WoohooSettingHelper.latest.lovedItChance)
+                {
+                    addMemoryOfOther(mate, ThoughtDefOf.GotSomeLovin, pawn);
+                }
+
                 addMemory(pawn, WoohooColonist);
-                addMemoryOfOther(pawn, ThoughtDefOf.GotSomeLovin, mate);
+
+                if (Rand.Value < WoohooSettingHelper.latest.lovedItChance)
+                {
+                    addMemoryOfOther(pawn, ThoughtDefOf.GotSomeLovin, mate);
+                }
             }
         }
 

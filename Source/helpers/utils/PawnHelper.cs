@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using DarkIntentionsWoohoo.mod.settings;
+using RimWorld;
 using Verse;
 
 namespace DarkIntentionsWoohoo
@@ -66,6 +67,11 @@ namespace DarkIntentionsWoohoo
         public static bool isStranger(Pawn pawn, Pawn mate)
         {
             return (pawn.guest==null && mate.guest !=null);
+        }
+
+        public static void DelayNextWooHoo(Pawn pawn)
+        {
+            pawn.mindState.canLovinTick = Find.TickManager.TicksGame + + Rand.Range((int)(WoohooSettingHelper.latest.minAITicks*0.9f), (int)(WoohooSettingHelper.latest.minAITicks * 1.1f) );
         }
     }
 }

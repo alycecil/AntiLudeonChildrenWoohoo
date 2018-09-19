@@ -26,7 +26,7 @@ namespace DarkIntentionsWoohoo
             list.Add( t = new Toil {initAction = delegate { Log.Message("Getting Woohooing, will be done in 400 ticks"); }, defaultDuration = 400, defaultCompleteMode = ToilCompleteMode.Delay});
             t.AddFinishAction(delegate { Log.Message("Done Woohing Get"); });
 
-            pawn.mindState.canLovinTick = Find.TickManager.TicksGame + + Rand.Range(1500, 25000);
+            PawnHelper.DelayNextWooHoo(pawn);
             //add a moodlet for being asked
             return list;
         }
