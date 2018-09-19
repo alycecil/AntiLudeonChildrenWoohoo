@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using DarkIntentionsWoohoo.mod.settings;
+using RimWorld;
 using Verse;
 using Verse.AI;
 
@@ -29,7 +30,7 @@ namespace DarkIntentionsWoohoo
                 && PawnHelper.is_human(pawn)
                 && PawnHelper.is_human(pawn2)
                 && PawnHelper.IsNotWoohooing(pawn)
-                && PawnHelper.IsNotWoohooing(pawn2))
+                && PawnHelper.IsNotWoohooing(pawn2) )
             {
                 LocalTargetInfo target = pawn2;
                 if (!pawn.CanReserve(target, 1, -1, null, forced)) return false;
@@ -90,7 +91,7 @@ namespace DarkIntentionsWoohoo
 
         public virtual float MateChance()
         {
-            return 0.01f;
+            return WoohooSettingHelper.latest.woohooChildChance;
         }
 
         public virtual bool IsMate(Pawn pawn, Pawn pawn2)
@@ -98,6 +99,7 @@ namespace DarkIntentionsWoohoo
             float fert = FertilityChecker.getFetility(pawn) + FertilityChecker.getFetility(pawn2) / 2.0f;
             fert *= MateChance();
             //TODO dice roll
+            if (pawn.gender == pawn2.gender && !WoohooSettingHelper.latest.sameGender) return false;
             return Rand.Value < fert;
         }
     }

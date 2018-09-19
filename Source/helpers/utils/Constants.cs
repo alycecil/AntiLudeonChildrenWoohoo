@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using DarkIntentionsWoohoo.mod.settings;
+using RimWorld;
 using Verse;
 
 namespace DarkIntentionsWoohoo

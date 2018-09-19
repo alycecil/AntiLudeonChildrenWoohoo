@@ -34,6 +34,10 @@
         Add Settings, note that the base game forces a second dice role on your pawns age group's fertility. Fertility Starts at 14 in base game.
 
         Release Notes:
+        1.2.2 : Mod Settings
+        
+        1.2.1 BugFix : Remove Marker that this is a JoyKindDef of Social, thats what causes the social spots to be woohoo-able.
+        
         1.2: Bugs and Autonomous using shared Lovin' timeout. Ruin those Rivalries with a little together time.
         
         1.1: Thanks for finding bugs!

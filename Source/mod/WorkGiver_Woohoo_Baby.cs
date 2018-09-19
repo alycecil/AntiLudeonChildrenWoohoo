@@ -1,4 +1,5 @@
-﻿using Verse;
+﻿using DarkIntentionsWoohoo.mod.settings;
+using Verse;
 
 namespace DarkIntentionsWoohoo
 {
@@ -6,12 +7,11 @@ namespace DarkIntentionsWoohoo
     {
         public override float MateChance()
         {
-            return 0.50f;
+            return WoohooSettingHelper.latest.woohooBabyChildChance;
         }
 
         public override bool IsMate(Pawn pawn, Pawn pawn2)
         {
-            //TODO dice roll
             return true;
         }
 
