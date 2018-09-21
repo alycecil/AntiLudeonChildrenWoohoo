@@ -18,8 +18,6 @@ namespace DarkIntentionsWoohoo
             {
                 initAction = delegate()
                 {
-                    /* Log.Message("[" + pawn.Name + "] go to [" + thing + "]"); */
-
                     pawn?.pather?.StartPath(thing, PathEndMode.OnCell);
 
                     if (thing is Pawn)
@@ -30,13 +28,10 @@ namespace DarkIntentionsWoohoo
                         }
                         catch (Exception)
                         {
-                            ///snarf it.
-                            /* Log.Message("Couldn't make the target hold still with pather, nbd." + e.Message, false); */
                         }
                     }
                 }
             };
-            toil.AddFinishAction(delegate { Log.Message("Got to ["+thing+"]."); });
             toil.socialMode = RandomSocialMode.Off;
             toil.defaultCompleteMode = mode;
             return toil;

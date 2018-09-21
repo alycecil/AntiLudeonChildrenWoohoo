@@ -56,7 +56,7 @@ namespace DarkIntentionsWoohoo.mod.settings
             
             this.settings.minAITicks = (int) Widgets.HorizontalSlider(inRect.TopHalf().BottomHalf().BottomHalf().RightHalf(),
                 this.settings.minAITicks , 1000, 1000000, true,
-                this.settings.allowAIWoohoo ? ("Time until a pawn can autonomously woohoo again.: " + ( 1f*this.settings.minAITicks/20000.0f ) + " days. (Plus/Minus 10%) "):("Disabled without autonomous woohoo, above."), "Same Day", "Next, Like Never");
+                this.settings.allowAIWoohoo ? ("Wait: " + ( 1f*this.settings.minAITicks/20000.0f ) + " days. (Plus/Minus 10%) "):("Enable AI"), "Same Day", "Next, Like Never");
             
 //            this.settings.minAITicks = (int) Widgets.HorizontalSlider(inRect.BottomHalf().TopHalf().TopHalf(),
 //                this.settings.minAITicks , 1000, 1000000, true,

@@ -26,33 +26,23 @@ namespace DarkIntentionsWoohoo
 
             try
             {
-                Type MorePawnUtils = null;
-
                 var assembly = typeof(BackstoryDef).Assembly;
 
 
-                foreach (Type mine in assembly.GetTypes().Where(x => x.FullName.Contains("MorePawnUtil")))
-                {
-                    if (mine != null)
-                    {
-                        MorePawnUtils = mine;
-                        break;
-                    }
-                }
+                Type morePawnUtils = assembly.GetTypes().Where(x => x.FullName.Contains("MorePawnUtil")).FirstOrDefault(mine => mine != null);
 
-                if (MorePawnUtils == null)
+                if (morePawnUtils == null)
                 {
                     throw new Exception("Couldnt find Childern.MorePawnUtils in the assembly" +
                                         "<--- this is bad practice to control flow with an exception. Dont tell~");
                 }
 
                 bool didIt = false;
-                foreach (var method in MorePawnUtils.GetMethods().Where(aMethod => aMethod.Name.Contains("Loved")))
+                foreach (var method in morePawnUtils.GetMethods().Where(aMethod => aMethod.Name.Contains("Loved")))
                 {
                     var result = method.Invoke(null, new object[] {donor, womb, true});
 
                     if (result != null)
-                        /* Log.Message("Loved From Children Mod : " + result, false); */
                     didIt = true;
                     break;
                 }

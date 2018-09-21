@@ -22,8 +22,6 @@ namespace DarkIntentionsWoohoo
                     this.owners = owners.Where(x => true); //lazy clone;
                 }
             }
-
-            //Log.Message("Bed Manager Created : Owners? ["+(owners!=null && owners.Any())+"]");
         }
 
         public IEnumerable<Toil> GiveBackToil()
@@ -32,18 +30,12 @@ namespace DarkIntentionsWoohoo
 
                 yield return new Toil
                 {
-                    initAction = delegate()
+                    initAction = delegate
                     {
-                     /* Log.Message("[WooHoo] Hookup over 'Boy get out my house, I ant making you pancakes an' you an't movin' in.'"); */
                         GiveBack();
                     },
                     defaultCompleteMode = ToilCompleteMode.Instant
                 };
-            else
-            {
-              /* Log.Message("[WooHoo] We were woohooing with out a bed like savages. SAVAGES!"); */
-            }
-            yield break;
         }
 
         public bool claim(Pawn bedPawn1, Pawn bedPawn2)
@@ -98,7 +90,8 @@ namespace DarkIntentionsWoohoo
             {
                 return bed.AssignedPawns.ToList().AsEnumerable();
             }
-            else if (bed.owners != null)
+
+            if (bed.owners != null)
             {
                 return bed.owners.ToList().AsEnumerable();
             }
@@ -115,11 +108,9 @@ namespace DarkIntentionsWoohoo
                 bed.TryAssignPawn(pawn);
                 return true;
             }
-            else
-            {
-                //Log.Message("No spots?! ugh");
-                return false;
-            }
+
+            //Log.Message("No spots?! ugh");
+            return false;
         }
 
         public static void releaseBed(Building_Bed bed, Pawn pawn)

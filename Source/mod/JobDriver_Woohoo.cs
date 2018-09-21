@@ -67,7 +67,7 @@ namespace DarkIntentionsWoohoo
                     .Union(MakeMyLoveToils(pawn, mate))
                     .Union(
                         WoohooManager.AnimateLovin(pawn, mate, bed,
-                            delegate { Log.Message("We're done animating on main job."); }
+                            null
                             , 500)
                     );
             }
@@ -142,7 +142,7 @@ namespace DarkIntentionsWoohoo
                 return true; //base.TryMakePreToilReservations(errorOnFailed);
             }
 
-         Log.Message("[" + pawn.Name +
+            Log.Message("[" + pawn.Name +
                             "] can't woohoo right. Timing out their lovin for 500 ticks. They tried to some weird stuff:" +
                             this.GetReport(), true);  
             pawn.mindState.canLovinTick = Find.TickManager.TicksGame + 500;

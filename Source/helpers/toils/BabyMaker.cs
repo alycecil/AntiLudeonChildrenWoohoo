@@ -13,44 +13,27 @@ namespace DarkIntentionsWoohoo
                 initAction = delegate
                 {
                     /* Log.Message("Baby Making"); */
-                    Pawn mate = (Pawn) TargetA;
+                    Pawn mate = TargetA;
 
 
                     //check fertility then ensemenate wombs
-                    if (!FertilityChecker.is_fertile(pawn))
+                    if (!FertilityChecker.is_fertile(pawn)) return;
+                    if (!FertilityChecker.is_fertile(mate)) return;
+                    //for each womb make pregnant
+                    if (FertilityChecker.is_FemaleForBabies(pawn))
                     {
-                    /* Log.Message("Woohoo for baby, but youre not fertile", false); */ 
+                        /* Log.Message("Getting innitialer pregnant", false); */
+                        //(donor , has womb)
+                        Mate.Mated(mate, pawn);
+                        pawn.records.Increment(Constants.TimesWooHooedGotPregnant);
                     }
-                    else if (!FertilityChecker.is_fertile(mate))
-                    {
-                    /* Log.Message("Woohoo for baby, but not fertile mate", false); */ 
-                    }
-                    else
-                    {
-                        //for each womb make pregnant
-                        if (FertilityChecker.is_FemaleForBabies(pawn))
-                        {
-                        /* Log.Message("Getting innitialer pregnant", false); */ 
-                            //(donor , has womb)
-                            Mate.Mated(mate, pawn);
-                            pawn.records.Increment(Constants.TimesWooHooedGotPregnant);
-                        }
-                        else
-                        {
-                            /* Log.Message("Initiator lacks womb", false); */
-                        }
 
-                        if (FertilityChecker.is_FemaleForBabies(mate))
-                        {
-                        /* Log.Message("Getting talkee pregnant", false); */ 
-                            //(donor , has womb)
-                            Mate.Mated(pawn, mate);
-                            mate.records.Increment(Constants.TimesWooHooedGotPregnant);
-                        }
-                        else
-                        {
-                            /* Log.Message("talkee lacks womb", false); */
-                        }
+                    if (FertilityChecker.is_FemaleForBabies(mate))
+                    {
+                        /* Log.Message("Getting talkee pregnant", false); */
+                        //(donor , has womb)
+                        Mate.Mated(pawn, mate);
+                        mate.records.Increment(Constants.TimesWooHooedGotPregnant);
                     }
                 },
                 socialMode = RandomSocialMode.Off,

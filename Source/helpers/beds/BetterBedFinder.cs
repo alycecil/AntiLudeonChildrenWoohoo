@@ -10,19 +10,16 @@ namespace DarkIntentionsWoohoo
     {
         public static Building_Bed DoBetterBedFinder(Pawn pawn, Pawn mate)
         {
-            //--Log.Message("Looking for a bed", false);
             if (pawn == null || mate == null) return null;
 
             Building_Bed buildingBed;
             if ((buildingBed = PawnBedBigEnough(pawn)) != null)
             {
-                //--Log.Message("I got a big bed", false);
                 return buildingBed;
             }
 
             if ((buildingBed = PawnBedBigEnough(pawn)) != null)
             {
-                //--Log.Message("They got a big bed", false);
                 return buildingBed;
             }
 
@@ -31,7 +28,6 @@ namespace DarkIntentionsWoohoo
 
             if (!allBeds.Any())
             {
-                //--Log.Message("There are no beds...", false);
                 return null;
             }
 
@@ -41,7 +37,6 @@ namespace DarkIntentionsWoohoo
 
             if (!bigBeds.Any())
             {
-                //--Log.Message("No big beds anywhere, great.", false);
                 return null;
             }
 
@@ -49,7 +44,6 @@ namespace DarkIntentionsWoohoo
             var buildingBeds = priority.ToList();
             if (buildingBeds.Any())
             {
-                //--Log.Message("Looks like We own beds, lets check those.", false);
                 foreach (var bed in buildingBeds)
                 {
                     if (bed != null && CanReserve(pawn, bed) && CanReserve(mate, bed))
@@ -68,13 +62,14 @@ namespace DarkIntentionsWoohoo
             // if not well woohoo 
             foreach (var openBed in bigBeds.Where(x => x.AssignedPawns == null || !x.AssignedPawns.Any()))
             {
-                if(CanReserve(pawn, openBed) && CanReserve(mate, openBed))
-                    //--Log.Message("Found us a place to woohoo", false);
+                if (CanReserve(pawn, openBed) && CanReserve(mate, openBed))
+
                     return openBed;
             }
 
             //lets steal a bed!
-            return bigBeds.Where(bed => bed.CurOccupants == null || !bed.CurOccupants.Any()).FirstOrDefault(stolenBed => CanReserve(pawn, stolenBed) && CanReserve(mate, stolenBed));
+            return bigBeds.Where(bed => bed.CurOccupants == null || !bed.CurOccupants.Any())
+                .FirstOrDefault(stolenBed => CanReserve(pawn, stolenBed) && CanReserve(mate, stolenBed));
         }
 
         private static bool CanReserve(Pawn traveler, Building_Bed buildingBed)

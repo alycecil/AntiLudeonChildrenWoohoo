@@ -40,7 +40,6 @@ namespace DarkIntentionsWoohoo
             };
 
             t.AddEndCondition(() => PawnHelper.IsNotWoohooing(mate) && (tick --) > 0 ? JobCondition.Ongoing : JobCondition.Succeeded);
-            t.AddFinishAction(delegate { Log.Message("Got Partner to Start WooHoo-ing Allegedly."); });
 
             yield return t;
         }
@@ -53,7 +52,6 @@ namespace DarkIntentionsWoohoo
 
             Toil t;
             yield return (t = ToilerHelper.GotoThing(pawn, bed));
-                t.AddFinishAction(delegate { Log.Message("Got To Bed for woohooing"); });
 
             var layDown = new Toil()
             {
@@ -166,8 +164,6 @@ namespace DarkIntentionsWoohoo
                 defaultCompleteMode = ToilCompleteMode.Delay,
                 defaultDuration = 250
             };
-
-            t.AddFinishAction(delegate { Log.Message("Done Asking"); });
 
             return t;
         }

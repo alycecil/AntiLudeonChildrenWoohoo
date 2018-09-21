@@ -25,8 +25,9 @@ namespace DarkIntentionsWoohoo
             list.AddRange( WoohooManager.AnimateLovin(pawn, TargetA.Thing as Pawn, TargetB.Thing as Building_Bed) );
 
             Toil t;
-            list.Add( t = new Toil {initAction = delegate { Log.Message("Getting Woohooing, will be done in 400 ticks"); }, defaultDuration = 400, defaultCompleteMode = ToilCompleteMode.Delay});
-            t.AddFinishAction(delegate { Log.Message("Done Woohing Get"); });
+            list.Add( t = new Toil {initAction = delegate
+            {
+            }, defaultDuration = 400, defaultCompleteMode = ToilCompleteMode.Delay});
 
             PawnHelper.DelayNextWooHoo(pawn);
             //add a moodlet for being asked
