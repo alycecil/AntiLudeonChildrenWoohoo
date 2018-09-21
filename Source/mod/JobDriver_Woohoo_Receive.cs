@@ -15,11 +15,13 @@ namespace DarkIntentionsWoohoo
 
         protected override IEnumerable<Toil> MakeNewToils()
         {
-     /* Log.Message("I got asked to do woohoo!!!!"); */ 
-            var list = new List<Toil>();
+     /* Log.Message("I got asked to do woohoo!!!!"); */
+            var list = new List<Toil>
+            {
+                Toils_Goto.Goto(TargetIndex.A, PathEndMode.ClosestTouch),
+                Toils_Goto.Goto(TargetIndex.B, PathEndMode.ClosestTouch)
+            };
 
-            list.Add( Toils_Goto.Goto(TargetIndex.A, PathEndMode.ClosestTouch));
-            list.Add( Toils_Goto.Goto(TargetIndex.B, PathEndMode.ClosestTouch));
             list.AddRange( WoohooManager.AnimateLovin(pawn, TargetA.Thing as Pawn, TargetB.Thing as Building_Bed) );
 
             Toil t;

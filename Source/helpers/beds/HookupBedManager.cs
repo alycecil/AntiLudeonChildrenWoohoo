@@ -6,12 +6,12 @@ using Verse.AI;
 
 namespace DarkIntentionsWoohoo
 {
-    public class HookupBedmanager
+    public class HookupBedManager
     {
         Building_Bed bed;
         IEnumerable<Pawn> owners;
 
-        public HookupBedmanager(Building_Bed bed)
+        public HookupBedManager(Building_Bed bed)
         {
             this.bed = bed;
             if (bed != null)

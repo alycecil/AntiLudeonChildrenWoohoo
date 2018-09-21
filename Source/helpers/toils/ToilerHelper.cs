@@ -28,7 +28,7 @@ namespace DarkIntentionsWoohoo
                         {
                             (thing as Pawn)?.pather?.StartPath(thing, PathEndMode.OnCell);
                         }
-                        catch (Exception e)
+                        catch (Exception)
                         {
                             ///snarf it.
                             /* Log.Message("Couldn't make the target hold still with pather, nbd." + e.Message, false); */

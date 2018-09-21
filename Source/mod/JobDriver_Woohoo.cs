@@ -39,10 +39,10 @@ namespace DarkIntentionsWoohoo
                 throw new Exception("You cant WooHoo Alone and Together with yourself");
             }
             
-            HookupBedmanager hookupBedmanager = new HookupBedmanager(bed);
+            var hookupBedManager = new HookupBedManager(bed);
 
             bool partnerSaidYes;
-            IEnumerable<Toil> r;
+            IEnumerable<Toil> toilsAskForWoohoo;
             if (PawnHelper.IsNotWoohooing(mate))
             {
                 pawn.records.Increment(Constants.CountAskedForWoohoo);
@@ -50,41 +50,38 @@ namespace DarkIntentionsWoohoo
                 
                 partnerSaidYes = AskPartner(pawn, mate);
                 
-                r = WoohooManager.ToilsAskForWoohoo(pawn, mate, bed, partnerSaidYes, hookupBedmanager);
+                toilsAskForWoohoo = WoohooManager.ToilsAskForWoohoo(pawn, mate, bed, partnerSaidYes, hookupBedManager);
             }
             else
             {
              /* Log.Message("Partner already woohooin, dont need to ask."); */
                 partnerSaidYes = true;
-                r = nothing();
+                toilsAskForWoohoo = nothing();
             }
 
             ///Log.Message("[WooHoo]Toils Ongoing: ["+r.Count()+"]");
             if (partnerSaidYes)
             {
-                
-                r = r
-                    .Union(WoohooManager.MakePartnerWoohoo(pawn, mate, bed))
+                toilsAskForWoohoo = toilsAskForWoohoo?.Union(WoohooManager.MakePartnerWoohoo(pawn, mate, bed))
                     .Union(WoohooManager.AnimateLovin(pawn, mate, bed))
                     .Union(MakeMyLoveToils(pawn, mate))
                     .Union(
                         WoohooManager.AnimateLovin(pawn, mate, bed,
                             delegate { Log.Message("We're done animating on main job."); }
-                        , 500)
+                            , 500)
                     );
-                    
             }
             else
             {
                 mate.records.Increment(Constants.CountGotAskedToWooHooSaidNo);
             }
 
-            r = r.Union(hookupBedmanager.GiveBackToil());
+            toilsAskForWoohoo = toilsAskForWoohoo?.Union(hookupBedManager.GiveBackToil());
 
        /* Log.Message("[WooHoo]Toils: ["+r.Count()+"]"); */
             PawnHelper.DelayNextWooHoo(pawn);
             
-            return r;
+            return toilsAskForWoohoo;
         }
 
         private IEnumerable<Toil> nothing()

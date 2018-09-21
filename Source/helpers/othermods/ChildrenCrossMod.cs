@@ -62,7 +62,7 @@ namespace DarkIntentionsWoohoo
                     throw new Exception("Coundnt find the Loved method in Children");
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 /* Log.Message("Children Failed, using default Mate:" + e.Message, false); */
                 //well that failed

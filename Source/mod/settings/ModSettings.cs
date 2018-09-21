@@ -49,16 +49,19 @@ namespace DarkIntentionsWoohoo.mod.settings
                                        .5f;
 
             
-            this.settings.allowAIWoohoo = Widgets.HorizontalSlider(inRect.TopHalf().BottomHalf().BottomHalf(),
+            this.settings.allowAIWoohoo = Widgets.HorizontalSlider(inRect.TopHalf().BottomHalf().BottomHalf().LeftHalf(),
                                               (this.settings.allowAIWoohoo ? 1f: 0f), 0f, 1f, true,
                                               "Can Pawns WooHoo each other autonomously: " + this.settings.allowAIWoohoo, "No (0%)", "Yes (100%)") >
                                           .5f;
             
-            
-            this.settings.minAITicks = (int) Widgets.HorizontalSlider(inRect.BottomHalf().TopHalf().TopHalf(),
+            this.settings.minAITicks = (int) Widgets.HorizontalSlider(inRect.TopHalf().BottomHalf().BottomHalf().RightHalf(),
                 this.settings.minAITicks , 1000, 1000000, true,
                 this.settings.allowAIWoohoo ? ("Time until a pawn can autonomously woohoo again.: " + ( 1f*this.settings.minAITicks/20000.0f ) + " days. (Plus/Minus 10%) "):("Disabled without autonomous woohoo, above."), "Same Day", "Next, Like Never");
             
+//            this.settings.minAITicks = (int) Widgets.HorizontalSlider(inRect.BottomHalf().TopHalf().TopHalf(),
+//                this.settings.minAITicks , 1000, 1000000, true,
+//                this.settings.allowAIWoohoo ? ("Time until a pawn can autonomously woohoo again.: " + ( 1f*this.settings.minAITicks/20000.0f ) + " days. (Plus/Minus 10%) "):("Disabled without autonomous woohoo, above."), "Same Day", "Next, Like Never");
+//            
             
             this.settings.familyWeight = Widgets.HorizontalSlider(inRect.BottomHalf().TopHalf().BottomHalf(),
                 this.settings.familyWeight, 0f, 1f, true,

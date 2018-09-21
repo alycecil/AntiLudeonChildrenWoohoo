@@ -101,7 +101,7 @@ namespace DarkIntentionsWoohoo
         }
 
         public static IEnumerable<Toil> ToilsAskForWoohoo(Pawn pawn, Pawn mate, Building_Bed bed, bool askSuccess,
-            HookupBedmanager hookupBedmanager)
+            HookupBedManager hookupBedManager)
         {
             yield return ToilerHelper.GotoThing(pawn, mate);
 
@@ -114,7 +114,7 @@ namespace DarkIntentionsWoohoo
                     initAction = delegate()
                     {
                         /* Log.Message("Claiming Bed spots"); */
-                        hookupBedmanager.claim(pawn, mate);
+                        hookupBedManager.claim(pawn, mate);
                     /* Log.Message("Claimed Bed spots"); */ 
                     },
                     defaultCompleteMode = ToilCompleteMode.Instant
