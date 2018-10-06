@@ -10,6 +10,7 @@ namespace DarkIntentionsWoohoo
     class WorkGiver_Woohoo : WorkGiver_Scanner
     {
         private Building_Bed bed;
+        private static float MINIMAL_JOY = .6f;
 
         public override ThingRequest PotentialWorkThingRequest
         {
@@ -46,6 +47,7 @@ namespace DarkIntentionsWoohoo
         private bool canAutoLove(Pawn pawn, Pawn pawn2)
         {
             var tick = Find.TickManager.TicksGame;
+            
             return WoohooSettingHelper.latest.allowAIWoohoo
                    && pawn.mindState.canLovinTick < tick
                    && pawn2.mindState.canLovinTick < tick
@@ -60,14 +62,14 @@ namespace DarkIntentionsWoohoo
 
                    && !pawn2.needs.joy.tolerances.BoredOf(Constants.Joy_Woohoo)
                    && !pawn.needs.joy.tolerances.BoredOf(Constants.Joy_Woohoo)
-                   && ((pawn2.needs.joy.CurLevel < .6f  || pawn2.needs.mood.CurLevel < .6f)
-                       && (pawn.needs.joy.CurLevel < .6f || pawn.needs.mood.CurLevel < .6f)
+                   && ((pawn2.needs.joy.CurLevel < MINIMAL_JOY  || pawn2.needs.mood.CurLevel < MINIMAL_JOY)
+                       && (pawn.needs.joy.CurLevel < MINIMAL_JOY || pawn.needs.mood.CurLevel < MINIMAL_JOY)
                    )
 
                    //and a 1d10
                    && Rand.Value < 0.1f
-                   && (RelationsUtility.PawnsKnowEachOther(pawn, pawn2) )
-                   && WoohooSettingHelper.latest.familyWeight * LovePartnerRelationUtility.IncestOpinionOffsetFor(pawn2, pawn) * Rand.Value < 0.5f
+                   && RelationsUtility.PawnsKnowEachOther(pawn, pawn2)
+                   && WoohooSettingHelper.latest.familyWeight * Math.Abs(LovePartnerRelationUtility.IncestOpinionOffsetFor(pawn2, pawn)*0.01f) * Rand.Value < 0.5f
 
                   // && (Math.Abs(LovePartnerRelationUtility.IncestOpinionOffsetFor(pawn2, pawn)) < 0.01f || Rand.Value > WoohooSettingHelper.latest.familyWeight)
 
@@ -107,7 +109,6 @@ namespace DarkIntentionsWoohoo
         {
             float fert = FertilityChecker.getFetility(pawn) + FertilityChecker.getFetility(pawn2) / 2.0f;
             fert *= MateChance();
-            //TODO dice roll
             if (pawn.gender == pawn2.gender && !WoohooSettingHelper.latest.sameGender) return false;
             return Rand.Value < fert;
         }

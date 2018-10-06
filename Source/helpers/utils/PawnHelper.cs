@@ -30,8 +30,7 @@ namespace DarkIntentionsWoohoo
 
         public static bool is_bloodlust(Pawn pawn)
         {
-            return (pawn != null && pawn.story != null && pawn.story.traits != null &&
-                    pawn.story.traits.HasTrait(TraitDefOf.Bloodlust));
+            return (pawn?.story?.traits != null && pawn.story.traits.HasTrait(TraitDefOf.Bloodlust));
         }
 
         public static bool is_brawler(Pawn pawn)
@@ -42,8 +41,7 @@ namespace DarkIntentionsWoohoo
 
         public static bool is_kind(Pawn pawn)
         {
-            return (pawn != null && pawn.story != null && pawn.story.traits != null &&
-                    pawn.story.traits.HasTrait(TraitDefOf.Kind));
+            return (pawn?.story != null && pawn.story.traits != null && pawn.story.traits.HasTrait(TraitDefOf.Kind));
         }
 
         public static bool IsNotWoohooing(Pawn mate)
