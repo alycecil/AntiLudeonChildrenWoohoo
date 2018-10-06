@@ -29,7 +29,8 @@ namespace DarkIntentionsWoohoo
                 && pawn != pawn2
                 && (forced || canAutoLove(pawn, pawn2))
                 && !pawn2.Downed
-                && (pawn2.Faction == pawn.Faction || pawn2.guest != null && !pawn2.Drafted)
+                && !pawn2.Drafted
+                && !pawn.Drafted
                 && PawnHelper.is_human(pawn)
                 && PawnHelper.is_human(pawn2)
                 && PawnHelper.IsNotWoohooing(pawn)
@@ -50,7 +51,6 @@ namespace DarkIntentionsWoohoo
             
             return WoohooSettingHelper.latest.allowAIWoohoo
                    && pawn.mindState.canLovinTick < tick
-                   && pawn2.mindState.canLovinTick < tick
                    //idle
                    && JobUtilityIdle.isIdle(pawn2)
 
