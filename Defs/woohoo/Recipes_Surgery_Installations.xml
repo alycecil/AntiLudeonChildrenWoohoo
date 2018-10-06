@@ -32,8 +32,5 @@
             <li>Stomach</li>
         </appliedOnFixedBodyParts>
         <addsHediff>BionicWomb</addsHediff>
-        <recipeUsers>
-            <li>Human</li>
-        </recipeUsers>
     </RecipeDef>
 </Defs>

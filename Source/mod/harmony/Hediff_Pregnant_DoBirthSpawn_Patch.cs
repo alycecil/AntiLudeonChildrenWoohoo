@@ -12,28 +12,26 @@ namespace DarkIntentionsWoohoo.harmony
         [HarmonyPrefix]
         public static bool Prefix(Pawn_RelationsTracker __instance, PawnRelationDef def, Pawn otherPawn)
         {
-            if (def == null || otherPawn==null) return true;
+            if (def == null || otherPawn == null) return true;
 
             var pawn = getPawn(__instance);
 
-            if (pawn == null 
+            if (pawn == null
                 || pawn.IsColonist
                 || !otherPawn.IsColonist
                 || def != PawnRelationDefOf.Parent) return true;
-            
+
             pawn.SetFaction(Faction.OfPlayer);
-            
+
             return true;
         }
-        
+
         private static Pawn getPawn(Pawn_RelationsTracker __instance)
         {
             Pawn pawn = null;
             try
             {
                 pawn = Traverse.Create(__instance).Field("pawn").GetValue<Pawn>();
-                
-                
             }
             catch (Exception)
             {
@@ -59,7 +57,6 @@ namespace DarkIntentionsWoohoo.harmony
                 {
                     mother.SetFaction(Faction.OfPlayer, father);
 
-                    //TODO message mother given amnesty
                     TaleRecorder.RecordTale(TaleDefOf.Recruited, new object[]
                     {
                         father, // recruiter

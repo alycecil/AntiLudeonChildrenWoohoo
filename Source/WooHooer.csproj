@@ -81,6 +81,7 @@
     <Compile Include="helpers\utils\JailHelper.cs" />
     <Compile Include="helpers\utils\JobUtilityIdle.cs" />
     <Compile Include="helpers\utils\PawnHelper.cs" />
+    <Compile Include="mod\harmony\DefGenerator_GenerateImpliedDefs.cs" />
     <Compile Include="mod\harmony\Hediff_Pregnant_DoBirthSpawn_Patch.cs" />
     <Compile Include="mod\harmony\PawnGenerator_GeneratePawn_Patch.cs" />
     <Compile Include="mod\HeDiffPrisonerGivingBirth.cs" />
