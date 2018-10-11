@@ -50,8 +50,6 @@ namespace DarkIntentionsWoohoo
                     {
                         return bed;
                     }
-
-                    Log.Error("How the hell is the owned bed null?", true);
                 }
             }
 
