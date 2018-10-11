@@ -114,6 +114,11 @@ namespace DarkIntentionsWoohoo
                 }
                 else
                 {
+                    if (victim.records.GetAsInt(Constants.HorrificMemories) > 10 && Rand.Bool)
+                    {
+                        victim.story.traits.GainTrait(new Trait(PawnHelper.Masochist()));
+                    }
+
                     addMemoryOfOther(victim, PrisonerWoohooMemory, torturer);
                 }
             }

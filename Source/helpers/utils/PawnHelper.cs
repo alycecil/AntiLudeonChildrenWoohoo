@@ -19,8 +19,10 @@ namespace DarkIntentionsWoohoo
         public static bool is_masochist(Pawn pawn)
         {
             return (pawn != null && pawn.story != null && pawn.story.traits != null &&
-                    pawn.story.traits.HasTrait(TraitDef.Named("Masochist")));
+                    pawn.story.traits.HasTrait(Masochist()));
         }
+
+        public static TraitDef Masochist() => TraitDef.Named("Masochist");
 
         public static bool is_psychopath(Pawn pawn)
         {
