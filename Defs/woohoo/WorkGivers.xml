@@ -1,12 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
 <Defs>
+    <WorkTypeDef>
+        <defName>Woohoo</defName>
+        <labelShort>Woohoo</labelShort>
+        <pawnLabel>Woohooer</pawnLabel>
+        <gerundLabel>woohooing with</gerundLabel>
+        <description>Can Woohoo?</description>
+        <verb>woohooing</verb>
+        <naturalPriority>151</naturalPriority>
+        <alwaysStartActive>true</alwaysStartActive>
+    </WorkTypeDef>
 
     <WorkGiverDef>
         <defName>Woohoo</defName>
         <label>Woohoo</label>
         <giverClass>DarkIntentionsWoohoo.WorkGiver_Woohoo</giverClass>
-        <workType>BasicWorker</workType>
+        <workType>Woohoo</workType>
         <verb>woohoo</verb>
         <gerund>woohooing</gerund>
         <priorityInType>999</priorityInType>
@@ -21,7 +31,7 @@
         <defName>Woohoo_Baby</defName>
         <label>Woohoo for Baby</label>
         <giverClass>DarkIntentionsWoohoo.WorkGiver_Woohoo_Baby</giverClass>
-        <workType>BasicWorker</workType>
+        <workType>Woohoo</workType>
         <verb>woohoo for baby</verb>
         <gerund>woohooing for a baby</gerund>
         <priorityInType>999</priorityInType>

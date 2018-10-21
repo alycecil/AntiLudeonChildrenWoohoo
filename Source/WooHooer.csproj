@@ -35,7 +35,7 @@
     <Reference Include="0Harmony">
       <HintPath>..\..\Gastroliths\Assemblies\0Harmony.dll</HintPath>
     </Reference>
-    <Reference Include="Assembly-CSharp">
+    <Reference Include="Assembly-CSharp, Version=1.0.6864.30166, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\..\..\RimWorldWin64_Data\Managed\Assembly-CSharp.dll</HintPath>
       <Private>False</Private>
     </Reference>
@@ -53,7 +53,6 @@
     <None Include="..\About\About-Release.xml" />
     <None Include="..\About\About.xml" />
     <None Include="..\About\Preview.png" />
-    <None Include="..\About\PublishedFileId.txt" />
     <None Include="..\Defs\woohoo\Jobs.xml">
       <Link>xml\Jobs.xml</Link>
     </None>
