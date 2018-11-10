@@ -1,10 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
 <ModMetaData>
-    <name>Woohooer</name>
-    <author>AliceTries</author>
+    <name>[FIXED] Woohooer</name>
+    <author>Community fork of AliceTries</author>
     <targetVersion>1.0.0</targetVersion>
-    <description>Release B19 - Version 1.2 Of WooHooer!
+    <description>
+      It's a fixed emergency fork of Public Domain version of Woohooer by AliceTries.
+  		Use this to keep your saves safe.
+      
+      Actually, i didn't use this mod before, so not sure if it works as intended. Please, leave some feedback about that. 
+  		
+  		New description is in progress.
+      
+      Feel free to contribute, it's a community driven fork:
+      https://github.com/inexcode/Woohooer
+  		
+  		
+  		Original decripton:
+      
+      Release B19 - Version 1.2 Of WooHooer!
 
         Adds Sims (tm) like commands for woohooing with Pawns, including try for baby.
 
@@ -24,5 +38,5 @@
 
         Generic:
         Will Check for Capabilities named Fertility and Reproduction, which can prevent pregancy.</description>
-    <url>https://steamcommunity.com/id/AliceTries/myworkshopfiles/?appid=294100</url>
+    <url>https://github.com/inexcode/Woohooer</url>
 </ModMetaData>
